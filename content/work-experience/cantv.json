@@ -6,6 +6,8 @@
   "startDate": "2007-10",
   "endDate": "2007-12",
   "isCurrent": false,
+  "logoClass": "bg-white",
+  "imageClass": "bg-white",
   "description": "During my Computer Engineering degree, I completed internships at CANTV in the Lara Transmissions department. Gained extensive knowledge of telecommunications and data transmission systems.",
   "technologies": ["Telecommunications", "Data Transmission", "Logic Gates", "Hardware Design", "System Troubleshooting"],
   "achievements": [
@@ -14,6 +16,7 @@
     "Developed practical skills in diagnosing and troubleshooting transmission issues, contributing to improved communication reliability",
     "Completed Computer Engineering internship requirements successfully"
   ],
-  "companyLogo": null,
+  "companyLogo": "/images/cantv_logo.png",
+  "companyUrl": "https://www.cantv.com.ve/",
   "priority": 2
 }

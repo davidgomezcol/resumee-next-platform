@@ -38,6 +38,7 @@ export interface Translations {
     subjectPlaceholder: string
     messagePlaceholder: string
     submitting: string
+    information: string
   }
   footer: {
     description: string
@@ -87,6 +88,7 @@ export const translations: Record<Language, Translations> = {
       subjectPlaceholder: 'Your subject here',
       messagePlaceholder: 'Your message here',
       submitting: 'Submitting...',
+      information: 'Contact Information',
     },
     footer: {
       description: 'Full-stack developer specializing in modern web technologies, cloud solutions, and AI-powered applications. Building intelligent systems and applications that deliver exceptional user experiences through innovative agentic development approaches.',
@@ -134,6 +136,7 @@ export const translations: Record<Language, Translations> = {
       subjectPlaceholder: 'Tu asunto aquí',
       messagePlaceholder: 'Tu mensaje aquí',
       submitting: 'Enviando...',
+      information: 'Información de Contacto',
     },
     footer: {
       description: 'Desarrollador full-stack especializado en tecnologías web modernas, soluciones en la nube y aplicaciones impulsadas por IA. Construyendo sistemas inteligentes y aplicaciones que ofrecen experiencias de usuario excepcionales a través de enfoques innovadores de desarrollo agéntico.',

@@ -1,6 +1,18 @@
 'use client'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
+import { 
+  AWSLogoIcon, 
+  ReactLogoIcon, 
+  NextjsIcon, 
+  PythonIcon, 
+  VueIcon, 
+  DockerIcon, 
+  JavaScriptIcon, 
+  KubernetesIcon,
+  DjangoIcon,
+  FlaskIcon,
+} from '../../utils/icons'
 
 const MarqueeWrapper = dynamic(() => import('../Marquee/MarqueeWrapper'), { ssr: false })
 
@@ -16,7 +28,31 @@ const Skills: React.FC<SkillsProps> = ({ skills }) => {
           <span
             key={index}
             className="font-inter text-primary-content flex items-center text-xs lg:text-base">
-            <Image src={icon} alt={name} className="mx-2 size-11 lg:size-14" />
+            {icon === 'aws' ? (
+              <AWSLogoIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+            ) : icon === 'javascript' ? (
+              <JavaScriptIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+            ) : icon === 'react' ? (
+              <ReactLogoIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+            ) : icon === 'nextjs' ? (
+              <NextjsIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+            ) : icon === 'python' ? (
+              <PythonIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+            ) : icon === 'flask' ? (
+              <FlaskIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+            ) : icon === 'vue' ? (
+              <VueIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+            ) : icon === 'docker' ? (
+              <DockerIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+            ) : icon === 'kubernetes' ? (
+              <KubernetesIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+            ) : icon === 'django' ? (
+              <DjangoIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+            ) : icon === 'flask' ? (
+              <FlaskIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+            ) : (
+              <Image src={icon} alt={name} className="mx-2 size-11 lg:size-14" />
+            )}
             {name}
           </span>
         ))}

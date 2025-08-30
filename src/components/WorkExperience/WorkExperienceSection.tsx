@@ -20,14 +20,23 @@ const WorkExperienceSection: React.FC<WorkExperienceSectionProps> = ({ workExper
 
       <div className="my-8 md:my-12">
         <div className="space-y-0">
-          {workExperiences.map((experience, index) => (
-            <WorkExperienceCard
-              key={experience.id}
-              data={experience}
-              translatedData={translatedExperiences[index]}
-              isLast={index === workExperiences.length - 1}
-            />
-          ))}
+          {workExperiences.map((experience, index) => {
+            // Find the corresponding translation by matching the position or using a fallback
+            const translatedData = translatedExperiences[index] || {
+              position: experience.position,
+              description: experience.description,
+              achievements: experience.achievements
+            }
+            
+            return (
+              <WorkExperienceCard
+                key={experience.id}
+                data={experience}
+                translatedData={translatedData}
+                isLast={index === workExperiences.length - 1}
+              />
+            )
+          })}
         </div>
       </div>
     </section>

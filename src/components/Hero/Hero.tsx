@@ -48,7 +48,7 @@ const Hero = () => {
               priority={true}
               sizes="(min-width: 1024px) 25.75rem, (min-width: 768px) 20rem, (min-width: 640px) 15rem, 14rem"
               alt="David Gómez - Full Stack Developer"
-              className="object-contain p-7"
+              className="rounded-full object-cover p-4"
             />
             <Ellipse
               ref={ellipseRef}

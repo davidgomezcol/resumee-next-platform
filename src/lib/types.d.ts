@@ -27,6 +27,8 @@ export interface WorkExperience {
   achievements: string[]
   companyLogo?: string
   priority: number
+  logoClass?: string
+  companyUrl?: string
 }
 
 export interface Heading {

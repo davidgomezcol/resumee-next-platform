@@ -4,7 +4,7 @@ import { WorkExperience } from '@/lib/types'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { WorkExperienceTranslation } from '@/lib/workExperienceTranslations'
 import Image from 'next/image'
-import { CalendarIcon, MapPinIcon, BuildingIcon } from '../../utils/icons'
+import { CalendarIcon, MapPinIcon, BuildingIcon, ExternalLinkIcon } from '../../utils/icons'
 
 interface WorkExperienceCardProps {
   data: WorkExperience
@@ -24,6 +24,8 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ data, translate
     technologies,
     achievements,
     companyLogo,
+    logoClass,
+    companyUrl,
   } = data
 
   const formatDate = (dateString: string) => {
@@ -40,14 +42,14 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ data, translate
       
       <div className="flex gap-6">
         {/* Timeline dot */}
-        <div className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary">
+        <div className={`relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary ${logoClass || ''}`}>
           {companyLogo ? (
             <Image
               src={companyLogo}
               alt={company}
               width={64}
               height={64}
-              className="rounded-full object-cover"
+              className={`rounded-full object-cover ${logoClass || ''}`}
             />
           ) : (
             <BuildingIcon className="h-6 w-6 text-primary-content" />
@@ -59,11 +61,24 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ data, translate
           <div className="bg-secondary border-border rounded-lg border p-6">
             {/* Header */}
             <div className="mb-4">
-              <h3 className="text-secondary-content text-lg font-semibold">{translatedData.position}</h3>
-              <h4 className="text-accent text-base font-medium">{company}</h4>
+              <h3 className="text-neutral text-lg font-semibold">{translatedData.position}</h3>
+              <div className="flex items-center gap-2">
+                <h4 className="text-accent text-base font-medium">{company}</h4>
+                {companyUrl && (
+                  <a
+                    href={companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent hover:text-accent/80 transition-colors"
+                    aria-label={`Visit ${company} website`}
+                  >
+                    <ExternalLinkIcon className="h-4 w-4" />
+                  </a>
+                )}
+              </div>
               
               {/* Date and Location */}
-              <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-neutral">
+              <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-tertiary-content">
                 <div className="flex items-center gap-1">
                   <CalendarIcon className="h-4 w-4" />
                                             <span>
@@ -79,13 +94,13 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ data, translate
 
             {/* Description */}
             <div className="mb-4">
-              <p className="text-secondary-content text-sm leading-relaxed">{translatedData.description}</p>
+              <p className="text-neutral text-sm leading-relaxed">{translatedData.description}</p>
             </div>
 
             {/* Technologies */}
                                 {technologies.length > 0 && (
                       <div className="mb-4">
-                        <h5 className="text-secondary-content mb-2 text-sm font-medium">{t.experience.technologies}</h5>
+                        <h5 className="text-neutral mb-2 text-sm font-medium">{t.experience.technologies}</h5>
                 <div className="flex flex-wrap gap-2">
                   {technologies.map((tech, index) => (
                     <span
@@ -102,10 +117,10 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ data, translate
             {/* Achievements */}
                                 {achievements.length > 0 && (
                       <div>
-                        <h5 className="text-secondary-content mb-2 text-sm font-medium">{t.experience.achievements}</h5>
+                        <h5 className="text-neutral mb-2 text-sm font-medium">{t.experience.achievements}</h5>
                                         <ul className="space-y-1">
                           {translatedData.achievements.map((achievement, index) => (
-                            <li key={index} className="text-secondary-content text-sm leading-relaxed">
+                            <li key={index} className="text-neutral text-sm leading-relaxed">
                               • {achievement}
                             </li>
                           ))}

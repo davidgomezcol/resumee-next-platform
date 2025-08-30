@@ -5,6 +5,7 @@
   "location": "Venezuela",
   "startDate": "2017-09",
   "endDate": "2019-12",
+  "logoClass": "bg-white",
   "isCurrent": false,
   "description": "Key contributor to the startup's rapid product development process. As a software engineer, led the team in implementing designs using the latest web development technologies. Managed Public Cloud Services (GCP) to ensure reliable and scalable infrastructure.",
   "technologies": ["WordPress", "GCP", "Web Development", "PHP", "JavaScript", "HTML", "CSS", "Graphic Design"],
@@ -15,6 +16,7 @@
     "Managed Public Cloud Services (GCP) to ensure reliable and scalable infrastructure",
     "Led the team in implementing designs using the latest web development technologies"
   ],
-  "companyLogo": null,
+  "companyLogo": "/images/arquimedia-logo.png",
+  "companyUrl": "https://arquimediastudios.com",
   "priority": 7
 }

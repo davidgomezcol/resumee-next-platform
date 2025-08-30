@@ -1,14 +1,3 @@
-// Data for portfolio
-import {
-  JavaScriptIcon,
-  NextjsIcon,
-  PythonIcon,
-  ReactIcon,
-  DockerIcon,
-  AWSIcon,
-  VueIcon,
-} from '../utils/icons'
-
 // Project Data
 export const projects = [
   {
@@ -66,39 +55,54 @@ export const projects = [
 // Service Data
 export const serviceData = [
   {
-    icon: JavaScriptIcon,
+    icon: 'javascript',
     title: 'JavaScript Development',
     shortDescription: 'Creating dynamic and interactive web applications using JavaScript.',
   },
   {
-    icon: ReactIcon,
+    icon: 'react',
     title: 'React.js Development',
     shortDescription: 'Building modern and responsive user interfaces with React.js.',
   },
   {
-    icon: NextjsIcon,
+    icon: 'nextjs',
     title: 'Next.js Development',
     shortDescription: 'Creating server-rendered React applications with Next.js.',
   },
   {
-    icon: PythonIcon,
+    icon: 'python',
     title: 'Python Development',
     shortDescription: 'Developing scalable server-side applications using Python.',
   },
   {
-    icon: DockerIcon,
+    icon: 'django',
+    title: 'Django Development',
+    shortDescription: 'Developing scalable server-side applications using Django.',
+  },
+  {
+    icon: 'flask',
+    title: 'Flask Development',
+    shortDescription: 'Developing scalable server-side applications using Flask.',
+  },
+  {
+    icon: 'docker',
     title: 'Docker Development',
     shortDescription: 'Containerizing applications for easy deployment and scalability.',
   },
   {
-    icon: AWSIcon,
+    icon: 'aws',
     title: 'AWS Development',
     shortDescription: 'Deploying applications on AWS for high availability and scalability.',
   },
   {
-    icon: VueIcon,
+    icon: 'vue',
     title: 'Vue.js Development',
     shortDescription: 'Building modern and responsive user interfaces with Vue.js.',
+  },
+  {
+    icon: 'kubernetes',
+    title: 'Kubernetes Development',
+    shortDescription: 'Orchestrating containerized applications with Kubernetes.',
   },
 ]
 
@@ -106,31 +110,43 @@ export const serviceData = [
 export const skillList = [
   {
     name: '',
-    icon: JavaScriptIcon,
+    icon: 'javascript',
   },
   {
     name: '',
-    icon: ReactIcon,
+    icon: 'react',
   },
   {
     name: '',
-    icon: NextjsIcon,
+    icon: 'nextjs',
   },
   {
     name: '',
-    icon: PythonIcon,
+    icon: 'python',
   },
   {
     name: '',
-    icon: DockerIcon,
+    icon: 'django',
   },
   {
     name: '',
-    icon: AWSIcon,
+    icon: 'flask',
   },
   {
     name: '',
-    icon: VueIcon,
+    icon: 'docker',
+  },
+  {
+    name: '',
+    icon: 'aws',
+  },
+  {
+    name: '',
+    icon: 'vue',
+  },
+  {
+    name: '',
+    icon: 'kubernetes',
   },
 ]
 
