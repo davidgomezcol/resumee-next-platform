@@ -4,6 +4,7 @@ import action from '@/actions/contact-form'
 import { useActionState } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { useState, useEffect } from 'react'
+import { trackFormSubmission } from '@/lib/analytics'
 import Button from '../UI/Button'
 import Input from '../UI/Input'
 import Textarea from '../UI/Textarea'
@@ -27,6 +28,13 @@ const ContactForm = () => {
     const num2 = Math.floor(Math.random() * 10) + 1
     setMathQuestion({ num1, num2, answer: num1 + num2 })
   }, [])
+
+  // Track form submission
+  useEffect(() => {
+    if (status?.success) {
+      trackFormSubmission('contact_form')
+    }
+  }, [status?.success])
 
   if (status?.success) {
     return (
@@ -94,7 +102,12 @@ const ContactForm = () => {
       </div>
 
       {!status?.success && <p className="my-2 font-light text-red-600">{status?.message}</p>}
-      <Button text={isPending ? t.contact.submitting : t.contact.send} disabled={isPending} />
+      <Button
+        text={isPending ? t.contact.submitting : t.contact.send}
+        disabled={isPending}
+        trackingName="contact_form_submit"
+        trackingLocation="contact_section"
+      />
     </form>
   )
 }

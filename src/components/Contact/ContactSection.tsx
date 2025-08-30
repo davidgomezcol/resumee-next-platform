@@ -2,10 +2,15 @@
 
 import { MsgIcon } from '@/utils/icons'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { trackEmailClick } from '@/lib/analytics'
 import ContactForm from './ContactForm'
 
 const ContactSection = () => {
   const { t } = useLanguage()
+
+  const handleEmailClick = () => {
+    trackEmailClick('hi@dgomez.dev', 'contact_section')
+  }
 
   return (
     <section
@@ -22,6 +27,7 @@ const ContactSection = () => {
           <p className="text-neutral text-lg font-bold">{t.contact.information}</p>
           <a
             href="mailto:hi@dgomez.dev"
+            onClick={handleEmailClick}
             className="text-neutral hover:text-accent flex items-center gap-1 font-light transition-colors duration-300">
             <MsgIcon /> hi@dgomez.dev
           </a>

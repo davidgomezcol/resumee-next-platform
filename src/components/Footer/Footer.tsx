@@ -3,11 +3,20 @@
 import { footerLinks } from '@/appData'
 import { socials } from '@/appData/personal'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { trackEmailClick, trackSocialClick } from '@/lib/analytics'
 import Logo from '../Navbar/Logo'
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher'
 
 const Footer = () => {
   const { t } = useLanguage()
+
+  const handleEmailClick = () => {
+    trackEmailClick('hi@dgomez.dev', 'footer')
+  }
+
+  const handleSocialClick = (platform: string) => {
+    trackSocialClick(platform)
+  }
 
   return (
     <footer className="bg-secondary relative flex min-h-[560px] flex-col justify-between gap-20 overflow-hidden px-4 py-14 md:p-14">
@@ -44,6 +53,15 @@ const Footer = () => {
               <li key={index} className="cursor-pointer bg-transparent">
                 <a
                   href={item.href}
+                  onClick={() =>
+                    handleSocialClick(
+                      item.href.includes('github')
+                        ? 'github'
+                        : item.href.includes('linkedin')
+                          ? 'linkedin'
+                          : 'social_link',
+                    )
+                  }
                   className="text-neutral transition-color hover:text-neutral/50 h-full w-full duration-300">
                   {item.icon}
                 </a>
@@ -61,6 +79,7 @@ const Footer = () => {
               <h5 className="text-neutral mb-4 text-lg font-medium">{t.footer.contactMe}</h5>
               <a
                 href="mailto:hi@dgomez.dev"
+                onClick={handleEmailClick}
                 className="text-tertiary-content hover:text-neutral text-sm font-light transition-colors duration-300">
                 hi@dgomez.dev
               </a>

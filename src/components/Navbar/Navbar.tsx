@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { trackNavigation } from '@/lib/analytics'
 import { BurgerIcon, CloseIcon } from '../../utils/icons'
 import Logo from './Logo'
 
@@ -71,6 +72,11 @@ const Navbar = () => {
     setIsVisible(!isVisible)
   }
 
+  const handleNavClick = (section: string) => {
+    trackNavigation(section || 'home')
+    setIsVisible(false)
+  }
+
   return (
     <nav
       className={`bg-primary/95 border-border sticky top-0 z-50 overflow-hidden border-b backdrop-blur-sm transition-all duration-300 ease-in-out ${
@@ -81,7 +87,7 @@ const Navbar = () => {
         {isVisible ? (
           <div className="text-primary-content md:hidden">_menu</div>
         ) : (
-          <Link href="/">
+          <Link href="/" onClick={() => trackNavigation('home')}>
             <div
               className={`animate-fade-up text-primary-content relative flex items-center gap-3 transition-all duration-300 md:static ${
                 isScrolled ? 'scale-95' : 'scale-100'
@@ -109,10 +115,10 @@ const Navbar = () => {
             return (
               <li
                 key={href}
-                onClick={() => setIsVisible(false)}
                 className="border-border flex items-center border-b px-4 text-2xl md:border-y-0 md:border-e md:text-base md:first:border-s md:last:ml-auto md:last:border-none md:last:px-0 lg:px-8">
                 <Link
                   href={href}
+                  onClick={() => handleNavClick(id)}
                   className={`text-primary-content hover:text-neutral group relative w-full py-7 transition-all duration-300 md:py-0 ${
                     isActive ? 'text-neutral cursor-text' : ''
                   }`}>
