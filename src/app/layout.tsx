@@ -48,10 +48,10 @@ export default function RootLayout({
     <html lang="en" data-theme="dark">
       <body className={`${firaCode.className}`}>
         <LanguageProvider>
-          <header>
-            <Navbar />
-          </header>
-          {children}
+          <Navbar />
+          <main>
+            {children}
+          </main>
           <ThemeMenu />
           <Footer />
         </LanguageProvider>
