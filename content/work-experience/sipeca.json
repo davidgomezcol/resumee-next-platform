@@ -1,0 +1,19 @@
+{
+  "id": "sipeca",
+  "company": "SIPECA",
+  "position": "System Analyst",
+  "location": "Barquisimeto, Venezuela",
+  "startDate": "2009-12",
+  "endDate": "2010-07",
+  "isCurrent": false,
+  "description": "Collaborated on the non-bank correspondents project for Casa Propia E.A.P., focusing on the presentation layers and middleware applications using Crosswalk language. Implemented a document management tool using web technologies.",
+  "technologies": ["Crosswalk", "Web Technologies", "Document Management", "Middleware Applications", "System Analysis"],
+  "achievements": [
+    "Collaborated on the non-bank correspondents project for Casa Propia E.A.P., focusing on the presentation layers and middleware applications using Crosswalk language",
+    "Implemented a document management tool using web technologies",
+    "Developed a tool for managing working hours for Sipeca",
+    "Contributed to system analysis and development processes"
+  ],
+  "companyLogo": null,
+  "priority": 5
+}

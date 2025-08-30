@@ -1,0 +1,19 @@
+{
+  "id": "a-su-salud",
+  "company": "A Su Salud, C.A.",
+  "position": "General Manager Administration",
+  "location": "Barquisimeto, Venezuela",
+  "startDate": "2011-11",
+  "endDate": "2017-08",
+  "isCurrent": false,
+  "description": "Startup Owner. Designed and implemented a scalable and high-performance tech network to quickly get the business operational. Led a team, gaining valuable experience in business administration, management, and strategic planning.",
+  "technologies": ["Business Administration", "Project Management", "Strategic Planning", "Team Leadership", "Network Infrastructure"],
+  "achievements": [
+    "Designed and implemented a scalable and high-performance tech network to quickly get the business operational",
+    "Led a team, gaining valuable experience in business administration, management, and strategic planning",
+    "Fostered a collaborative and innovative work environment to drive business growth and success",
+    "Successfully managed startup operations and business development"
+  ],
+  "companyLogo": null,
+  "priority": 6
+}

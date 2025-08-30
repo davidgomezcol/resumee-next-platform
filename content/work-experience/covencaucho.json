@@ -1,0 +1,19 @@
+{
+  "id": "covencaucho",
+  "company": "Covencaucho Industrias S.A.",
+  "position": "System Analyst",
+  "location": "Barquisimeto, Venezuela",
+  "startDate": "2007-04",
+  "endDate": "2007-07",
+  "isCurrent": false,
+  "description": "Designed and developed a Visual Basic-based system for controlling and printing labels for tire storage, integrating both software and hardware components. The system improves inventory management and ensures accurate labeling and tracking of tire storage.",
+  "technologies": ["Visual Basic", "Hardware Integration", "Inventory Management", "Label Printing", "System Design"],
+  "achievements": [
+    "Designed and developed a Visual Basic-based system for controlling and printing labels for tire storage, integrating both software and hardware components",
+    "The system improves inventory management and ensures accurate labeling and tracking of tire storage",
+    "Managed the project from concept to deployment, including the design and integration of necessary hardware elements to support the labeling system",
+    "Successfully implemented inventory management solution for industrial application"
+  ],
+  "companyLogo": null,
+  "priority": 1
+}
