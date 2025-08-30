@@ -10,10 +10,10 @@ import { Fira_Code } from 'next/font/google'
 
 const firaCode = Fira_Code({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] })
 
-const title = 'David Gómez | Full-Stack Web Developer in Bogotá'
+const title = 'David Gómez | Full-Stack Developer for Hire | React, Next.js, Python Expert'
 
 const description =
-  "Skilled full-stack web developer in Bogotá. I build responsive, user-friendly websites or apps with React, NextJS, and Python. Let's bring your vision to life. Hire me today!"
+  'Hire David Gómez - Expert Full-Stack Developer specializing in React, Next.js, and Python. Remote developer available for US companies. 5+ years experience building scalable web applications. Get a free consultation today!'
 
 const url = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-domain.com'
 
@@ -21,6 +21,31 @@ export const metadata: Metadata = {
   title,
   description,
   category: 'technology',
+  keywords: [
+    'full stack developer',
+    'react developer',
+    'next.js developer',
+    'python developer',
+    'web developer for hire',
+    'remote developer',
+    'US developer',
+    'frontend developer',
+    'backend developer',
+    'javascript developer',
+    'typescript developer',
+    'django developer',
+    'flask developer',
+    'freelance developer',
+    'software engineer',
+    'web development services',
+    'custom web applications',
+    'responsive web design',
+    'e-commerce development',
+    'API development',
+  ],
+  authors: [{ name: 'David Gómez' }],
+  creator: 'David Gómez',
+  publisher: 'David Gómez',
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://your-domain.com'),
   alternates: {
     canonical: url,
@@ -29,14 +54,38 @@ export const metadata: Metadata = {
     title,
     description,
     url,
-    siteName: 'David Gómez Portfolio',
+    siteName: 'David Gómez - Full-Stack Developer',
     type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/opengraph-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'David Gómez - Full-Stack Developer Portfolio',
+      },
+    ],
   },
   twitter: {
     title,
     description,
     card: 'summary_large_image',
     creator: '@davidgomezdev',
+    images: ['/twitter-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code', // Add your Google Search Console verification code
   },
 }
 
@@ -45,6 +94,111 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Person',
+        '@id': `${url}#person`,
+        name: 'David Gómez',
+        jobTitle: 'Full-Stack Developer',
+        description:
+          'Expert Full-Stack Developer specializing in React, Next.js, and Python development',
+        url: url,
+        sameAs: ['https://github.com/davidgomezcol', 'https://www.linkedin.com/in/davidgomezm7/'],
+        knowsAbout: [
+          'React.js',
+          'Next.js',
+          'Python',
+          'JavaScript',
+          'TypeScript',
+          'Django',
+          'Flask',
+          'Web Development',
+          'Frontend Development',
+          'Backend Development',
+          'API Development',
+          'Responsive Web Design',
+        ],
+        worksFor: {
+          '@type': 'Organization',
+          name: 'Freelance Developer',
+        },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Bogotá',
+          addressCountry: 'CO',
+        },
+        availableForHire: true,
+        offers: {
+          '@type': 'Offer',
+          category: 'Web Development Services',
+          description:
+            'Full-stack web development services including React, Next.js, and Python development',
+          areaServed: 'US',
+        },
+        alumniOf: {
+          '@type': 'Organization',
+          name: 'Freelance Development',
+        },
+        hasOccupation: {
+          '@type': 'Occupation',
+          name: 'Software Developer',
+          occupationalCategory: '15-1252.00',
+        },
+      },
+      {
+        '@type': 'Service',
+        '@id': `${url}#service`,
+        name: 'Full-Stack Web Development Services',
+        description:
+          'Professional web development services including React, Next.js, Python, Django, and Flask development',
+        provider: {
+          '@id': `${url}#person`,
+        },
+        areaServed: {
+          '@type': 'Country',
+          name: 'United States',
+        },
+        serviceType: [
+          'Web Development',
+          'Frontend Development',
+          'Backend Development',
+          'API Development',
+          'E-commerce Development',
+          'Custom Web Applications',
+        ],
+        offers: {
+          '@type': 'Offer',
+          priceCurrency: 'USD',
+          priceSpecification: {
+            '@type': 'PriceSpecification',
+            priceCurrency: 'USD',
+            description: 'Custom pricing based on project requirements',
+          },
+        },
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${url}#website`,
+        name: 'David Gómez - Full-Stack Developer Portfolio',
+        url: url,
+        description: 'Professional portfolio showcasing full-stack development services',
+        author: {
+          '@id': `${url}#person`,
+        },
+        publisher: {
+          '@id': `${url}#person`,
+        },
+        inLanguage: 'en-US',
+        potentialAction: {
+          '@type': 'ContactPage',
+          target: `${url}#contact`,
+        },
+      },
+    ],
+  }
+
   return (
     <html lang="en" data-theme="dark">
       <head>
@@ -58,9 +212,119 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-BKB0F9Y6WC');
+            gtag('config', 'G-BKB0F9Y6WC', {
+              page_title: document.title,
+              page_location: window.location.href,
+              send_page_view: true
+            });
+            
+            // Core Web Vitals tracking
+            if ('web-vital' in window) {
+              import('web-vitals').then(({getCLS, getFID, getFCP, getLCP, getTTFB}) => {
+                getCLS(gtag);
+                getFID(gtag);
+                getFCP(gtag);
+                getLCP(gtag);
+                getTTFB(gtag);
+              });
+            }
           `}
         </Script>
+
+        {/* Google Search Console Verification - Replace with your verification code */}
+        <meta
+          name="google-site-verification"
+          content="dQxEAKUYOvK27USDE2KA0Soge-eviyq_mUSzTlgCF6U"
+        />
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+
+        {/* Breadcrumb Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: url,
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: 'Experience',
+                  item: `${url}#experience`,
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
+                  name: 'Services',
+                  item: `${url}#services`,
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 4,
+                  name: 'Contact',
+                  item: `${url}#contact`,
+                },
+              ],
+            }),
+          }}
+        />
+
+        {/* FAQ Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: [
+                {
+                  '@type': 'Question',
+                  name: 'What services does David Gómez offer?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'David Gómez offers full-stack web development services including React, Next.js, Python, Django, Flask, JavaScript, TypeScript, API development, responsive web design, and custom web applications.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'Is David Gómez available for remote work with US companies?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'Yes, David Gómez is available for remote work with US companies. He specializes in React, Next.js, and Python development and can work across different time zones.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What technologies does David Gómez specialize in?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'David Gómez specializes in React.js, Next.js, Python, Django, Flask, JavaScript, TypeScript, API development, responsive web design, and full-stack web development.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'How can I hire David Gómez for my project?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'You can hire David Gómez by contacting him through the contact form on his website, emailing hi@dgomez.dev, or connecting with him on LinkedIn. He offers free consultations for new projects.',
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body className={`${firaCode.className}`}>
         <LanguageProvider>

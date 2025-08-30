@@ -27,6 +27,8 @@ const ContactSection = () => {
           <p className="text-neutral text-lg font-bold">{t.contact.information}</p>
           <a
             href="mailto:hi@dgomez.dev"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={handleEmailClick}
             className="text-neutral hover:text-accent flex items-center gap-1 font-light transition-colors duration-300">
             <MsgIcon /> hi@dgomez.dev

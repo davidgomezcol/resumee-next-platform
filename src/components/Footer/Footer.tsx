@@ -53,6 +53,8 @@ const Footer = () => {
               <li key={index} className="cursor-pointer bg-transparent">
                 <a
                   href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() =>
                     handleSocialClick(
                       item.href.includes('github')
@@ -79,6 +81,8 @@ const Footer = () => {
               <h5 className="text-neutral mb-4 text-lg font-medium">{t.footer.contactMe}</h5>
               <a
                 href="mailto:hi@dgomez.dev"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={handleEmailClick}
                 className="text-tertiary-content hover:text-neutral text-sm font-light transition-colors duration-300">
                 hi@dgomez.dev
