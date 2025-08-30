@@ -61,7 +61,8 @@ export const translations: Record<Language, Translations> = {
     hero: {
       title: 'Full-Stack Developer',
       subtitle: 'Building the future, one line of code at a time',
-      description: 'Passionate about creating modern web applications with cutting-edge technologies. Specializing in React, Next.js, Python, and cloud solutions.',
+      description:
+        'Passionate about creating modern web applications with cutting-edge technologies. Specializing in React, Next.js, Python, and cloud solutions.',
       cta: 'Get In Touch',
     },
     experience: {
@@ -72,14 +73,15 @@ export const translations: Record<Language, Translations> = {
     },
     services: {
       title: '// Services',
-      subtitle: 'I offer a wide range of services to ensure you have the best written code and stay ahead in the competition.',
+      subtitle:
+        'I offer a wide range of services to ensure you have the best written code and stay ahead in the competition.',
     },
     skills: {
       title: '// Skills',
     },
     contact: {
       title: '// Contact Me',
-      subtitle: 'Let\'s work together',
+      subtitle: "Let's work together",
       name: 'Name',
       email: 'Email',
       message: 'Message',
@@ -90,10 +92,11 @@ export const translations: Record<Language, Translations> = {
       messagePlaceholder: 'Your message here',
       submitting: 'Submitting...',
       information: 'Contact Information',
-      successMessage: 'Thanks for your submission! I\'ll get back to you soon.',
+      successMessage: "Thanks for your submission! I'll get back to you soon.",
     },
     footer: {
-      description: 'Full-stack developer specializing in modern web technologies, cloud solutions, and AI-powered applications. Building intelligent systems and applications that deliver exceptional user experiences through innovative agentic development approaches.',
+      description:
+        'Full-stack developer specializing in modern web technologies, cloud solutions, and AI-powered applications. Building intelligent systems and applications that deliver exceptional user experiences through innovative agentic development approaches.',
       contactMe: 'Contact Me',
       location: 'Location',
       languages: 'Languages',
@@ -110,7 +113,8 @@ export const translations: Record<Language, Translations> = {
     hero: {
       title: 'Desarrollador Full-Stack',
       subtitle: 'Construyendo el futuro, una línea de código a la vez',
-      description: 'Apasionado por crear aplicaciones web modernas con tecnologías de vanguardia. Especializado en React, Next.js, Python y soluciones en la nube.',
+      description:
+        'Apasionado por crear aplicaciones web modernas con tecnologías de vanguardia. Especializado en React, Next.js, Python y soluciones en la nube.',
       cta: 'Contáctame',
     },
     experience: {
@@ -121,7 +125,8 @@ export const translations: Record<Language, Translations> = {
     },
     services: {
       title: '// Servicios',
-      subtitle: 'Ofrezco una amplia gama de servicios para asegurar que tengas el mejor código escrito y te mantengas adelante en la competencia.',
+      subtitle:
+        'Ofrezco una amplia gama de servicios para asegurar que tengas el mejor código escrito y te mantengas adelante en la competencia.',
     },
     skills: {
       title: '// Habilidades',
@@ -142,7 +147,8 @@ export const translations: Record<Language, Translations> = {
       successMessage: '¡Gracias por tu mensaje! Te responderé pronto.',
     },
     footer: {
-      description: 'Desarrollador full-stack especializado en tecnologías web modernas, soluciones en la nube y aplicaciones impulsadas por IA. Construyendo sistemas inteligentes y aplicaciones que ofrecen experiencias de usuario excepcionales a través de enfoques innovadores de desarrollo agéntico.',
+      description:
+        'Desarrollador full-stack especializado en tecnologías web modernas, soluciones en la nube y aplicaciones impulsadas por IA. Construyendo sistemas inteligentes y aplicaciones que ofrecen experiencias de usuario excepcionales a través de enfoques innovadores de desarrollo agéntico.',
       contactMe: 'Contáctame',
       location: 'Ubicación',
       languages: 'Idiomas',

@@ -10,7 +10,7 @@ const action = async (_: { success: boolean; message: string } | null, formData:
   try {
     // Get language from form data
     const language = (formData.get('language') as Language) || 'en'
-    
+
     // Get client IP for rate limiting
     const headersList = await headers()
     const forwarded = headersList.get('x-forwarded-for')
@@ -18,12 +18,14 @@ const action = async (_: { success: boolean; message: string } | null, formData:
     const clientIp = forwarded?.split(',')[0] || realIp || 'unknown'
 
     // Rate limiting check
-    if (!checkRateLimit(clientIp, 3, 300000)) { // 3 attempts per 5 minutes
+    if (!checkRateLimit(clientIp, 3, 300000)) {
+      // 3 attempts per 5 minutes
       return {
         success: false,
-        message: language === 'es' 
-          ? 'Demasiados intentos de envío. Por favor espera unos minutos antes de intentar de nuevo.'
-          : 'Too many submission attempts. Please wait a few minutes before trying again.',
+        message:
+          language === 'es'
+            ? 'Demasiados intentos de envío. Por favor espera unos minutos antes de intentar de nuevo.'
+            : 'Too many submission attempts. Please wait a few minutes before trying again.',
       }
     }
 
@@ -33,9 +35,7 @@ const action = async (_: { success: boolean; message: string } | null, formData:
       console.log('Bot detected via honeypot field')
       return {
         success: false,
-        message: language === 'es' 
-          ? 'Envío inválido detectado.'
-          : 'Invalid submission detected.',
+        message: language === 'es' ? 'Envío inválido detectado.' : 'Invalid submission detected.',
       }
     }
 
@@ -44,9 +44,7 @@ const action = async (_: { success: boolean; message: string } | null, formData:
     if (!timestamp) {
       return {
         success: false,
-        message: language === 'es' 
-          ? 'Envío de formulario inválido.'
-          : 'Invalid form submission.',
+        message: language === 'es' ? 'Envío de formulario inválido.' : 'Invalid form submission.',
       }
     }
 
@@ -59,22 +57,24 @@ const action = async (_: { success: boolean; message: string } | null, formData:
       console.log('Bot detected via timestamp validation')
       return {
         success: false,
-        message: language === 'es' 
-          ? 'Por favor tómate tu tiempo para llenar el formulario correctamente.'
-          : 'Please take your time to fill out the form properly.',
+        message:
+          language === 'es'
+            ? 'Por favor tómate tu tiempo para llenar el formulario correctamente.'
+            : 'Please take your time to fill out the form properly.',
       }
     }
 
     // Math captcha validation
     const mathAnswer = formData.get('mathAnswer')
     const expectedAnswer = formData.get('expectedAnswer')
-    
+
     if (!mathAnswer || !expectedAnswer || mathAnswer.toString() !== expectedAnswer.toString()) {
       return {
         success: false,
-        message: language === 'es' 
-          ? 'Por favor responde correctamente la pregunta matemática.'
-          : 'Please answer the math question correctly.',
+        message:
+          language === 'es'
+            ? 'Por favor responde correctamente la pregunta matemática.'
+            : 'Please answer the math question correctly.',
       }
     }
 
@@ -82,36 +82,34 @@ const action = async (_: { success: boolean; message: string } | null, formData:
     if (!name)
       return {
         success: false,
-        message: language === 'es' 
-          ? 'Por favor proporciona tu nombre.'
-          : 'Please provide your name.',
+        message:
+          language === 'es' ? 'Por favor proporciona tu nombre.' : 'Please provide your name.',
       }
 
     const email = formData.get('email')
     if (!email)
       return {
         success: false,
-        message: language === 'es' 
-          ? 'Por favor proporciona tu dirección de correo electrónico.'
-          : 'Please provide your email address.',
+        message:
+          language === 'es'
+            ? 'Por favor proporciona tu dirección de correo electrónico.'
+            : 'Please provide your email address.',
       }
 
     const subject = formData.get('subject')
     if (!subject)
       return {
         success: false,
-        message: language === 'es' 
-          ? 'Por favor proporciona un asunto.'
-          : 'Please provide a subject.',
+        message:
+          language === 'es' ? 'Por favor proporciona un asunto.' : 'Please provide a subject.',
       }
 
     const message = formData.get('message')
     if (!message)
       return {
         success: false,
-        message: language === 'es' 
-          ? 'Por favor proporciona un mensaje.'
-          : 'Please provide a message.',
+        message:
+          language === 'es' ? 'Por favor proporciona un mensaje.' : 'Please provide a message.',
       }
 
     // Send email using the separate email module
@@ -122,31 +120,33 @@ const action = async (_: { success: boolean; message: string } | null, formData:
       message: message.toString(),
     })
 
-    return { 
-      success: true, 
-      message: translations[language].contact.successMessage 
+    return {
+      success: true,
+      message: translations[language].contact.successMessage,
     }
   } catch (error) {
     console.error('Contact form submission error: ' + error)
-    
+
     // Get language from form data for error message
     const language = (formData.get('language') as Language) || 'en'
-    
+
     // Check if it's an email configuration error
     if (error instanceof Error && error.message.includes('Email configuration')) {
       return {
         success: false,
-        message: language === 'es' 
-          ? 'El formulario de contacto no está configurado. Por favor intenta de nuevo más tarde o contacta al administrador.'
-          : 'Contact form is not configured. Please try again later or contact the administrator.',
+        message:
+          language === 'es'
+            ? 'El formulario de contacto no está configurado. Por favor intenta de nuevo más tarde o contacta al administrador.'
+            : 'Contact form is not configured. Please try again later or contact the administrator.',
       }
     }
-    
+
     return {
       success: false,
-      message: language === 'es' 
-        ? '¡Ups! Hubo un problema al enviar tu formulario. Por favor intenta de nuevo más tarde.'
-        : 'Oops! There was a problem submitting your form. Please try again later.',
+      message:
+        language === 'es'
+          ? '¡Ups! Hubo un problema al enviar tu formulario. Por favor intenta de nuevo más tarde.'
+          : 'Oops! There was a problem submitting your form. Please try again later.',
     }
   }
 }

@@ -128,7 +128,7 @@
       top: 0px;
     }
   }
-  
+
   @keyframes slide-down {
     0% {
       transform: translateY(-100%);
@@ -139,16 +139,18 @@
       opacity: 1;
     }
   }
-  
+
   @keyframes header-glow {
     0% {
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     }
     100% {
-      box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      box-shadow:
+        0 10px 25px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
     }
   }
-  
+
   @keyframes active-indicator {
     0% {
       transform: scaleX(0);

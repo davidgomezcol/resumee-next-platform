@@ -43,7 +43,7 @@ const MarqueeWrapper: React.FC<MarqueeWrapperProps> = ({ children, className = '
 
   return (
     <div className={`relative overflow-x-hidden ${className}`}>
-      <div className="inter w-max whitespace-nowrap p-5 lg:p-7" ref={elementRef}>
+      <div className="inter w-max p-5 whitespace-nowrap lg:p-7" ref={elementRef}>
         {children}
       </div>
     </div>

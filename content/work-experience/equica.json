@@ -7,7 +7,13 @@
   "endDate": "2008-07",
   "isCurrent": false,
   "description": "Designed and developed a Visual Basic-based system to control the weight of chemicals in custom formulas, integrating both software and hardware components. The application, which is currently in use, ensures precise measurements and enhances the efficiency and accuracy of chemical formulations.",
-  "technologies": ["Visual Basic", "Hardware Integration", "Chemical Formulation", "System Design", "Process Control"],
+  "technologies": [
+    "Visual Basic",
+    "Hardware Integration",
+    "Chemical Formulation",
+    "System Design",
+    "Process Control"
+  ],
   "achievements": [
     "Designed and developed a Visual Basic-based system to control the weight of chemicals in custom formulas, integrating both software and hardware components",
     "The application, which is currently in use, ensures precise measurements and enhances the efficiency and accuracy of chemical formulations",

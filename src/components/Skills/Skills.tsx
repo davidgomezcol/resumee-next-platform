@@ -1,14 +1,14 @@
 'use client'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-import { 
-  AWSLogoIcon, 
-  ReactLogoIcon, 
-  NextjsIcon, 
-  PythonIcon, 
-  VueIcon, 
-  DockerIcon, 
-  JavaScriptIcon, 
+import {
+  AWSLogoIcon,
+  ReactLogoIcon,
+  NextjsIcon,
+  PythonIcon,
+  VueIcon,
+  DockerIcon,
+  JavaScriptIcon,
   KubernetesIcon,
   DjangoIcon,
   FlaskIcon,
@@ -29,27 +29,27 @@ const Skills: React.FC<SkillsProps> = ({ skills }) => {
             key={index}
             className="font-inter text-primary-content flex items-center text-xs lg:text-base">
             {icon === 'aws' ? (
-              <AWSLogoIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+              <AWSLogoIcon className="text-primary-content mx-2 size-11 lg:size-14" />
             ) : icon === 'javascript' ? (
-              <JavaScriptIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+              <JavaScriptIcon className="text-primary-content mx-2 size-11 lg:size-14" />
             ) : icon === 'react' ? (
-              <ReactLogoIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+              <ReactLogoIcon className="text-primary-content mx-2 size-11 lg:size-14" />
             ) : icon === 'nextjs' ? (
-              <NextjsIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+              <NextjsIcon className="text-primary-content mx-2 size-11 lg:size-14" />
             ) : icon === 'python' ? (
-              <PythonIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+              <PythonIcon className="text-primary-content mx-2 size-11 lg:size-14" />
             ) : icon === 'flask' ? (
-              <FlaskIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+              <FlaskIcon className="text-primary-content mx-2 size-11 lg:size-14" />
             ) : icon === 'vue' ? (
-              <VueIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+              <VueIcon className="text-primary-content mx-2 size-11 lg:size-14" />
             ) : icon === 'docker' ? (
-              <DockerIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+              <DockerIcon className="text-primary-content mx-2 size-11 lg:size-14" />
             ) : icon === 'kubernetes' ? (
-              <KubernetesIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+              <KubernetesIcon className="text-primary-content mx-2 size-11 lg:size-14" />
             ) : icon === 'django' ? (
-              <DjangoIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+              <DjangoIcon className="text-primary-content mx-2 size-11 lg:size-14" />
             ) : icon === 'flask' ? (
-              <FlaskIcon className="mx-2 size-11 lg:size-14 text-primary-content" />
+              <FlaskIcon className="text-primary-content mx-2 size-11 lg:size-14" />
             ) : (
               <Image src={icon} alt={name} className="mx-2 size-11 lg:size-14" />
             )}

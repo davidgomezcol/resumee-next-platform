@@ -63,11 +63,13 @@ export const serviceTranslations: Record<Language, ServiceTranslation[]> = {
     },
     {
       title: 'Desarrollo Python',
-      shortDescription: 'Desarrollando aplicaciones del lado del servidor escalables usando Python.',
+      shortDescription:
+        'Desarrollando aplicaciones del lado del servidor escalables usando Python.',
     },
     {
       title: 'Desarrollo Django',
-      shortDescription: 'Desarrollando aplicaciones del lado del servidor escalables usando Django.',
+      shortDescription:
+        'Desarrollando aplicaciones del lado del servidor escalables usando Django.',
     },
     {
       title: 'Desarrollo Flask',

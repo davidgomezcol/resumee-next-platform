@@ -6,7 +6,7 @@ import ContactForm from './ContactForm'
 
 const ContactSection = () => {
   const { t } = useLanguage()
-  
+
   return (
     <section
       id="contact"
@@ -15,9 +15,7 @@ const ContactSection = () => {
         <div>
           <h3 className="text-neutral text-3xl font-bold">{t.contact.title}</h3>
           <h4 className="text-accent text-2xl font-bold md:text-3xl">{t.contact.subtitle}</h4>
-          <p className="text-neutral mt-8">
-            {t.hero.description}
-          </p>
+          <p className="text-neutral mt-8">{t.hero.description}</p>
         </div>
 
         <div className="space-y-2">

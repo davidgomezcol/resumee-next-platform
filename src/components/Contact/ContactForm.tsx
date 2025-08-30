@@ -12,12 +12,16 @@ const ContactForm = () => {
   const { t, language } = useLanguage()
   const [status, formAction, isPending] = useActionState(action, null)
   const [timestamp, setTimestamp] = useState<number>(0)
-  const [mathQuestion, setMathQuestion] = useState<{ num1: number; num2: number; answer: number }>({ num1: 0, num2: 0, answer: 0 })
+  const [mathQuestion, setMathQuestion] = useState<{ num1: number; num2: number; answer: number }>({
+    num1: 0,
+    num2: 0,
+    answer: 0,
+  })
 
   useEffect(() => {
     // Set timestamp when component mounts
     setTimestamp(Date.now())
-    
+
     // Generate random math question
     const num1 = Math.floor(Math.random() * 10) + 1
     const num2 = Math.floor(Math.random() * 10) + 1
@@ -32,7 +36,13 @@ const ContactForm = () => {
 
   return (
     <form action={formAction}>
-      <Input label={t.contact.name} id="name" name="name" placeholder={t.contact.namePlaceholder} required />
+      <Input
+        label={t.contact.name}
+        id="name"
+        name="name"
+        placeholder={t.contact.namePlaceholder}
+        required
+      />
       <Input
         label={t.contact.email}
         id="email"
@@ -41,7 +51,12 @@ const ContactForm = () => {
         placeholder={t.contact.emailPlaceholder}
         required
       />
-      <Input label="Subject" id="subject" name="subject" placeholder={t.contact.subjectPlaceholder} />
+      <Input
+        label="Subject"
+        id="subject"
+        name="subject"
+        placeholder={t.contact.subjectPlaceholder}
+      />
       <Textarea
         label={t.contact.message}
         id="message"
@@ -50,16 +65,10 @@ const ContactForm = () => {
         rows={7}
         required
       />
-      
+
       {/* Honeypot field - hidden from users but bots will fill it */}
-      <div className="absolute left-[-9999px] top-[-9999px]">
-        <input
-          type="text"
-          name="website"
-          tabIndex={-1}
-          autoComplete="off"
-          aria-hidden="true"
-        />
+      <div className="absolute top-[-9999px] left-[-9999px]">
+        <input type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       </div>
 
       {/* Timestamp field */}
@@ -70,7 +79,7 @@ const ContactForm = () => {
 
       {/* Math captcha */}
       <div className="mb-4">
-        <label htmlFor="mathAnswer" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="mathAnswer" className="mb-2 block text-sm font-medium text-gray-700">
           Security Question: What is {mathQuestion.num1} + {mathQuestion.num2}?
         </label>
         <input
@@ -78,7 +87,7 @@ const ContactForm = () => {
           id="mathAnswer"
           name="mathAnswer"
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
           placeholder="Enter your answer"
         />
         <input type="hidden" name="expectedAnswer" value={mathQuestion.answer} />

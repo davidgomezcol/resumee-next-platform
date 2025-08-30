@@ -7,7 +7,13 @@
   "endDate": "2009-11",
   "isCurrent": false,
   "description": "Developed a Visual Basic-based system for ordering menus in a restaurant, enhancing efficiency and customer experience. Participated in a system testing team, focusing on exception routines, error routines, parameter handling, validations, valid values, limit values, ranges, and possible messages.",
-  "technologies": ["Visual Basic", "System Testing", "Database Design", "Network Infrastructure", "System Analysis"],
+  "technologies": [
+    "Visual Basic",
+    "System Testing",
+    "Database Design",
+    "Network Infrastructure",
+    "System Analysis"
+  ],
   "achievements": [
     "Developed a Visual Basic-based system for ordering menus in a restaurant, enhancing efficiency and customer experience",
     "Participated in a system testing team, focusing on exception routines, error routines, parameter handling, validations, valid values, limit values, ranges, and possible messages",

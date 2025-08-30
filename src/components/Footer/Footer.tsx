@@ -8,7 +8,7 @@ import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher'
 
 const Footer = () => {
   const { t } = useLanguage()
-  
+
   return (
     <footer className="bg-secondary relative flex min-h-[560px] flex-col justify-between gap-20 overflow-hidden px-4 py-14 md:p-14">
       <div className="relative z-20 grid grid-cols-1 items-start gap-20 md:grid-cols-2 md:gap-12">
@@ -17,9 +17,7 @@ const Footer = () => {
             <Logo width={30} height={24} />
             <span className="text-neutral text-lg font-medium">david_gomez</span>
           </h5>
-          <p className="text-tertiary-content">
-            {t.footer.description}
-          </p>
+          <p className="text-tertiary-content">{t.footer.description}</p>
           {/* <a
             href="#"
             className="text-neutral mt-4 inline-flex items-center gap-2 text-xs hover:underline">
@@ -83,7 +81,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="md:self-end md:mr-16">
+          <div className="md:mr-16 md:self-end">
             <p className="text-neutral mb-8 text-sm md:text-right">{t.footer.languages}</p>
             <div className="flex gap-8 md:gap-4 lg:gap-8">
               <LanguageSwitcher />

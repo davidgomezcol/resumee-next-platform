@@ -51,23 +51,26 @@ content/                # JSON content files
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd resumee-next-platform
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Run the development server:
+
 ```bash
 npm run dev
 ```
@@ -102,22 +105,26 @@ This project is optimized for deployment on Netlify with the following features:
 The portfolio content is managed through JSON files in the `content/` directory:
 
 - **Work Experience**: Edit `content/work-experience/` files
-- **Projects**: Edit `content/projects/` files  
+- **Projects**: Edit `content/projects/` files
 - **Testimonials**: Edit `content/testimonials/` files
 
 ## 🎨 Customization
 
 ### Themes
+
 The site supports multiple themes defined in `src/appData/index.ts`:
+
 - Light
-- Dark  
+- Dark
 - Aqua
 - Retro
 
 ### Languages
+
 Currently supports English and Spanish. Add new languages in `src/lib/translations.ts`.
 
 ### Skills & Services
+
 Update skills and services in `src/appData/index.ts`.
 
 ## 📧 Contact

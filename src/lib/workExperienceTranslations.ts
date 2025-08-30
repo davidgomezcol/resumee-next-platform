@@ -9,8 +9,10 @@ export interface WorkExperienceTranslation {
 export const workExperienceTranslations: Record<Language, WorkExperienceTranslation[]> = {
   en: [
     {
-      position: 'Senior Full-Stack Developer | AI-Augmented Development | Cloud-Native Insurance Platform',
-      description: 'Leveraging Agentic AI for High-Performance Software Delivery. Currently working on a cloud-native platform for P&C insurers, integrating Agentic AI into the development workflow. I plan tasks with AI agents and have customized rules in Cursor IDE to align AI outputs with project standards. Leading two major initiatives: migrating the system to Python 3 and introducing a significant new feature to expand platform capabilities.',
+      position:
+        'Senior Full-Stack Developer | AI-Augmented Development | Cloud-Native Insurance Platform',
+      description:
+        'Leveraging Agentic AI for High-Performance Software Delivery. Currently working on a cloud-native platform for P&C insurers, integrating Agentic AI into the development workflow. I plan tasks with AI agents and have customized rules in Cursor IDE to align AI outputs with project standards. Leading two major initiatives: migrating the system to Python 3 and introducing a significant new feature to expand platform capabilities.',
       achievements: [
         'Developing scalable APIs and backend features using Python, while also building intuitive UIs with Vue.js',
         'Ensuring seamless integration of frontend and backend components, and maintaining high code quality through comprehensive unit and integration testing',
@@ -26,10 +28,11 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'Web Developer',
-      description: 'Key contributor to the startup\'s rapid product development process. As a software engineer, led the team in implementing designs using the latest web development technologies. Managed Public Cloud Services (GCP) to ensure reliable and scalable infrastructure.',
+      description:
+        "Key contributor to the startup's rapid product development process. As a software engineer, led the team in implementing designs using the latest web development technologies. Managed Public Cloud Services (GCP) to ensure reliable and scalable infrastructure.",
       achievements: [
         'Developed custom WordPress template solutions tailored to client needs',
-        'Created and maintained the company website: www.arquimediastudios.com, enhancing the company\'s online presence and functionality',
+        "Created and maintained the company website: www.arquimediastudios.com, enhancing the company's online presence and functionality",
         'Fostered a collaborative team environment, driving innovation and efficiency in product development',
         'Managed Public Cloud Services (GCP) to ensure reliable and scalable infrastructure',
         'Led the team in implementing designs using the latest web development technologies',
@@ -37,7 +40,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'General Manager Administration',
-      description: 'Startup Owner. Designed and implemented a scalable and high-performance tech network to quickly get the business operational. Led a team, gaining valuable experience in business administration, management, and strategic planning.',
+      description:
+        'Startup Owner. Designed and implemented a scalable and high-performance tech network to quickly get the business operational. Led a team, gaining valuable experience in business administration, management, and strategic planning.',
       achievements: [
         'Designed and implemented a scalable and high-performance tech network to quickly get the business operational',
         'Led a team, gaining valuable experience in business administration, management, and strategic planning',
@@ -47,7 +51,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'System Analyst',
-      description: 'Collaborated on the non-bank correspondents project for Casa Propia E.A.P., focusing on the presentation layers and middleware applications using Crosswalk language. Implemented a document management tool using web technologies.',
+      description:
+        'Collaborated on the non-bank correspondents project for Casa Propia E.A.P., focusing on the presentation layers and middleware applications using Crosswalk language. Implemented a document management tool using web technologies.',
       achievements: [
         'Collaborated on the non-bank correspondents project for Casa Propia E.A.P., focusing on the presentation layers and middleware applications using Crosswalk language',
         'Implemented a document management tool using web technologies',
@@ -57,7 +62,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'System Analyst',
-      description: 'Developed a Visual Basic-based system for ordering menus in a restaurant, enhancing efficiency and customer experience. Participated in a system testing team, focusing on exception routines, error routines, parameter handling, validations, valid values, limit values, ranges, and possible messages.',
+      description:
+        'Developed a Visual Basic-based system for ordering menus in a restaurant, enhancing efficiency and customer experience. Participated in a system testing team, focusing on exception routines, error routines, parameter handling, validations, valid values, limit values, ranges, and possible messages.',
       achievements: [
         'Developed a Visual Basic-based system for ordering menus in a restaurant, enhancing efficiency and customer experience',
         'Participated in a system testing team, focusing on exception routines, error routines, parameter handling, validations, valid values, limit values, ranges, and possible messages',
@@ -67,7 +73,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'System Analyst',
-      description: 'Designed and developed a Visual Basic-based system to control the weight of chemicals in custom formulas, integrating both software and hardware components. The application, which is currently in use, ensures precise measurements and enhances the efficiency and accuracy of chemical formulations.',
+      description:
+        'Designed and developed a Visual Basic-based system to control the weight of chemicals in custom formulas, integrating both software and hardware components. The application, which is currently in use, ensures precise measurements and enhances the efficiency and accuracy of chemical formulations.',
       achievements: [
         'Designed and developed a Visual Basic-based system to control the weight of chemicals in custom formulas, integrating both software and hardware components',
         'The application, which is currently in use, ensures precise measurements and enhances the efficiency and accuracy of chemical formulations',
@@ -77,7 +84,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'Internship',
-      description: 'During my Computer Engineering degree, I completed internships at CANTV in the Lara Transmissions department. Gained extensive knowledge of telecommunications and data transmission systems.',
+      description:
+        'During my Computer Engineering degree, I completed internships at CANTV in the Lara Transmissions department. Gained extensive knowledge of telecommunications and data transmission systems.',
       achievements: [
         'Gained extensive knowledge of telecommunications and data transmission systems',
         'Designed a device to detect communication failures between transmission radios, utilizing logic gates and multiple connectors',
@@ -87,7 +95,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'System Analyst',
-      description: 'Designed and developed a Visual Basic-based system for controlling and printing labels for tire storage, integrating both software and hardware components. The system improves inventory management and ensures accurate labeling and tracking of tire storage.',
+      description:
+        'Designed and developed a Visual Basic-based system for controlling and printing labels for tire storage, integrating both software and hardware components. The system improves inventory management and ensures accurate labeling and tracking of tire storage.',
       achievements: [
         'Designed and developed a Visual Basic-based system for controlling and printing labels for tire storage, integrating both software and hardware components',
         'The system improves inventory management and ensures accurate labeling and tracking of tire storage',
@@ -98,8 +107,10 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
   ],
   es: [
     {
-      position: 'Desarrollador Full-Stack Senior | Desarrollo Aumentado con IA | Plataforma de Seguros Nativa en la Nube',
-      description: 'Aprovechando la IA Agéntica para la Entrega de Software de Alto Rendimiento. Actualmente trabajando en una plataforma nativa en la nube para aseguradoras P&C, integrando IA Agéntica en el flujo de trabajo de desarrollo. Planifico tareas con agentes de IA y he personalizado reglas en Cursor IDE para alinear las salidas de IA con los estándares del proyecto. Liderando dos iniciativas principales: migrar el sistema a Python 3 e introducir una nueva característica significativa para expandir las capacidades de la plataforma.',
+      position:
+        'Desarrollador Full-Stack Senior | Desarrollo Aumentado con IA | Plataforma de Seguros Nativa en la Nube',
+      description:
+        'Aprovechando la IA Agéntica para la Entrega de Software de Alto Rendimiento. Actualmente trabajando en una plataforma nativa en la nube para aseguradoras P&C, integrando IA Agéntica en el flujo de trabajo de desarrollo. Planifico tareas con agentes de IA y he personalizado reglas en Cursor IDE para alinear las salidas de IA con los estándares del proyecto. Liderando dos iniciativas principales: migrar el sistema a Python 3 e introducir una nueva característica significativa para expandir las capacidades de la plataforma.',
       achievements: [
         'Desarrollando APIs escalables y características backend usando Python, mientras también construyo UIs intuitivas con Vue.js',
         'Asegurando integración perfecta de componentes frontend y backend, y manteniendo alta calidad de código a través de pruebas unitarias e integración comprehensivas',
@@ -115,7 +126,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'Desarrollador Web',
-      description: 'Contribuyente clave al proceso de desarrollo rápido de productos de la startup. Como ingeniero de software, lideré el equipo en la implementación de diseños usando las últimas tecnologías de desarrollo web. Gestioné Servicios de Nube Pública (GCP) para asegurar infraestructura confiable y escalable.',
+      description:
+        'Contribuyente clave al proceso de desarrollo rápido de productos de la startup. Como ingeniero de software, lideré el equipo en la implementación de diseños usando las últimas tecnologías de desarrollo web. Gestioné Servicios de Nube Pública (GCP) para asegurar infraestructura confiable y escalable.',
       achievements: [
         'Desarrollé soluciones de plantillas WordPress personalizadas adaptadas a las necesidades del cliente',
         'Creé y mantuve el sitio web de la empresa: www.arquimediastudios.com, mejorando la presencia y funcionalidad online de la empresa',
@@ -126,7 +138,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'Gerente General de Administración',
-      description: 'Propietario de Startup. Diseñé e implementé una red tecnológica escalable y de alto rendimiento para poner rápidamente el negocio en operación. Lideré un equipo, ganando valiosa experiencia en administración de negocios, gestión y planificación estratégica.',
+      description:
+        'Propietario de Startup. Diseñé e implementé una red tecnológica escalable y de alto rendimiento para poner rápidamente el negocio en operación. Lideré un equipo, ganando valiosa experiencia en administración de negocios, gestión y planificación estratégica.',
       achievements: [
         'Diseñé e implementé una red tecnológica escalable y de alto rendimiento para poner rápidamente el negocio en operación',
         'Lideré un equipo, ganando valiosa experiencia en administración de negocios, gestión y planificación estratégica',
@@ -136,7 +149,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'Analista de Sistemas',
-      description: 'Colaboré en el proyecto de corresponsales no bancarios para Casa Propia E.A.P., enfocándome en las capas de presentación y aplicaciones middleware usando lenguaje Crosswalk. Implementé una herramienta de gestión de documentos usando tecnologías web.',
+      description:
+        'Colaboré en el proyecto de corresponsales no bancarios para Casa Propia E.A.P., enfocándome en las capas de presentación y aplicaciones middleware usando lenguaje Crosswalk. Implementé una herramienta de gestión de documentos usando tecnologías web.',
       achievements: [
         'Colaboré en el proyecto de corresponsales no bancarios para Casa Propia E.A.P., enfocándome en las capas de presentación y aplicaciones middleware usando lenguaje Crosswalk',
         'Implementé una herramienta de gestión de documentos usando tecnologías web',
@@ -146,7 +160,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'Analista de Sistemas',
-      description: 'Desarrollé un sistema basado en Visual Basic para ordenar menús en un restaurante, mejorando la eficiencia y experiencia del cliente. Participé en un equipo de pruebas de sistemas, enfocándome en rutinas de excepción, rutinas de error, manejo de parámetros, validaciones, valores válidos, valores límite, rangos y posibles mensajes.',
+      description:
+        'Desarrollé un sistema basado en Visual Basic para ordenar menús en un restaurante, mejorando la eficiencia y experiencia del cliente. Participé en un equipo de pruebas de sistemas, enfocándome en rutinas de excepción, rutinas de error, manejo de parámetros, validaciones, valores válidos, valores límite, rangos y posibles mensajes.',
       achievements: [
         'Desarrollé un sistema basado en Visual Basic para ordenar menús en un restaurante, mejorando la eficiencia y experiencia del cliente',
         'Participé en un equipo de pruebas de sistemas, enfocándome en rutinas de excepción, rutinas de error, manejo de parámetros, validaciones, valores válidos, valores límite, rangos y posibles mensajes',
@@ -156,7 +171,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'Analista de Sistemas',
-      description: 'Diseñé y desarrollé un sistema basado en Visual Basic para controlar el peso de químicos en fórmulas personalizadas, integrando componentes de software y hardware. La aplicación, que actualmente está en uso, asegura mediciones precisas y mejora la eficiencia y precisión de formulaciones químicas.',
+      description:
+        'Diseñé y desarrollé un sistema basado en Visual Basic para controlar el peso de químicos en fórmulas personalizadas, integrando componentes de software y hardware. La aplicación, que actualmente está en uso, asegura mediciones precisas y mejora la eficiencia y precisión de formulaciones químicas.',
       achievements: [
         'Diseñé y desarrollé un sistema basado en Visual Basic para controlar el peso de químicos en fórmulas personalizadas, integrando componentes de software y hardware',
         'La aplicación, que actualmente está en uso, asegura mediciones precisas y mejora la eficiencia y precisión de formulaciones químicas',
@@ -166,7 +182,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'Pasantía',
-      description: 'Durante mi grado de Ingeniería en Computación, completé pasantías en CANTV en el departamento de Transmisiones Lara. Obtuve conocimiento extensivo de sistemas de telecomunicaciones y transmisión de datos.',
+      description:
+        'Durante mi grado de Ingeniería en Computación, completé pasantías en CANTV en el departamento de Transmisiones Lara. Obtuve conocimiento extensivo de sistemas de telecomunicaciones y transmisión de datos.',
       achievements: [
         'Obtuve conocimiento extensivo de sistemas de telecomunicaciones y transmisión de datos',
         'Diseñé un dispositivo para detectar fallas de comunicación entre radios de transmisión, utilizando compuertas lógicas y múltiples conectores',
@@ -176,7 +193,8 @@ export const workExperienceTranslations: Record<Language, WorkExperienceTranslat
     },
     {
       position: 'Analista de Sistemas',
-      description: 'Diseñé y desarrollé un sistema basado en Visual Basic para controlar e imprimir etiquetas para almacenamiento de neumáticos, integrando componentes de software y hardware. El sistema mejora la gestión de inventario y asegura etiquetado y seguimiento preciso del almacenamiento de neumáticos.',
+      description:
+        'Diseñé y desarrollé un sistema basado en Visual Basic para controlar e imprimir etiquetas para almacenamiento de neumáticos, integrando componentes de software y hardware. El sistema mejora la gestión de inventario y asegura etiquetado y seguimiento preciso del almacenamiento de neumáticos.',
       achievements: [
         'Diseñé y desarrollé un sistema basado en Visual Basic para controlar e imprimir etiquetas para almacenamiento de neumáticos, integrando componentes de software y hardware',
         'El sistema mejora la gestión de inventario y asegura etiquetado y seguimiento preciso del almacenamiento de neumáticos',

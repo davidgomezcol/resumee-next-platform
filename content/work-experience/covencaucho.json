@@ -7,7 +7,13 @@
   "endDate": "2007-07",
   "isCurrent": false,
   "description": "Designed and developed a Visual Basic-based system for controlling and printing labels for tire storage, integrating both software and hardware components. The system improves inventory management and ensures accurate labeling and tracking of tire storage.",
-  "technologies": ["Visual Basic", "Hardware Integration", "Inventory Management", "Label Printing", "System Design"],
+  "technologies": [
+    "Visual Basic",
+    "Hardware Integration",
+    "Inventory Management",
+    "Label Printing",
+    "System Design"
+  ],
   "achievements": [
     "Designed and developed a Visual Basic-based system for controlling and printing labels for tire storage, integrating both software and hardware components",
     "The system improves inventory management and ensures accurate labeling and tracking of tire storage",

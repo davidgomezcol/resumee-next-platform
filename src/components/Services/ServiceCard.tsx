@@ -1,12 +1,12 @@
 import Image from 'next/image'
-import { 
-  AWSLogoIcon, 
-  ReactLogoIcon, 
-  NextjsIcon, 
-  PythonIcon, 
-  VueIcon, 
-  DockerIcon, 
-  JavaScriptIcon, 
+import {
+  AWSLogoIcon,
+  ReactLogoIcon,
+  NextjsIcon,
+  PythonIcon,
+  VueIcon,
+  DockerIcon,
+  JavaScriptIcon,
   KubernetesIcon,
   DjangoIcon,
   FlaskIcon,
@@ -22,25 +22,25 @@ const ServiceCard: React.FC<ServiceCardTypes> = ({ title, shortDescription, icon
   return (
     <div className="bg-secondary border-border flex flex-col items-center rounded-[14px] border p-5">
       {icon === 'aws' ? (
-        <AWSLogoIcon className="my-1 size-14 text-neutral" />
+        <AWSLogoIcon className="text-neutral my-1 size-14" />
       ) : icon === 'javascript' ? (
-        <JavaScriptIcon className="my-1 size-14 text-neutral" />
+        <JavaScriptIcon className="text-neutral my-1 size-14" />
       ) : icon === 'react' ? (
-        <ReactLogoIcon className="my-1 size-14 text-neutral" />
+        <ReactLogoIcon className="text-neutral my-1 size-14" />
       ) : icon === 'nextjs' ? (
-        <NextjsIcon className="my-1 size-14 text-neutral" />
+        <NextjsIcon className="text-neutral my-1 size-14" />
       ) : icon === 'python' ? (
-        <PythonIcon className="my-1 size-14 text-neutral" />
+        <PythonIcon className="text-neutral my-1 size-14" />
       ) : icon === 'django' ? (
-        <DjangoIcon className="my-1 size-14 text-neutral" />
+        <DjangoIcon className="text-neutral my-1 size-14" />
       ) : icon === 'vue' ? (
-        <VueIcon className="my-1 size-14 text-neutral" />
+        <VueIcon className="text-neutral my-1 size-14" />
       ) : icon === 'docker' ? (
-        <DockerIcon className="my-1 size-14 text-neutral" />
+        <DockerIcon className="text-neutral my-1 size-14" />
       ) : icon === 'kubernetes' ? (
-        <KubernetesIcon className="my-1 size-14 text-neutral" />
+        <KubernetesIcon className="text-neutral my-1 size-14" />
       ) : icon === 'flask' ? (
-        <FlaskIcon className="my-1 size-14 text-neutral" />
+        <FlaskIcon className="text-neutral my-1 size-14" />
       ) : (
         <Image src={icon} alt={title} className="my-1 size-14" />
       )}

@@ -49,9 +49,7 @@ export default function RootLayout({
       <body className={`${firaCode.className}`}>
         <LanguageProvider>
           <Navbar />
-          <main>
-            {children}
-          </main>
+          <main>{children}</main>
           <ThemeMenu />
           <Footer />
         </LanguageProvider>

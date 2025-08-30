@@ -8,7 +8,7 @@ import Logo from './Logo'
 
 const Navbar = () => {
   const { t } = useLanguage()
-  
+
   const navItems = [
     {
       label: t.nav.home,
@@ -72,22 +72,20 @@ const Navbar = () => {
   }
 
   return (
-    <nav 
-      className={`bg-primary/95 backdrop-blur-sm border-border overflow-hidden border-b sticky top-0 z-50 transition-all duration-300 ease-in-out ${
-        isScrolled 
-          ? 'h-14 shadow-lg bg-primary/98' 
-          : 'h-16 shadow-sm'
-      }`} 
-      style={{ position: 'sticky', top: 0 }}
-    >
+    <nav
+      className={`bg-primary/95 border-border sticky top-0 z-50 overflow-hidden border-b backdrop-blur-sm transition-all duration-300 ease-in-out ${
+        isScrolled ? 'bg-primary/98 h-14 shadow-lg' : 'h-16 shadow-sm'
+      }`}
+      style={{ position: 'sticky', top: 0 }}>
       <div className="mx-auto flex h-full w-dvw max-w-[1200px] items-center justify-between px-4 py-1">
         {isVisible ? (
           <div className="text-primary-content md:hidden">_menu</div>
         ) : (
           <Link href="/">
-            <div className={`animate-fade-up text-primary-content relative flex items-center gap-3 transition-all duration-300 md:static ${
-              isScrolled ? 'scale-95' : 'scale-100'
-            }`}>
+            <div
+              className={`animate-fade-up text-primary-content relative flex items-center gap-3 transition-all duration-300 md:static ${
+                isScrolled ? 'scale-95' : 'scale-100'
+              }`}>
               <Logo />
               <span className="text-primary-content">david_gomez</span>
             </div>
@@ -115,17 +113,17 @@ const Navbar = () => {
                 className="border-border flex items-center border-b px-4 text-2xl md:border-y-0 md:border-e md:text-base md:first:border-s md:last:ml-auto md:last:border-none md:last:px-0 lg:px-8">
                 <Link
                   href={href}
-                  className={`text-primary-content hover:text-neutral w-full py-7 transition-all duration-300 md:py-0 relative group ${
+                  className={`text-primary-content hover:text-neutral group relative w-full py-7 transition-all duration-300 md:py-0 ${
                     isActive ? 'text-neutral cursor-text' : ''
                   }`}>
                   <span className="relative z-10 flex items-center gap-2">
                     {isActive && (
-                      <span className="w-2 h-2 bg-accent rounded-full animate-pulse"></span>
+                      <span className="bg-accent h-2 w-2 animate-pulse rounded-full"></span>
                     )}
                     {label}
                   </span>
                   {/* Subtle hover underline */}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent/50 transition-all duration-300 group-hover:w-full origin-left"></span>
+                  <span className="bg-accent/50 absolute bottom-0 left-0 h-0.5 w-0 origin-left transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               </li>
             )

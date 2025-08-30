@@ -9,7 +9,13 @@
   "logoClass": "bg-white",
   "imageClass": "bg-white",
   "description": "During my Computer Engineering degree, I completed internships at CANTV in the Lara Transmissions department. Gained extensive knowledge of telecommunications and data transmission systems.",
-  "technologies": ["Telecommunications", "Data Transmission", "Logic Gates", "Hardware Design", "System Troubleshooting"],
+  "technologies": [
+    "Telecommunications",
+    "Data Transmission",
+    "Logic Gates",
+    "Hardware Design",
+    "System Troubleshooting"
+  ],
   "achievements": [
     "Gained extensive knowledge of telecommunications and data transmission systems",
     "Designed a device to detect communication failures between transmission radios, utilizing logic gates and multiple connectors",

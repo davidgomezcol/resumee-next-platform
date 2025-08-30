@@ -13,7 +13,7 @@ interface WorkExperienceSectionProps {
 const WorkExperienceSection: React.FC<WorkExperienceSectionProps> = ({ workExperiences }) => {
   const { t, language } = useLanguage()
   const translatedExperiences = workExperienceTranslations[language]
-  
+
   return (
     <section id="experience">
       <SectionHeading title={t.experience.title} />
@@ -25,9 +25,9 @@ const WorkExperienceSection: React.FC<WorkExperienceSectionProps> = ({ workExper
             const translatedData = translatedExperiences[index] || {
               position: experience.position,
               description: experience.description,
-              achievements: experience.achievements
+              achievements: experience.achievements,
             }
-            
+
             return (
               <WorkExperienceCard
                 key={experience.id}

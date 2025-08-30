@@ -1,36 +1,38 @@
 {
-    "name": "nextjs-dev-portfolio",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "dev": "next dev --turbopack",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint"
-    },
-    "dependencies": {
-        "@netlify/blobs": "^8.2.0",
-        "@types/nodemailer": "^7.0.1",
-        "blobshape": "^1.0.0",
-        "bright": "^0.8.5",
-        "markdown-to-jsx": "^7.4.5",
-        "next": "15.1.7",
-        "nodemailer": "^7.0.6",
-        "react": "18.3.1",
-        "react-dom": "18.3.1",
-        "unique-names-generator": "^4.7.1"
-    },
-    "devDependencies": {
-        "@tailwindcss/postcss": "^4.0.6",
-        "@types/node": "^22",
-        "@types/react": "^18",
-        "@types/react-dom": "^18",
-        "eslint": "^9",
-        "eslint-config-next": "15.1.7",
-        "postcss": "^8",
-        "prettier": "^3.5.1",
-        "prettier-plugin-tailwindcss": "^0.6.11",
-        "tailwindcss": "^4.0.6",
-        "typescript": "^5"
-    }
+  "name": "nextjs-dev-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.2.0",
+    "@types/nodemailer": "^7.0.1",
+    "blobshape": "^1.0.0",
+    "bright": "^0.8.5",
+    "markdown-to-jsx": "^7.4.5",
+    "next": "15.1.7",
+    "nodemailer": "^7.0.6",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "unique-names-generator": "^4.7.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.6",
+    "@types/node": "^22",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.7",
+    "postcss": "^8",
+    "prettier": "^3.5.1",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tailwindcss": "^4.0.6",
+    "typescript": "^5"
+  }
 }

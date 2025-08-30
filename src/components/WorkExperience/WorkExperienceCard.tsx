@@ -12,9 +12,13 @@ interface WorkExperienceCardProps {
   isLast?: boolean
 }
 
-const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ data, translatedData, isLast = false }) => {
+const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({
+  data,
+  translatedData,
+  isLast = false,
+}) => {
   const { t } = useLanguage()
-  
+
   const {
     company,
     location,
@@ -36,13 +40,12 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ data, translate
   return (
     <div className="relative">
       {/* Timeline line */}
-      {!isLast && (
-        <div className="absolute left-6 top-16 h-full w-0.5 bg-border"></div>
-      )}
-      
+      {!isLast && <div className="bg-border absolute top-16 left-6 h-full w-0.5"></div>}
+
       <div className="flex gap-6">
         {/* Timeline dot */}
-        <div className={`relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary ${logoClass || ''}`}>
+        <div
+          className={`bg-primary relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${logoClass || ''}`}>
           {companyLogo ? (
             <Image
               src={companyLogo}
@@ -52,7 +55,7 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ data, translate
               className={`rounded-full object-cover ${logoClass || ''}`}
             />
           ) : (
-            <BuildingIcon className="h-6 w-6 text-primary-content" />
+            <BuildingIcon className="text-primary-content h-6 w-6" />
           )}
         </div>
 
@@ -70,20 +73,24 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ data, translate
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-accent hover:text-accent/80 transition-colors"
-                    aria-label={`Visit ${company} website`}
-                  >
+                    aria-label={`Visit ${company} website`}>
                     <ExternalLinkIcon className="h-4 w-4" />
                   </a>
                 )}
               </div>
-              
+
               {/* Date and Location */}
-              <div className="mt-2 flex flex-wrap items-center gap-4 text-sm text-tertiary-content">
+              <div className="text-tertiary-content mt-2 flex flex-wrap items-center gap-4 text-sm">
                 <div className="flex items-center gap-1">
                   <CalendarIcon className="h-4 w-4" />
-                                            <span>
-                            {formatDate(startDate)} - {isCurrent ? t.experience.present : endDate ? formatDate(endDate) : t.experience.present}
-                          </span>
+                  <span>
+                    {formatDate(startDate)} -{' '}
+                    {isCurrent
+                      ? t.experience.present
+                      : endDate
+                        ? formatDate(endDate)
+                        : t.experience.present}
+                  </span>
                 </div>
                 <div className="flex items-center gap-1">
                   <MapPinIcon className="h-4 w-4" />
@@ -98,15 +105,16 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ data, translate
             </div>
 
             {/* Technologies */}
-                                {technologies.length > 0 && (
-                      <div className="mb-4">
-                        <h5 className="text-neutral mb-2 text-sm font-medium">{t.experience.technologies}</h5>
+            {technologies.length > 0 && (
+              <div className="mb-4">
+                <h5 className="text-neutral mb-2 text-sm font-medium">
+                  {t.experience.technologies}
+                </h5>
                 <div className="flex flex-wrap gap-2">
                   {technologies.map((tech, index) => (
                     <span
                       key={index}
-                      className="bg-primary text-primary-content rounded-full px-3 py-1 text-xs font-medium"
-                    >
+                      className="bg-primary text-primary-content rounded-full px-3 py-1 text-xs font-medium">
                       {tech}
                     </span>
                   ))}
@@ -115,16 +123,18 @@ const WorkExperienceCard: React.FC<WorkExperienceCardProps> = ({ data, translate
             )}
 
             {/* Achievements */}
-                                {achievements.length > 0 && (
-                      <div>
-                        <h5 className="text-neutral mb-2 text-sm font-medium">{t.experience.achievements}</h5>
-                                        <ul className="space-y-1">
-                          {translatedData.achievements.map((achievement, index) => (
-                            <li key={index} className="text-neutral text-sm leading-relaxed">
-                              • {achievement}
-                            </li>
-                          ))}
-                        </ul>
+            {achievements.length > 0 && (
+              <div>
+                <h5 className="text-neutral mb-2 text-sm font-medium">
+                  {t.experience.achievements}
+                </h5>
+                <ul className="space-y-1">
+                  {translatedData.achievements.map((achievement, index) => (
+                    <li key={index} className="text-neutral text-sm leading-relaxed">
+                      • {achievement}
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
           </div>

@@ -9,7 +9,9 @@ import Ellipse from './Ellipse'
 const Hero = () => {
   const { t } = useLanguage()
   const ellipseRef = useRotatingAnimation()
-  const role = useRoleSwitcher({ roles: ['FULL-STACK DEVELOPER', 'ENTREPRENEUR', 'PYTHON DEVELOPER', 'AI ENTHUSIAST'] })
+  const role = useRoleSwitcher({
+    roles: ['FULL-STACK DEVELOPER', 'ENTREPRENEUR', 'PYTHON DEVELOPER', 'AI ENTHUSIAST'],
+  })
 
   return (
     <section className="bg-primary bg-small-glow bg-small-glow-position md:bg-large-glow-position lg:bg-large-glow min-h-[calc(dvh-4rem)] bg-no-repeat">
@@ -20,9 +22,7 @@ const Hero = () => {
             <span className="text-accent block text-[1.75rem] font-bold">{role}</span>
           </h1>
 
-          <h2 className="text-neutral mt-3">
-            {t.hero.subtitle}
-          </h2>
+          <h2 className="text-neutral mt-3">{t.hero.subtitle}</h2>
 
           <div className="mt-6 flex flex-wrap gap-6">
             <a
