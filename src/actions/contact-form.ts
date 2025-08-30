@@ -1,8 +1,8 @@
 'use server'
 
-import nodemailer from 'nodemailer'
 import { checkRateLimit } from '@/utils/rateLimit'
 import { headers } from 'next/headers'
+import { sendEmail } from '@/lib/email'
 
 const action = async (_: { success: boolean; message: string } | null, formData: FormData) => {
   try {
@@ -91,40 +91,26 @@ const action = async (_: { success: boolean; message: string } | null, formData:
         message: 'Please provide a message.',
       }
 
-    // Create transporter using Zoho Mail SMTP
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.zoho.com',
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: process.env.EMAIL_USER, // Your Zoho email address
-        pass: process.env.EMAIL_PASS, // Your Zoho email password or app-specific password
-      },
+    // Send email using the separate email module
+    await sendEmail({
+      name: name.toString(),
+      email: email.toString(),
+      subject: subject.toString(),
+      message: message.toString(),
     })
-
-    // Email content
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER, // Send to your own email
-      subject: `Portfolio Contact: ${subject}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-        <hr>
-        <p><em>This message was sent from your portfolio contact form.</em></p>
-      `,
-    }
-
-    // Send email
-    await transporter.sendMail(mailOptions)
 
     return { success: true, message: 'Thanks for your submission! I\'ll get back to you soon.' }
   } catch (error) {
     console.error('Contact form submission error: ' + error)
+    
+    // Check if it's an email configuration error
+    if (error instanceof Error && error.message.includes('Email configuration')) {
+      return {
+        success: false,
+        message: 'Contact form is not configured. Please try again later or contact the administrator.',
+      }
+    }
+    
     return {
       success: false,
       message: 'Oops! There was a problem submitting your form. Please try again later.',
