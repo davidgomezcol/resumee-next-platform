@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { BurgerIcon, CloseIcon } from '../../utils/icons'
@@ -35,7 +34,6 @@ const Navbar = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('')
-  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
