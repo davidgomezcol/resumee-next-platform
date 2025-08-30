@@ -2,7 +2,7 @@
 
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void
+    gtag: (...args: (string | Record<string, unknown>)[]) => void
   }
 }
 
