@@ -39,6 +39,7 @@ export interface Translations {
     messagePlaceholder: string
     submitting: string
     information: string
+    successMessage: string
   }
   footer: {
     description: string
@@ -89,6 +90,7 @@ export const translations: Record<Language, Translations> = {
       messagePlaceholder: 'Your message here',
       submitting: 'Submitting...',
       information: 'Contact Information',
+      successMessage: 'Thanks for your submission! I\'ll get back to you soon.',
     },
     footer: {
       description: 'Full-stack developer specializing in modern web technologies, cloud solutions, and AI-powered applications. Building intelligent systems and applications that deliver exceptional user experiences through innovative agentic development approaches.',
@@ -137,6 +139,7 @@ export const translations: Record<Language, Translations> = {
       messagePlaceholder: 'Tu mensaje aquí',
       submitting: 'Enviando...',
       information: 'Información de Contacto',
+      successMessage: '¡Gracias por tu mensaje! Te responderé pronto.',
     },
     footer: {
       description: 'Desarrollador full-stack especializado en tecnologías web modernas, soluciones en la nube y aplicaciones impulsadas por IA. Construyendo sistemas inteligentes y aplicaciones que ofrecen experiencias de usuario excepcionales a través de enfoques innovadores de desarrollo agéntico.',

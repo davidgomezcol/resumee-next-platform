@@ -9,7 +9,7 @@ import Input from '../UI/Input'
 import Textarea from '../UI/Textarea'
 
 const ContactForm = () => {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [status, formAction, isPending] = useActionState(action, null)
   const [timestamp, setTimestamp] = useState<number>(0)
   const [mathQuestion, setMathQuestion] = useState<{ num1: number; num2: number; answer: number }>({ num1: 0, num2: 0, answer: 0 })
@@ -64,6 +64,9 @@ const ContactForm = () => {
 
       {/* Timestamp field */}
       <input type="hidden" name="timestamp" value={timestamp} />
+
+      {/* Language field for translations */}
+      <input type="hidden" name="language" value={language} />
 
       {/* Math captcha */}
       <div className="mb-4">
