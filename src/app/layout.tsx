@@ -10,10 +10,10 @@ import { Fira_Code } from 'next/font/google'
 
 const firaCode = Fira_Code({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] })
 
-const title = 'David Gómez | Full-Stack Developer for Hire | React, Next.js, Python Expert'
+const title = 'David Gómez | Full-Stack Developer & AI Enthusiast | React, Next.js, Python Expert'
 
 const description =
-  'Hire David Gómez - Expert Full-Stack Developer specializing in React, Next.js, and Python. Remote developer available for US companies. 5+ years experience building scalable web applications. Get a free consultation today!'
+  'Hire David Gómez - Computer Engineer with 15+ years experience, specializing in React, Next.js, and Python. Remote developer from Venezuela/Colombia working with US companies since 2017. Expert in multicultural teams and AI development. Get a free consultation today!'
 
 const url = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-domain.com'
 
@@ -37,11 +37,22 @@ export const metadata: Metadata = {
     'flask developer',
     'freelance developer',
     'software engineer',
+    'computer engineer',
+    'AI enthusiast',
+    'artificial intelligence developer',
+    'multicultural teams',
+    'distributed teams',
+    'remote work expert',
+    'Venezuela developer',
+    'Colombia developer',
+    'Latin American developer',
     'web development services',
     'custom web applications',
     'responsive web design',
     'e-commerce development',
     'API development',
+    'mentor',
+    'team leader',
   ],
   authors: [{ name: 'David Gómez' }],
   creator: 'David Gómez',
@@ -101,9 +112,9 @@ export default function RootLayout({
         '@type': 'Person',
         '@id': `${url}#person`,
         name: 'David Gómez',
-        jobTitle: 'Full-Stack Developer',
+        jobTitle: 'Full-Stack Developer & AI Enthusiast',
         description:
-          'Expert Full-Stack Developer specializing in React, Next.js, and Python development',
+          'Computer Engineer with 15+ years experience, specializing in React, Next.js, and Python development. Expert in multicultural and distributed teams, working remotely with US companies since 2017.',
         url: url,
         sameAs: ['https://github.com/davidgomezcol', 'https://www.linkedin.com/in/davidgomezm7/'],
         knowsAbout: [
@@ -119,6 +130,12 @@ export default function RootLayout({
           'Backend Development',
           'API Development',
           'Responsive Web Design',
+          'Artificial Intelligence',
+          'Multicultural Teams',
+          'Remote Work',
+          'Distributed Teams',
+          'Team Leadership',
+          'Mentoring',
         ],
         worksFor: {
           '@type': 'Organization',
@@ -139,7 +156,8 @@ export default function RootLayout({
         },
         alumniOf: {
           '@type': 'Organization',
-          name: 'Freelance Development',
+          name: 'Universidad Fermín Toro',
+          description: 'Computer Engineering degree with honors - Mention for Publication and Honorific Mention',
         },
         hasOccupation: {
           '@type': 'Occupation',
@@ -261,18 +279,24 @@ export default function RootLayout({
                 {
                   '@type': 'ListItem',
                   position: 2,
+                  name: 'About',
+                  item: `${url}#about`,
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
                   name: 'Experience',
                   item: `${url}#experience`,
                 },
                 {
                   '@type': 'ListItem',
-                  position: 3,
+                  position: 4,
                   name: 'Services',
                   item: `${url}#services`,
                 },
                 {
                   '@type': 'ListItem',
-                  position: 4,
+                  position: 5,
                   name: 'Contact',
                   item: `${url}#contact`,
                 },
@@ -299,10 +323,18 @@ export default function RootLayout({
                 },
                 {
                   '@type': 'Question',
+                  name: 'What is David Gómez\'s background and experience?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'David Gómez is a Computer Engineer with 15+ years of experience, graduated from Universidad Fermín Toro in Venezuela with honors. He has been working remotely with US companies since 2017, specializing in multicultural and distributed teams.',
+                  },
+                },
+                {
+                  '@type': 'Question',
                   name: 'Is David Gómez available for remote work with US companies?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Yes, David Gómez is available for remote work with US companies. He specializes in React, Next.js, and Python development and can work across different time zones.',
+                    text: 'Yes, David Gómez is available for remote work with US companies. He has extensive experience working with US-based companies since 2017 and specializes in React, Next.js, and Python development across different time zones.',
                   },
                 },
                 {
@@ -310,7 +342,15 @@ export default function RootLayout({
                   name: 'What technologies does David Gómez specialize in?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'David Gómez specializes in React.js, Next.js, Python, Django, Flask, JavaScript, TypeScript, API development, responsive web design, and full-stack web development.',
+                    text: 'David Gómez specializes in React.js, Next.js, Python, Django, Flask, JavaScript, TypeScript, API development, responsive web design, and full-stack web development. He is also passionate about artificial intelligence and AI development.',
+                  },
+                },
+                {
+                  '@type': 'Question',
+                  name: 'What makes David Gómez unique as a developer?',
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: 'David Gómez brings 15+ years of experience, expertise in multicultural and distributed teams, strong communication skills across cultures, and a passion for AI development. He is organized, approachable, resilient, and enjoys mentoring team members.',
                   },
                 },
                 {
@@ -318,7 +358,7 @@ export default function RootLayout({
                   name: 'How can I hire David Gómez for my project?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'You can hire David Gómez by contacting him through the contact form on his website, emailing hi@dgomez.dev, or connecting with him on LinkedIn. He offers free consultations for new projects.',
+                    text: 'You can hire David Gómez by contacting him through the contact form on his website, emailing hi@dgomez.dev, or connecting with him on LinkedIn. He offers free consultations for new projects and specializes in complex challenges and team support.',
                   },
                 },
               ],
