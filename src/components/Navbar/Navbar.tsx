@@ -17,6 +17,11 @@ const Navbar = () => {
       id: '',
     },
     {
+      label: t.nav.about,
+      href: '/#about',
+      id: 'about',
+    },
+    {
       label: t.nav.experience,
       href: '/#experience',
       id: 'experience',
@@ -86,7 +91,7 @@ const Navbar = () => {
         style={{ position: 'sticky', top: 0 }}>
         <div className="mx-auto flex h-full w-dvw max-w-[1200px] items-center justify-between px-4 py-1">
           {isVisible ? (
-            <div className="text-primary-content md:hidden">_menu</div>
+            <div className="text-primary-content md:hidden">{t.nav.menu}</div>
           ) : (
             <Link href="/" onClick={() => trackNavigation('home')}>
               <div
@@ -147,7 +152,7 @@ const Navbar = () => {
           <div className="flex h-full w-full flex-col items-center justify-center">
             {/* Menu Title */}
             <div className="mb-12 text-center">
-              <h2 className="text-primary-content mb-2 text-3xl font-bold">_menu</h2>
+              <h2 className="text-primary-content mb-2 text-3xl font-bold">{t.nav.menu}</h2>
               <div className="bg-accent mx-auto h-0.5 w-16"></div>
             </div>
 
@@ -185,7 +190,7 @@ const Navbar = () => {
 
             {/* Close hint */}
             <div className="mt-12 text-center">
-              <p className="text-primary-content/70 text-sm">Tap anywhere to close</p>
+              <p className="text-primary-content/70 text-sm">{t.nav.tapToClose}</p>
             </div>
           </div>
         </div>

@@ -60,7 +60,7 @@ const ContactForm = () => {
         required
       />
       <Input
-        label="Subject"
+        label={t.contact.subject}
         id="subject"
         name="subject"
         placeholder={t.contact.subjectPlaceholder}
@@ -87,21 +87,21 @@ const ContactForm = () => {
 
       {/* Math captcha */}
       <div className="mb-4">
-        <label htmlFor="mathAnswer" className="mb-2 block text-sm font-medium text-gray-700">
-          Security Question: What is {mathQuestion.num1} + {mathQuestion.num2}?
+        <label htmlFor="mathAnswer" className="text-neutral mb-2 block text-sm font-medium">
+          {t.contact.securityQuestion} {mathQuestion.num1} + {mathQuestion.num2}?
         </label>
         <input
           type="number"
           id="mathAnswer"
           name="mathAnswer"
           required
-          className="w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-          placeholder="Enter your answer"
+          className="border-border focus:ring-accent text-neutral w-full rounded-md border px-3 py-2 shadow-sm focus:ring-2 focus:outline-none"
+          placeholder={t.contact.securityAnswerPlaceholder}
         />
         <input type="hidden" name="expectedAnswer" value={mathQuestion.answer} />
       </div>
 
-      {!status?.success && <p className="my-2 font-light text-red-600">{status?.message}</p>}
+      {!status?.success && <p className="text-red-500 my-2 font-light">{status?.message}</p>}
       <Button
         text={isPending ? t.contact.submitting : t.contact.send}
         disabled={isPending}

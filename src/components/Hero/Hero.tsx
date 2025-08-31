@@ -10,7 +10,12 @@ const Hero = () => {
   const { t } = useLanguage()
   const ellipseRef = useRotatingAnimation()
   const role = useRoleSwitcher({
-    roles: ['FULL-STACK DEVELOPER', 'ENTREPRENEUR', 'PYTHON DEVELOPER', 'AI ENTHUSIAST'],
+    roles: [
+      t.hero.roles.fullStackDeveloper,
+      t.hero.roles.entrepreneur,
+      t.hero.roles.pythonDeveloper,
+      t.hero.roles.aiEnthusiast,
+    ],
   })
 
   return (
@@ -18,7 +23,7 @@ const Hero = () => {
       <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-4 px-4 pt-12 pb-10 md:grid-cols-2 lg:p-4">
         <div className="flex min-h-48 flex-col justify-between lg:min-h-56 lg:max-w-[33.75rem]">
           <h1>
-            <span className="text-neutral mb-2 block text-3xl font-bold">Hi - I'm David Gómez</span>
+            <span className="text-neutral mb-2 block text-3xl font-bold">{t.hero.greeting}</span>
             <span className="text-accent block text-[1.75rem] font-bold">{role}</span>
           </h1>
 
@@ -37,7 +42,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               aria-label="View LinkedIn Profile"
               className="text-neutral bg-secondary cursor-pointer rounded-lg px-[14px] py-[10px] text-sm">
-              LinkedIn Profile
+              {t.hero.linkedinProfile}
             </a>
           </div>
         </div>

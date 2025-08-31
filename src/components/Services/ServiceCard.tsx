@@ -44,7 +44,7 @@ const ServiceCard: React.FC<ServiceCardTypes> = ({ title, shortDescription, icon
       ) : (
         <Image src={icon} alt={title} className="my-1 size-14" />
       )}
-      <h5 className="text-neutral mt-2 mb-5 text-center text-base font-semibold">{title}</h5>
+      <h5 className="text-accent mt-2 mb-5 text-center text-base font-semibold">{title}</h5>
       <div className="bg-primary rounded-2xl p-4">
         <p className="text-neutral text-center text-sm font-normal">{shortDescription}</p>
       </div>

@@ -26,7 +26,7 @@ const Footer = () => {
             <Logo width={30} height={24} />
             <span className="text-neutral text-lg font-medium">david_gomez</span>
           </h5>
-          <p className="text-tertiary-content">{t.footer.description}</p>
+          <p className="text-neutral">{t.footer.description}</p>
           {/* <a
             href="#"
             className="text-neutral mt-4 inline-flex items-center gap-2 text-xs hover:underline">
@@ -39,7 +39,7 @@ const Footer = () => {
             <a
               href={link.href}
               key={link.href}
-              className="text-tertiary-content hover:text-neutral transition-colors duration-300 hover:underline">
+              className="text-neutral hover:text-neutral transition-colors duration-300 hover:underline">
               {link.title}.
             </a>
           ))}
@@ -70,7 +70,7 @@ const Footer = () => {
               </li>
             ))}
           </ul>
-          <p className="text-tertiary-content flex flex-col self-end text-right text-xs md:text-center">
+          <p className="text-neutralflex flex-col self-end text-right text-xs md:text-center">
             <span>{t.footer.copyright}</span>
           </p>
         </div>
@@ -78,13 +78,13 @@ const Footer = () => {
         <div className="flex flex-col justify-between gap-[200px] md:flex-row md:gap-8">
           <div className="space-y-10 md:self-end">
             <div className="flex flex-col">
-              <h5 className="text-neutral mb-4 text-lg font-medium">{t.footer.contactMe}</h5>
+              <h5 className="text-accent mb-4 text-lg font-medium">{t.footer.contactMe}</h5>
               <a
                 href="mailto:hi@dgomez.dev"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={handleEmailClick}
-                className="text-tertiary-content hover:text-neutral text-sm font-light transition-colors duration-300">
+                className="text-neutral hover:text-neutral text-sm font-light transition-colors duration-300">
                 hi@dgomez.dev
               </a>
               {/* <a
@@ -95,9 +95,9 @@ const Footer = () => {
             </div>
             <div>
               <div>
-                <h5 className="text-neutral mb-4 text-lg font-medium">{t.footer.location}</h5>
+                <h5 className="text-accent mb-4 text-lg font-medium">{t.footer.location}</h5>
                 <address className="text-tertiary-content flex flex-col text-sm font-light">
-                  <span>Bogotá, Colombia</span>
+                  <span className="text-neutral">Bogotá, Colombia</span>
                   {/* <span>Carrera 123, Office 4</span> */}
                 </address>
               </div>
@@ -105,7 +105,7 @@ const Footer = () => {
           </div>
 
           <div className="md:mr-16 md:self-end">
-            <p className="text-neutral mb-8 text-sm md:text-right">{t.footer.languages}</p>
+            <p className="text-accent mb-8 text-sm md:text-right">{t.footer.languages}</p>
             <div className="flex gap-8 md:gap-4 lg:gap-8">
               <LanguageSwitcher />
             </div>
