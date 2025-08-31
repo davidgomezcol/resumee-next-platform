@@ -101,7 +101,7 @@ const ContactForm = () => {
         <input type="hidden" name="expectedAnswer" value={mathQuestion.answer} />
       </div>
 
-      {!status?.success && <p className="text-red-500 my-2 font-light">{status?.message}</p>}
+      {!status?.success && <p className="my-2 font-light text-red-500">{status?.message}</p>}
       <Button
         text={isPending ? t.contact.submitting : t.contact.send}
         disabled={isPending}

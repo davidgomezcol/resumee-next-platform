@@ -11,7 +11,7 @@ const AboutSection: React.FC = () => {
       <SectionHeading title={t.about.title} />
 
       <div className="my-8 md:my-12">
-        <div className="text-neutral space-y-6 text-pretty text-lg leading-relaxed">
+        <div className="text-neutral space-y-6 text-lg leading-relaxed text-pretty">
           <p>{t.about.paragraph1}</p>
           <p>{t.about.paragraph2}</p>
           <p>{t.about.paragraph3}</p>
