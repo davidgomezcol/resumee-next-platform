@@ -83,7 +83,7 @@ export const translations: Record<Language, Translations> = {
     },
     hero: {
       title: 'Full-Stack Developer',
-      subtitle: 'Building the future, one line of code at a time',
+      subtitle: 'From Venezuela to Colombia, from code to AI—always learning, always building.',
       description:
         'Passionate about creating modern web applications with cutting-edge technologies. Specializing in React, Next.js, Python, and cloud solutions.',
       cta: 'Get In Touch',
@@ -158,7 +158,7 @@ export const translations: Record<Language, Translations> = {
     },
     hero: {
       title: 'Desarrollador Full-Stack',
-      subtitle: 'Construyendo el futuro, una línea de código a la vez',
+      subtitle: 'De Venezuela a Colombia, desde el código hasta la IA—siempre aprendiendo, siempre construyendo.',
       description:
         'Apasionado por crear aplicaciones web modernas con tecnologías de vanguardia. Especializado en React, Next.js, Python y soluciones en la nube.',
       cta: 'Contáctame',
