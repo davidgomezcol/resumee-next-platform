@@ -1,3 +1,2 @@
-import HeroImage from '../assets/images/me.jpg'
-
-export { HeroImage }
+// Use public directory for images to ensure proper Next.js image optimization
+export const HeroImage = '/images/me.jpg'

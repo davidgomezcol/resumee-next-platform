@@ -6,12 +6,6 @@
   NODE_VERSION = "18"
   SECRETS_SCAN_ENABLED = "false"
 
-# Redirects for SEO
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 # Headers for SEO
 [[headers]]
   for = "/*"
@@ -29,5 +23,11 @@
 
 [[headers]]
   for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Ensure proper handling of Next.js image optimization
+[[headers]]
+  for = "/_next/image/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
