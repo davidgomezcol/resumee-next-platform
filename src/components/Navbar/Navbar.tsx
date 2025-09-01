@@ -8,7 +8,7 @@ import { BurgerIcon, CloseIcon } from '../../utils/icons'
 import Logo from './Logo'
 
 const Navbar = () => {
-  const { t } = useLanguage()
+  const { t, language, setLanguage } = useLanguage()
 
   const navItems = [
     {
@@ -82,6 +82,11 @@ const Navbar = () => {
     setIsVisible(false)
   }
 
+  const handleLanguageToggle = () => {
+    const newLanguage = language === 'en' ? 'es' : 'en'
+    setLanguage(newLanguage)
+  }
+
   return (
     <>
       <nav
@@ -104,14 +109,26 @@ const Navbar = () => {
             </Link>
           )}
 
-          <div className="md:hidden">
-            <button onClick={toggleMenu}>
-              {isVisible ? (
-                <CloseIcon className="text-primary-content" />
-              ) : (
-                <BurgerIcon className="text-primary-content" />
-              )}
-            </button>
+          <div className="flex items-center gap-4">
+            {/* Mobile Language Switcher */}
+            <div className="md:hidden">
+              <button
+                onClick={handleLanguageToggle}
+                className="text-neutral hover:text-neutral cursor-pointer rounded px-2 py-1 text-sm font-medium transition-colors duration-300">
+                {language === 'en' ? '🇪🇸 Es' : '🇺🇸 En'}
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button onClick={toggleMenu}>
+                {isVisible ? (
+                  <CloseIcon className="text-primary-content" />
+                ) : (
+                  <BurgerIcon className="text-primary-content" />
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Desktop Navigation */}
@@ -141,6 +158,15 @@ const Navbar = () => {
               )
             })}
           </ul>
+
+          {/* Desktop Language Switcher */}
+          <div className="hidden md:block">
+            <button
+              onClick={handleLanguageToggle}
+              className="text-primary-content hover:text-neutral cursor-pointer rounded px-2 py-1 text-sm font-medium transition-colors duration-300">
+              {language === 'en' ? '🇪🇸 Es' : '🇺🇸 En'}
+            </button>
+          </div>
         </div>
       </nav>
 

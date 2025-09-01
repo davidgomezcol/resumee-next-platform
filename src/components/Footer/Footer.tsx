@@ -24,7 +24,7 @@ const Footer = () => {
         <div>
           <h5 className="mb-8 flex items-center gap-2">
             <Logo width={30} height={24} />
-            <span className="text-neutral text-lg font-medium">david_gomez</span>
+            <span className="text-primary-content text-lg font-medium">david_gomez</span>
           </h5>
           <p className="text-neutral">{t.footer.description}</p>
           {/* <a
@@ -39,7 +39,7 @@ const Footer = () => {
             <a
               href={link.href}
               key={link.href}
-              className="text-neutral hover:text-neutral transition-colors duration-300 hover:underline">
+              className="text-primary-content hover:text-neutral transition-colors duration-300 hover:underline">
               {link.title}.
             </a>
           ))}

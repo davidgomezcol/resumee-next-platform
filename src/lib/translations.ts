@@ -158,7 +158,8 @@ export const translations: Record<Language, Translations> = {
     },
     hero: {
       title: 'Desarrollador Full-Stack',
-      subtitle: 'De Venezuela a Colombia, desde el código hasta la IA—siempre aprendiendo, siempre construyendo.',
+      subtitle:
+        'De Venezuela a Colombia, desde el código hasta la IA—siempre aprendiendo, siempre construyendo.',
       description:
         'Apasionado por crear aplicaciones web modernas con tecnologías de vanguardia. Especializado en React, Next.js, Python y soluciones en la nube.',
       cta: 'Contáctame',

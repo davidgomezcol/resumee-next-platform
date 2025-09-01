@@ -16,7 +16,7 @@ const LanguageSwitcher = () => {
       onClick={toggleLanguage}
       className="text-neutral hover:text-neutral/70 cursor-pointer text-sm font-medium transition-colors duration-300"
       aria-label={`Switch to ${language === 'en' ? 'Spanish' : 'English'}`}>
-      {language === 'en' ? 'Es' : 'En'}
+      {language === 'en' ? '🇪🇸 Es' : '🇺🇸 En'}
     </button>
   )
 }

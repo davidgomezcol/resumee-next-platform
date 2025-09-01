@@ -18,7 +18,7 @@ const ContactSection = () => {
       className="bg-secondary my-8 grid grid-cols-1 gap-16 rounded-4xl p-8 md:my-16 md:grid-cols-2 md:gap-8 lg:gap-12">
       <div className="flex flex-col justify-between gap-8">
         <div>
-          <h3 className="text-neutral text-3xl font-bold">{t.contact.title}</h3>
+          <h3 className="text-primary-content text-3xl font-bold">{t.contact.title}</h3>
           <h4 className="text-accent text-2xl font-bold md:text-3xl">{t.contact.subtitle}</h4>
           <p className="text-neutral mt-8">{t.hero.description}</p>
         </div>

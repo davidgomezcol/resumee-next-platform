@@ -157,7 +157,8 @@ export default function RootLayout({
         alumniOf: {
           '@type': 'Organization',
           name: 'Universidad Fermín Toro',
-          description: 'Computer Engineering degree with honors - Mention for Publication and Honorific Mention',
+          description:
+            'Computer Engineering degree with honors - Mention for Publication and Honorific Mention',
         },
         hasOccupation: {
           '@type': 'Occupation',
@@ -323,7 +324,7 @@ export default function RootLayout({
                 },
                 {
                   '@type': 'Question',
-                  name: 'What is David Gómez\'s background and experience?',
+                  name: "What is David Gómez's background and experience?",
                   acceptedAnswer: {
                     '@type': 'Answer',
                     text: 'David Gómez is a Computer Engineer with 15+ years of experience, graduated from Universidad Fermín Toro in Venezuela with honors. He has been working remotely with US companies since 2017, specializing in multicultural and distributed teams.',
