@@ -8,12 +8,13 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/private/', '/admin/', '/api/'],
+        disallow: ['/private/', '/admin/', '/api/', '/_next/', '/static/', '/*.json$'],
       },
       {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/private/', '/admin/'],
+        disallow: ['/private/', '/admin/', '/_next/', '/static/', '/*.json$'],
+        crawlDelay: 1,
       },
     ],
     host: baseUrl,
