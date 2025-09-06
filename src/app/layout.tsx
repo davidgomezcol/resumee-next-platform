@@ -15,7 +15,7 @@ const title = 'David Gómez | Full-Stack Developer & AI Enthusiast | React, Next
 const description =
   'Hire David Gómez - Computer Engineer with 15+ years experience, specializing in React, Next.js, and Python. Remote developer from Venezuela/Colombia working with US companies since 2017. Expert in multicultural teams and AI development. Get a free consultation today!'
 
-const url = process.env.NEXT_PUBLIC_SITE_URL || 'https://your-domain.com'
+const url = process.env.NEXT_PUBLIC_SITE_URL || 'https://dgomez.dev'
 
 export const metadata: Metadata = {
   title,
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   authors: [{ name: 'David Gómez' }],
   creator: 'David Gómez',
   publisher: 'David Gómez',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://your-domain.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://dgomez.dev'),
   alternates: {
     canonical: url,
   },
