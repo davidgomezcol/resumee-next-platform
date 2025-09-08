@@ -59,7 +59,7 @@ export const metadata: Metadata = {
   publisher: 'David Gómez',
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://dgomez.dev'),
   alternates: {
-    canonical: url,
+    canonical: 'https://dgomez.dev',
   },
   openGraph: {
     title,

@@ -8,16 +8,16 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/private/', '/admin/', '/api/', '/_next/', '/static/', '/*.json$'],
+        disallow: ['/private/', '/admin/', '/api/', '/_next/', '/static/', '/*.json$', '/netlify/'],
       },
       {
         userAgent: 'Googlebot',
         allow: '/',
-        disallow: ['/private/', '/admin/', '/_next/', '/static/', '/*.json$'],
+        disallow: ['/private/', '/admin/', '/_next/', '/static/', '/*.json$', '/netlify/'],
         crawlDelay: 1,
       },
     ],
-    host: baseUrl,
-    sitemap: `${baseUrl}/sitemap.xml`,
+    host: 'https://dgomez.dev',
+    sitemap: 'https://dgomez.dev/sitemap.xml',
   }
 }
