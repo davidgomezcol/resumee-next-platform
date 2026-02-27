@@ -11,50 +11,137 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run format` - Format code with Prettier
 - `npm run format:check` - Check formatting with Prettier
 
-## Architecture Overview
+Always run `npm run lint` and `npm run build` before committing to catch errors early.
 
-This is a modern personal portfolio website built with Next.js 15 App Router, TypeScript, and Tailwind CSS. The architecture follows these key patterns:
+## Tech Stack
 
-### Content Management System
-- **JSON-based content**: Portfolio data is stored in JSON files under `/content/`
-  - `/content/work-experience/` - Individual work experience entries
-  - `/content/projects/` - Project showcase data
-  - `/content/testimonials/` - Client testimonials
-- **Data services**: Content is loaded via services in `/src/services/index.ts` using filesystem operations
-- **Priority-based sorting**: Content is automatically sorted by priority fields
+- **Framework**: Next.js 15.1.7 (App Router) with React 18
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS 4.0 via PostCSS
+- **Deployment**: Netlify (Node 18, `.next` publish dir)
+- **Email**: Nodemailer with Zoho SMTP
+- **Font**: Fira Code (Google Fonts)
 
-### Multi-language Support
-- **Context-based i18n**: Uses React Context (`/src/contexts/LanguageContext.tsx`) for language state
-- **Centralized translations**: All text is managed in `/src/lib/translations.ts` with English and Spanish support
-- **Additional translation files**: Specialized translations for services and work experience in separate files
-- **localStorage persistence**: Language preference is saved locally
+## Project Structure
 
-### Component Structure
-- **Section-based components**: Major page sections (Hero, About, WorkExperience, Services, Contact, Skills)
-- **Atomic UI components**: Reusable components in `/src/components/UI/`
-- **Theme system**: Multiple color themes defined in `/src/appData/index.ts` with theme switching capability
-- **Responsive design**: All components built with Tailwind CSS for full responsiveness
+```
+/content/                   # JSON-based CMS
+  /work-experience/         # Work entries (8 files, priority-sorted)
+  /projects/                # Project showcase (4 files)
+  /testimonials/            # Client testimonials (5 files)
+/src/
+  /actions/contact-form.ts  # Server action for contact form
+  /app/                     # Next.js App Router (single page at /)
+    layout.tsx              # Root layout with metadata, structured data, fonts
+    page.tsx                # Main page composing all sections
+    globals.css             # Global styles + Tailwind theme
+    sitemap.ts              # Dynamic sitemap generation
+    robots.ts               # robots.txt config
+    opengraph-image.tsx     # OG image generation
+  /appData/                 # Static app config (themes, personal info, nav links)
+  /components/              # React components
+    /About/                 # About section
+    /Breadcrumbs/           # SEO breadcrumbs
+    /Contact/               # Contact form with CAPTCHA + honeypot
+    /Footer/                # Footer
+    /Hero/                  # Hero section with role switcher
+    /LanguageSwitcher/      # EN/ES toggle
+    /Marquee/               # Scrolling text animation
+    /Navbar/                # Navigation bar
+    /SectionHeading/        # Reusable section header
+    /Services/              # Services section
+    /Skills/                # Skills grid
+    /TableOfContents/       # Side navigation
+    /Testimonials/          # Testimonials carousel
+    /Theme/                 # Theme switcher (Light, Dark, Aqua, Retro)
+    /UI/                    # Atomic UI components (Button, Modal, etc.)
+    /WorkExperience/        # Work experience timeline
+  /contexts/LanguageContext.tsx  # i18n React Context (EN/ES)
+  /hooks/                   # Custom hooks
+    useHeadingsData.ts      # Extract heading data for TOC
+    useIsLargeScreen.ts     # Responsive breakpoint detection
+    useOutsideClick.ts      # Click outside handler
+    useRoleSwitcher.ts      # Rotating role titles in hero
+    useRotatingAnimation.ts # Generic rotation animation
+  /lib/                     # Utilities and types
+    translations.ts         # Main EN/ES translations
+    workExperienceTranslations.ts
+    serviceTranslations.ts
+    email.ts                # Email sending utility
+    analytics.ts            # Analytics helpers
+    types.d.ts              # Shared TypeScript types
+  /services/index.ts        # Data loading (fs-based, server-side only)
+  /utils/
+    images.ts               # Image path constants
+    index.ts                # General utility functions
+    rateLimit.ts            # In-memory rate limiting
+```
+
+## Architecture Patterns
+
+### Content Management
+- All content lives in `/content/` as JSON files
+- Loaded server-side via `/src/services/index.ts` using `fs.readFile`
+- Sorted by `priority` field (lower = higher priority)
+- To add content: create a JSON file following existing schemas, it auto-loads
+
+### Internationalization (i18n)
+- React Context at `/src/contexts/LanguageContext.tsx`
+- Two languages: English (`en`) and Spanish (`es`)
+- Translations split across three files: `translations.ts`, `workExperienceTranslations.ts`, `serviceTranslations.ts`
+- Language preference persisted in `localStorage`
+- Use `useLanguage()` hook to access translations in components
+
+### Theming
+- Four themes defined in `/src/appData/index.ts`: Light, Dark, Aqua, Retro
+- Theme applied via CSS custom properties in `globals.css`
+- Theme switcher component at `/src/components/Theme/`
 
 ### Data Flow
-- **Server-side data loading**: Work experiences and other content loaded server-side in page components
-- **Client-side state**: Language and theme preferences managed on client-side
-- **Static generation**: Optimized for performance with Next.js static generation
+- **Server**: Content JSON loaded in `page.tsx` and passed as props
+- **Client**: Language and theme state managed via React Context + localStorage
+- **Forms**: Contact form uses Next.js Server Actions (`/src/actions/contact-form.ts`)
 
-### Key Configuration
-- **Path aliases**: `@/*` maps to `./src/*` for clean imports
-- **Image optimization**: Configured for multiple remote domains (Unsplash, ImageKit, Cloudinary, Pravatar)
-- **SEO optimizations**: Built-in sitemap generation, robots.txt, and OpenGraph images
+### Component Conventions
+- Section components are `'use client'` when they need interactivity
+- UI components in `/src/components/UI/` are small, reusable building blocks
+- All components use Tailwind CSS for styling (no CSS modules)
 
-### Content Updates
-When adding new content:
-1. Add JSON files to appropriate `/content/` directories
-2. Follow existing priority and structure patterns
-3. Add translations to translation files if needed
-4. Content will be automatically loaded and sorted by the services layer
+## Code Style
 
-### Deployment
-Optimized for Netlify deployment with:
-- Edge functions support
-- Image optimization through Next.js
-- Static generation for performance
-- Form handling integration
+### Formatting (Prettier)
+- Single quotes, no semicolons
+- 2-space indentation, 100 char print width
+- `bracketSameLine: true`
+- Tailwind CSS class sorting via `prettier-plugin-tailwindcss`
+
+### Linting (ESLint)
+- Extends `next/core-web-vitals` and `next/typescript`
+- `react/no-unescaped-entities` is off
+- `react/no-children-prop` is off
+
+### TypeScript
+- Strict mode enabled
+- Path alias: `@/*` maps to `./src/*`
+- Shared types in `/src/lib/types.d.ts`
+
+## Environment Variables
+
+Required for contact form functionality:
+- `EMAIL_USER` - Zoho SMTP email address
+- `EMAIL_PASS` - Zoho SMTP password
+- `NEXT_PUBLIC_SITE_URL` - Canonical site URL (defaults to `https://dgomez.dev`)
+
+## Deployment
+
+Deployed on Netlify with configuration in `netlify.toml`:
+- Security headers: X-Frame-Options DENY, XSS protection, nosniff
+- Static asset caching: 1 year immutable for `/_next/static/*` and `/images/*`
+- Redirects: HTTP/www to canonical `https://dgomez.dev`
+- Image optimization via Next.js (WebP + AVIF formats)
+
+## Known Limitations
+
+- Rate limiting (`/src/utils/rateLimit.ts`) uses in-memory `Map` — resets on serverless cold starts
+- Single-page app with anchor-based navigation (no route-level pages beyond `/`)
+- Sitemap only includes the root URL
