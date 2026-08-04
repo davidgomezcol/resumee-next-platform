@@ -3,16 +3,35 @@
 import action from '@/actions/contact-form'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { trackFormSubmission } from '@/lib/analytics'
+import {
+  CONTACT_FIELDS,
+  validateContact,
+  type ContactField,
+  type ContactValues,
+  type FieldErrors,
+} from '@/lib/contactValidation'
 import { useActionState, useEffect, useState } from 'react'
 import Button from '../UI/Button'
-import Input, { fieldControl, fieldLabel } from '../UI/Input'
+import Input, { fieldControl, fieldLabel, fieldRule } from '../UI/Input'
 import Textarea from '../UI/Textarea'
+
+const readValues = (form: HTMLFormElement): ContactValues => {
+  const data = new FormData(form)
+  const get = (key: ContactField) => (data.get(key) ?? '').toString().trim()
+  return {
+    name: get('name'),
+    email: get('email'),
+    subject: get('subject'),
+    message: get('message'),
+  }
+}
 
 const ContactForm = () => {
   const { t, language } = useLanguage()
   const [status, formAction, isPending] = useActionState(action, null)
   const [timestamp, setTimestamp] = useState(0)
   const [mathQuestion, setMathQuestion] = useState({ num1: 0, num2: 0, answer: 0 })
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
 
   useEffect(() => {
     // Both are set after mount so the markup stays deterministic on the server.
@@ -28,6 +47,36 @@ const ContactForm = () => {
       trackFormSubmission('contact_form')
     }
   }, [status?.success])
+
+  // The server runs the same rules; adopt whatever it reports, and clear on any other outcome.
+  useEffect(() => {
+    setFieldErrors(status?.fieldErrors ?? {})
+  }, [status])
+
+  /**
+   * The form carries `noValidate`, so the browser's own validation bubbles never appear and the
+   * errors render in the page instead. Blocking the action here also means a typo never reaches
+   * the server.
+   */
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const errors = validateContact(readValues(event.currentTarget), t.contact)
+    setFieldErrors(errors)
+
+    const firstInvalid = CONTACT_FIELDS.find((field) => errors[field])
+    if (firstInvalid) {
+      event.preventDefault()
+      event.currentTarget.querySelector<HTMLElement>(`#${firstInvalid}`)?.focus()
+    }
+  }
+
+  /** Retract a complaint as soon as the visitor starts addressing it. */
+  const clearError = (field: ContactField) =>
+    setFieldErrors((previous) => {
+      if (!previous[field]) return previous
+      const next = { ...previous }
+      delete next[field]
+      return next
+    })
 
   if (status?.success) {
     return (
@@ -45,26 +94,25 @@ const ContactForm = () => {
   return (
     <form
       action={formAction}
+      onSubmit={handleSubmit}
+      noValidate
       className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-[clamp(16px,2vw,22px)]">
-      {/*
-        React resets the form once the action settles, restoring each field to its defaultValue.
-        Feeding the rejected submission back in is what keeps a failed attempt from wiping the
-        visitor's message. The captcha answer is deliberately left out — a wrong one should clear.
-      */}
       <Input
         label={t.contact.name}
         id="name"
         name="name"
-        required
         defaultValue={status?.values?.name ?? ''}
+        error={fieldErrors.name}
+        onInput={() => clearError('name')}
       />
       <Input
         label={t.contact.email}
         id="email"
         type="email"
         name="email"
-        required
         defaultValue={status?.values?.email ?? ''}
+        error={fieldErrors.email}
+        onInput={() => clearError('email')}
       />
       <Input
         label={t.contact.subject}
@@ -72,15 +120,18 @@ const ContactForm = () => {
         name="subject"
         className="col-span-full"
         defaultValue={status?.values?.subject ?? ''}
+        error={fieldErrors.subject}
+        onInput={() => clearError('subject')}
       />
       <Textarea
         label={t.contact.message}
         id="message"
         name="message"
         rows={4}
-        required
         className="col-span-full"
         defaultValue={status?.values?.message ?? ''}
+        error={fieldErrors.message}
+        onInput={() => clearError('message')}
       />
 
       {/* Honeypot — offscreen for people, irresistible to bots. */}
@@ -96,7 +147,12 @@ const ContactForm = () => {
         <span className={fieldLabel}>
           {t.contact.securityQuestion} {mathQuestion.num1} + {mathQuestion.num2}?
         </span>
-        <input type="number" id="mathAnswer" name="mathAnswer" required className={fieldControl} />
+        <input
+          type="number"
+          id="mathAnswer"
+          name="mathAnswer"
+          className={`${fieldControl} ${fieldRule()}`}
+        />
       </label>
 
       <div className="flex items-end">

@@ -63,6 +63,14 @@ export interface Translations {
     securityQuestion: string
     successLabel: string
     successMessage: string
+    /** Field-level messages, rendered under the input that failed. `{max}` is substituted. */
+    errors: {
+      nameRequired: string
+      emailRequired: string
+      emailInvalid: string
+      messageRequired: string
+      tooLong: string
+    }
   }
   footer: {
     rights: string
@@ -198,6 +206,13 @@ export const translations: Record<Language, Translations> = {
       securityQuestion: 'Security: what is',
       successLabel: 'Message sent',
       successMessage: "Thanks — I'll reply from hi@dgomez.dev.",
+      errors: {
+        nameRequired: 'Please provide your name.',
+        emailRequired: 'Please provide your email address.',
+        emailInvalid: 'Enter a valid email address.',
+        messageRequired: 'Please provide a message.',
+        tooLong: 'Too long — maximum {max} characters.',
+      },
     },
     footer: {
       rights: 'David Gómez',
@@ -335,6 +350,13 @@ export const translations: Record<Language, Translations> = {
       securityQuestion: 'Seguridad: ¿cuánto es',
       successLabel: 'Mensaje enviado',
       successMessage: 'Gracias — te responderé desde hi@dgomez.dev.',
+      errors: {
+        nameRequired: 'Por favor proporciona tu nombre.',
+        emailRequired: 'Por favor proporciona tu correo electrónico.',
+        emailInvalid: 'Introduce una dirección de correo válida.',
+        messageRequired: 'Por favor proporciona un mensaje.',
+        tooLong: 'Demasiado largo — máximo {max} caracteres.',
+      },
     },
     footer: {
       rights: 'David Gómez',

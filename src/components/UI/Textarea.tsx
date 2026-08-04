@@ -1,17 +1,26 @@
 import { FC, TextareaHTMLAttributes } from 'react'
-import { fieldControl, fieldLabel } from './Input'
+import { FieldError, fieldControl, fieldLabel, fieldRule } from './Input'
 
 interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'className'> {
   label: string
   id: string
+  /** Rendered under the field; also turns the rule and the message coral. */
+  error?: string
   /** Applied to the wrapping label, so callers can control grid placement. */
   className?: string
 }
 
-const Textarea: FC<TextareaProps> = ({ id, label, className, ...props }) => (
+const Textarea: FC<TextareaProps> = ({ id, label, error, className, ...props }) => (
   <label htmlFor={id} className={`flex flex-col gap-[7px] ${className ?? ''}`}>
     <span className={fieldLabel}>{label}</span>
-    <textarea id={id} {...props} className={`${fieldControl} resize-y leading-[1.55]`} />
+    <textarea
+      id={id}
+      aria-invalid={error ? true : undefined}
+      aria-describedby={error ? `${id}-error` : undefined}
+      {...props}
+      className={`${fieldControl} ${fieldRule(error)} resize-y leading-[1.55]`}
+    />
+    {error && <FieldError id={`${id}-error`}>{error}</FieldError>}
   </label>
 )
 
