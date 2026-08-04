@@ -1,5 +1,21 @@
 import nodemailer from 'nodemailer'
 
+/**
+ * Everything below comes from a public form, so it is untrusted. Escaping it keeps a submitter
+ * from planting working markup — most usefully a phishing link — in an inbox that sees the mail
+ * as self-sent.
+ */
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+
+/** Escape first, then turn real newlines into breaks, so typed `<br>` stays literal text. */
+const escapeParagraph = (value: string) => escapeHtml(value).replace(/\r?\n/g, '<br />')
+
 // This module should only be imported by server actions
 export const sendEmail = async (data: {
   name: string
@@ -28,18 +44,32 @@ export const sendEmail = async (data: {
     },
   })
 
-  // Email content
+  // nodemailer already strips CR/LF from header values; collapsing them here too costs nothing.
+  const headerSubject = (subject || '(no subject)').replace(/[\r\n]+/g, ' ')
+
   const mailOptions = {
     from: emailUser,
     to: emailUser,
-    subject: `Portfolio Contact: ${subject}`,
+    // The address is format-checked in the action, so it is safe to reply to.
+    replyTo: email,
+    subject: `Portfolio Contact: ${headerSubject}`,
+    text: [
+      'New contact form submission',
+      '',
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Subject: ${subject || '(no subject)'}`,
+      '',
+      'Message:',
+      message,
+    ].join('\n'),
     html: `
       <h2>New Contact Form Submission</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Subject:</strong> ${subject}</p>
+      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p><strong>Subject:</strong> ${escapeHtml(subject || '(no subject)')}</p>
       <p><strong>Message:</strong></p>
-      <p>${message}</p>
+      <p>${escapeParagraph(message)}</p>
       <hr>
       <p><em>This message was sent from your portfolio contact form.</em></p>
     `,
