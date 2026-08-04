@@ -130,6 +130,12 @@ Required for contact form functionality:
 - `EMAIL_PASS` - Zoho SMTP password
 - `NEXT_PUBLIC_SITE_URL` - Canonical site URL (defaults to `https://dgomez.dev`)
 
+Optional but recommended:
+
+- `CONTACT_SECRET` - HMAC key for signing contact-form challenge tokens. Falls back to a value
+  derived from `EMAIL_PASS` (always present wherever the form can send at all), then to a
+  per-process random key that will not verify across serverless instances.
+
 ## Deployment
 
 Deployed on Netlify with configuration in `netlify.toml`:
@@ -142,6 +148,10 @@ Deployed on Netlify with configuration in `netlify.toml`:
 ## Known Limitations
 
 - Rate limiting (`/src/utils/rateLimit.ts`) uses in-memory `Map` — resets on serverless cold starts
+- Contact challenge tokens (`/src/lib/challenge.ts`) are stateless, so they cannot be single-use.
+  Forgery and long-lived replay are closed by the signature and the 30-minute window; a token
+  captured and reused inside that window still verifies. A script that reads the page and computes
+  the sum also still passes — the challenge stops forgery, not solving.
 - Single-page app with anchor-based navigation (no route-level pages beyond `/`)
 - Sitemap only includes the root URL
 - `src/app/` holds both `opengraph-image.tsx` (generator) and `opengraph-image.png` (static), and the

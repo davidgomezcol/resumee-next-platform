@@ -1,5 +1,6 @@
 'use server'
 
+import { verifyChallenge } from '@/lib/challenge'
 import { validateContact, type ContactValues, type FieldErrors } from '@/lib/contactValidation'
 import { sendEmail } from '@/lib/email'
 import { translations } from '@/lib/translations'
@@ -20,6 +21,8 @@ export interface ContactFormState {
   values?: ContactFormValues
   /** Rendered under the offending input rather than at the foot of the form. */
   fieldErrors?: FieldErrors
+  /** The challenge is spent or was rejected; the client should fetch a fresh one. */
+  refreshChallenge?: boolean
 }
 
 const LANGUAGES = ['en', 'es'] as const
@@ -56,29 +59,43 @@ const action = async (
       return fail(isEs ? 'Envío inválido detectado.' : 'Invalid submission detected.')
     }
 
-    // Timestamp validation (prevent instant submissions). A non-numeric value would make every
-    // comparison below NaN, which is falsy against `<` — so reject it outright.
-    const submissionTime = Number.parseInt(read(formData, 'timestamp'), 10)
-    if (!Number.isFinite(submissionTime)) {
-      return fail(isEs ? 'Envío de formulario inválido.' : 'Invalid form submission.')
-    }
+    // Signed challenge: covers the answer and the issue time together, so neither can be forged
+    // by editing a hidden field. Every rejection asks the client for a fresh question.
+    const challenge = verifyChallenge(
+      read(formData, 'challengeToken'),
+      read(formData, 'mathAnswer'),
+    )
 
-    // Require at least 3 seconds to fill out the form
-    if (Date.now() - submissionTime < 3000) {
-      console.log('Bot detected via timestamp validation')
-      return fail(
-        isEs
-          ? 'Por favor tómate tu tiempo para llenar el formulario correctamente.'
-          : 'Please take your time to fill out the form properly.',
-      )
-    }
+    if (!challenge.ok) {
+      const spent = (message: string): ContactFormState => ({
+        success: false,
+        message,
+        values,
+        refreshChallenge: true,
+      })
 
-    // Math captcha validation
-    const mathAnswer = formData.get('mathAnswer')
-    const expectedAnswer = formData.get('expectedAnswer')
+      if (challenge.reason === 'tooFast') {
+        console.log('Bot detected via challenge timing')
+        return spent(
+          isEs
+            ? 'Por favor tómate tu tiempo para llenar el formulario correctamente.'
+            : 'Please take your time to fill out the form properly.',
+        )
+      }
 
-    if (!mathAnswer || !expectedAnswer || mathAnswer.toString() !== expectedAnswer.toString()) {
-      return fail(
+      if (challenge.reason === 'expired') {
+        return spent(
+          isEs
+            ? 'El formulario estuvo abierto demasiado tiempo. Responde la nueva pregunta e inténtalo de nuevo.'
+            : 'The form was open too long. Please answer the new question and try again.',
+        )
+      }
+
+      if (challenge.reason === 'malformed') {
+        return spent(isEs ? 'Envío de formulario inválido.' : 'Invalid form submission.')
+      }
+
+      return spent(
         isEs
           ? 'Por favor responde correctamente la pregunta matemática.'
           : 'Please answer the math question correctly.',
