@@ -14,14 +14,19 @@ const Hero = () => {
 
   return (
     <section id="top" className="border-ink/12 bg-void text-bone border-b" aria-label={site.name}>
-      {/* Below lg the two-up split squeezes the specs column to ~150px, so the hero stacks instead. */}
       <div
-        className={`${container} grid grid-cols-1 items-end gap-[clamp(36px,5vw,72px)] pt-[clamp(52px,7vw,104px)] pb-[clamp(44px,5vw,72px)] lg:grid-cols-[repeat(auto-fit,minmax(320px,1fr))]`}>
+        className={`${container} grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-end gap-[clamp(36px,5vw,72px)] pt-[clamp(52px,7vw,104px)] pb-[clamp(44px,5vw,72px)]`}>
         <div>
-          <p className="text-coral mb-[clamp(20px,3vw,34px)] flex items-center gap-2 font-mono text-[11.5px] tracking-[0.16em] uppercase">
+          <p className="text-coral mb-[clamp(20px,3vw,34px)] flex flex-wrap items-center gap-2 font-mono text-[11.5px] tracking-[0.16em] uppercase">
             <span className="text-bone/70">~</span>
-            <span>{t.hero.eyebrow}</span>
-            <span aria-hidden className="animate-blink bg-coral inline-block h-[14px] w-[7px]" />
+            {/* The cursor sits inside the text so it wraps with the last word, never alone. */}
+            <span>
+              {t.hero.eyebrow}
+              <span
+                aria-hidden
+                className="animate-blink bg-coral ml-2 inline-block h-[13px] w-[7px] align-[-2px]"
+              />
+            </span>
           </p>
 
           <h1 className="font-display text-[clamp(46px,6.6vw,102px)] leading-[0.9] font-bold tracking-[-0.042em]">
@@ -61,22 +66,11 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 items-end gap-[clamp(20px,2.6vw,34px)] sm:grid-cols-[minmax(150px,0.9fr)_minmax(180px,1.1fr)]">
-          <div className="flex flex-col font-mono">
-            <p className="border-coral bg-coral/10 mb-4 flex items-baseline gap-[9px] border-l-2 px-3 py-2.5">
-              <span
-                aria-hidden
-                className="animate-pulse-dot bg-coral h-1.5 w-1.5 flex-none -translate-y-0.5 rounded-full"
-              />
-              <span className="text-bone/90 text-[10.5px] leading-[1.5] tracking-[0.02em]">
-                <span className="text-coral tracking-[0.14em] uppercase">{t.hero.statusLabel}</span>{' '}
-                {t.hero.statusText}
-              </span>
-            </p>
-            <MetaTable rows={t.hero.specs} tone="dark" layout="stacked" />
-          </div>
+        <div className="wide:grid-cols-[minmax(150px,0.9fr)_minmax(180px,1.1fr)] grid grid-cols-1 items-end gap-[clamp(20px,2.6vw,34px)]">
+          <MetaTable rows={t.hero.specs} tone="dark" layout="stacked" />
 
-          <div className="relative">
+          {/* Capped below `wide` so the stacked photo doesn't dominate a phone screen. */}
+          <div className="wide:max-w-full relative max-w-[270px]">
             <Image
               src={site.photo}
               alt={site.name}
@@ -88,6 +82,18 @@ const Hero = () => {
             <CornerTicks />
           </div>
         </div>
+
+        {/* Full-width rather than inside the specs column, which keeps that column readable. */}
+        <p className="border-coral bg-coral/10 col-span-full flex max-w-[74ch] items-baseline gap-2.5 border-l-2 px-3.5 py-[11px] font-mono">
+          <span
+            aria-hidden
+            className="animate-pulse-dot bg-coral h-1.5 w-1.5 flex-none -translate-y-[3px] rounded-full"
+          />
+          <span className="text-bone/92 text-[11.5px] leading-[1.55] tracking-[0.02em]">
+            <span className="text-coral tracking-[0.14em] uppercase">{t.hero.statusLabel}</span>{' '}
+            {t.hero.statusText}
+          </span>
+        </p>
       </div>
     </section>
   )

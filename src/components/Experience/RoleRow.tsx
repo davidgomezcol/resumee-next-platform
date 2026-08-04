@@ -13,25 +13,23 @@ interface RoleRowProps {
   }
 }
 
-const panelGrid =
-  'md:grid md:grid-cols-[minmax(0,132px)_minmax(0,1fr)_34px] md:gap-x-[clamp(14px,2vw,28px)]'
+/** Below `wide` the period column folds into the content column as a single line. */
+const rowGrid =
+  'grid grid-cols-[minmax(0,1fr)_26px] gap-[clamp(14px,2vw,28px)] wide:grid-cols-[minmax(0,132px)_minmax(0,1fr)_34px]'
 
 const RoleRow: FC<RoleRowProps> = ({ content, companyUrl, open, onToggle, panelId, labels }) => (
   <div className="border-ink/14 border-t">
     <div
-      className={`hover:bg-brick/5 relative grid grid-cols-[minmax(0,1fr)_34px] items-start gap-x-4 gap-y-3 py-[clamp(18px,2vw,26px)] transition-colors md:grid-cols-[minmax(0,132px)_minmax(0,1fr)_34px] md:gap-x-[clamp(14px,2vw,28px)]`}>
-      <div className="text-ink/66 font-mono text-[11px] tracking-[0.04em] md:pt-1.5">
+      className={`${rowGrid} hover:bg-brick/5 relative items-start py-[clamp(18px,2vw,26px)] transition-colors`}>
+      <div className="text-ink/66 wide:block hidden pt-1.5 font-mono text-[11px] tracking-[0.04em]">
         <div>{content.period}</div>
         <div className="text-ink/62 mt-1">{content.place}</div>
       </div>
 
-      <div
-        aria-hidden
-        className="text-ink/40 col-start-2 row-start-1 pt-1 text-right font-mono text-base md:col-start-3">
-        {open ? '−' : '+'}
-      </div>
-
-      <div className="col-span-2 row-start-2 md:col-span-1 md:col-start-2 md:row-start-1">
+      <div>
+        <p className="text-ink/66 wide:hidden mb-2.5 font-mono text-[11px] tracking-[0.04em]">
+          {content.period} · {content.place}
+        </p>
         <h3 className="font-display max-w-[46ch] text-[clamp(19px,1.6vw,24px)] leading-[1.26] font-semibold tracking-[-0.018em]">
           <button
             type="button"
@@ -49,10 +47,17 @@ const RoleRow: FC<RoleRowProps> = ({ content, companyUrl, open, onToggle, panelI
           {content.summary}
         </p>
       </div>
+
+      <div aria-hidden className="text-ink/40 pt-1 text-right font-mono text-base">
+        {open ? '−' : '+'}
+      </div>
     </div>
 
-    <div id={panelId} hidden={!open} className={`pb-[clamp(26px,3vw,38px)] ${panelGrid}`}>
-      <div className="hidden md:block" />
+    <div
+      id={panelId}
+      hidden={!open}
+      className="wide:grid wide:grid-cols-[minmax(0,132px)_minmax(0,1fr)_34px] wide:gap-x-[clamp(14px,2vw,28px)] pb-[clamp(26px,3vw,38px)]">
+      <div className="wide:block hidden" />
       <div>
         <ul className="flex flex-wrap gap-1.5 pb-[22px]">
           {content.tech.map((tech) => (
@@ -90,6 +95,7 @@ const RoleRow: FC<RoleRowProps> = ({ content, companyUrl, open, onToggle, panelI
           </a>
         )}
       </div>
+      <div className="wide:block hidden" />
     </div>
   </div>
 )

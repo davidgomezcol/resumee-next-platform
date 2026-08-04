@@ -19,7 +19,7 @@ const LanguageToggle: FC<LanguageToggleProps> = ({ variant = 'bordered' }) => {
       aria-label={next === 'es' ? 'Cambiar a español' : 'Switch to English'}
       className={
         variant === 'bordered'
-          ? 'border-ink/20 text-ink hover:border-brick hover:text-brick shrink-0 cursor-pointer border px-[9px] py-[5px] font-mono text-[10.5px] tracking-[0.12em] transition-colors'
+          ? 'border-ink/20 text-ink hover:border-brick hover:text-brick cursor-pointer border px-[11px] py-[9px] font-mono text-[10.5px] tracking-[0.12em] transition-colors'
           : 'text-bone/70 hover:text-coral cursor-pointer font-mono text-[10.5px] tracking-[0.1em] transition-colors'
       }>
       {next.toUpperCase()}

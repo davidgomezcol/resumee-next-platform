@@ -12,6 +12,15 @@
   --font-body: var(--font-libre-franklin), sans-serif;
   --font-mono: var(--font-jetbrains-mono), monospace;
 
+  /*
+    The design's own responsive thresholds. It switches on them in JS because the source format
+    only emits inline styles; here they are plain media queries.
+    `nav`  — below it the header shows section numbers only, without the words.
+    `wide` — below it the hero side block and the experience rows collapse to one column.
+  */
+  --breakpoint-nav: 620px;
+  --breakpoint-wide: 760px;
+
   --animate-blink: blink 1.15s step-end infinite;
   --animate-pulse-dot: pulse-dot 2.4s ease-in-out infinite;
 

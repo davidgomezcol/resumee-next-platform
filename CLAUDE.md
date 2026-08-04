@@ -82,6 +82,10 @@ Always run `npm run lint` and `npm run build` before committing to catch errors 
   `coral` (accent on dark)
 - Translucency uses Tailwind opacity modifiers (`text-ink/62`, `border-bone/16`) — no rgba literals
 - Fonts map to `font-display`, `font-body`, `font-mono`
+- Two custom breakpoints carry the design's own responsive thresholds: `nav` (620px — below it the
+  header shows section numbers without the words) and `wide` (760px — below it the hero side block
+  and the experience rows collapse to one column). The source design switches on these in JS because
+  its format only emits inline styles; here they are plain media queries via `--breakpoint-*`
 - Repeating design elements are components: `SectionLabel` (the `01 / About` eyebrow), `MetaTable`
   (mono key/value rules), `CornerTicks` (accent corner marks)
 
