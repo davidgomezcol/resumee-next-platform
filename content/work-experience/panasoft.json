@@ -1,25 +1,44 @@
 {
   "id": "panasoft",
-  "company": "Panasoft, C.A.",
-  "position": "System Analyst",
-  "location": "Barquisimeto, Venezuela",
-  "startDate": "2008-08",
-  "endDate": "2009-11",
-  "isCurrent": false,
-  "description": "Developed a Visual Basic-based system for ordering menus in a restaurant, enhancing efficiency and customer experience. Participated in a system testing team, focusing on exception routines, error routines, parameter handling, validations, valid values, limit values, ranges, and possible messages.",
-  "technologies": [
-    "Visual Basic",
-    "System Testing",
-    "Database Design",
-    "Network Infrastructure",
-    "System Analysis"
-  ],
-  "achievements": [
-    "Developed a Visual Basic-based system for ordering menus in a restaurant, enhancing efficiency and customer experience",
-    "Participated in a system testing team, focusing on exception routines, error routines, parameter handling, validations, valid values, limit values, ranges, and possible messages",
-    "Created proposals and implemented data networks and their electronic peripherals, ensuring robust and reliable communication infrastructure",
-    "Contributed to system analysis and development processes"
-  ],
-  "companyLogo": null,
-  "priority": 4
+  "priority": 4,
+  "en": {
+    "period": "Aug 2008 — Nov 2009",
+    "place": "Barquisimeto, Venezuela",
+    "title": "System Analyst",
+    "company": "Panasoft, C.A.",
+    "summary": "Developed a Visual Basic-based system for ordering menus in a restaurant, and participated in a system testing team focused on exception and error routines, validations, and limit values.",
+    "tech": [
+      "Visual Basic",
+      "System Testing",
+      "Database Design",
+      "Network Infrastructure",
+      "System Analysis"
+    ],
+    "achievements": [
+      "Developed a Visual Basic-based system for ordering menus in a restaurant, enhancing efficiency and customer experience",
+      "Participated in a system testing team, focusing on exception routines, error routines, parameter handling, validations, valid values, limit values, ranges, and possible messages",
+      "Created proposals and implemented data networks and their electronic peripherals, ensuring robust and reliable communication infrastructure",
+      "Contributed to system analysis and development processes"
+    ]
+  },
+  "es": {
+    "period": "Ago 2008 — Nov 2009",
+    "place": "Barquisimeto, Venezuela",
+    "title": "Analista de Sistemas",
+    "company": "Panasoft, C.A.",
+    "summary": "Desarrollé un sistema en Visual Basic para la toma de pedidos en un restaurante, y participé en un equipo de pruebas centrado en rutinas de excepción y error, validaciones y valores límite.",
+    "tech": [
+      "Visual Basic",
+      "Pruebas de sistemas",
+      "Diseño de bases de datos",
+      "Infraestructura de red",
+      "Análisis de sistemas"
+    ],
+    "achievements": [
+      "Desarrollé un sistema en Visual Basic para la toma de pedidos en un restaurante, mejorando la eficiencia y la experiencia del cliente",
+      "Participé en un equipo de pruebas de sistemas, enfocado en rutinas de excepción y error, manejo de parámetros, validaciones, valores válidos, valores límite, rangos y mensajes posibles",
+      "Elaboré propuestas e implementé redes de datos y sus periféricos electrónicos, asegurando una infraestructura de comunicación robusta",
+      "Contribuí a los procesos de análisis y desarrollo de sistemas"
+    ]
+  }
 }

@@ -1,31 +1,35 @@
 {
   "id": "arquimedia-studios",
-  "company": "Arquimedia Studios",
-  "position": "Web Developer",
-  "location": "Venezuela",
-  "startDate": "2017-09",
-  "endDate": "2019-12",
-  "logoClass": "bg-white",
-  "isCurrent": false,
-  "description": "Key contributor to the startup's rapid product development process. As a software engineer, led the team in implementing designs using the latest web development technologies. Managed Public Cloud Services (GCP) to ensure reliable and scalable infrastructure.",
-  "technologies": [
-    "WordPress",
-    "GCP",
-    "Web Development",
-    "PHP",
-    "JavaScript",
-    "HTML",
-    "CSS",
-    "Graphic Design"
-  ],
-  "achievements": [
-    "Developed custom WordPress template solutions tailored to client needs",
-    "Created and maintained the company website: www.arquimediastudios.com, enhancing the company's online presence and functionality",
-    "Fostered a collaborative team environment, driving innovation and efficiency in product development",
-    "Managed Public Cloud Services (GCP) to ensure reliable and scalable infrastructure",
-    "Led the team in implementing designs using the latest web development technologies"
-  ],
-  "companyLogo": "/images/arquimedia-logo.png",
+  "priority": 7,
   "companyUrl": "https://arquimediastudios.com",
-  "priority": 7
+  "en": {
+    "period": "Sep 2017 — Dec 2019",
+    "place": "Venezuela",
+    "title": "Web Developer",
+    "company": "Arquimedia Studios",
+    "summary": "Key contributor to the startup's rapid product development process. Led the team in implementing designs using the latest web development technologies, and managed Public Cloud Services (GCP).",
+    "tech": ["WordPress", "GCP", "PHP", "JavaScript", "HTML", "CSS", "Graphic Design"],
+    "achievements": [
+      "Developed custom WordPress template solutions tailored to client needs",
+      "Created and maintained the company website: www.arquimediastudios.com, enhancing the company's online presence and functionality",
+      "Fostered a collaborative team environment, driving innovation and efficiency in product development",
+      "Managed Public Cloud Services (GCP) to ensure reliable and scalable infrastructure",
+      "Led the team in implementing designs using the latest web development technologies"
+    ]
+  },
+  "es": {
+    "period": "Sep 2017 — Dic 2019",
+    "place": "Venezuela",
+    "title": "Desarrollador Web",
+    "company": "Arquimedia Studios",
+    "summary": "Contribuidor clave en el proceso de desarrollo rápido de producto de la startup. Lideré al equipo en la implementación de diseños con tecnologías web actuales y gestioné servicios de nube pública (GCP).",
+    "tech": ["WordPress", "GCP", "PHP", "JavaScript", "HTML", "CSS", "Diseño Gráfico"],
+    "achievements": [
+      "Desarrollé soluciones de plantillas WordPress a medida según las necesidades de cada cliente",
+      "Creé y mantuve el sitio de la empresa: www.arquimediastudios.com, mejorando su presencia y funcionalidad en línea",
+      "Impulsé un entorno de equipo colaborativo, favoreciendo innovación y eficiencia en el desarrollo de producto",
+      "Gestioné servicios de nube pública (GCP) para asegurar infraestructura confiable y escalable",
+      "Lideré al equipo en la implementación de diseños con las tecnologías web más recientes"
+    ]
+  }
 }

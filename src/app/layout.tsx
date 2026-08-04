@@ -3,17 +3,32 @@ import Script from 'next/script'
 import './globals.css'
 
 import Footer from '@/components/Footer/Footer'
-import Navbar from '@/components/Navbar/Navbar'
-import ThemeMenu from '@/components/Theme/ThemeMenu'
+import Header from '@/components/Header/Header'
 import { LanguageProvider } from '@/contexts/LanguageContext'
-import { Fira_Code } from 'next/font/google'
+import { Archivo, JetBrains_Mono, Libre_Franklin } from 'next/font/google'
 
-const firaCode = Fira_Code({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'] })
+const archivo = Archivo({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-archivo',
+})
 
-const title = 'David Gómez | Full-Stack Developer & AI Enthusiast | React, Next.js, Python Expert'
+const libreFranklin = Libre_Franklin({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-libre-franklin',
+})
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-jetbrains-mono',
+})
+
+const title = 'David Gómez | Senior Full-Stack Engineer & AI Systems | Python, FastAPI, React'
 
 const description =
-  'Hire David Gómez - Computer Engineer with 15+ years experience, specializing in React, Next.js, and Python. Remote developer from Venezuela/Colombia working with US companies since 2017. Expert in multicultural teams and AI development. Get a free consultation today!'
+  'David Gómez — Senior Full-Stack Engineer with 15+ years of experience building backend services and AI agents for a cloud-native P&C insurance platform. Python, FastAPI, MCP servers, Vue, React, AWS. Remote from Bogotá with U.S. companies since 2017.'
 
 const url = process.env.NEXT_PUBLIC_SITE_URL || 'https://dgomez.dev'
 
@@ -23,34 +38,33 @@ export const metadata: Metadata = {
   category: 'technology',
   keywords: [
     'full stack developer',
+    'senior software engineer',
+    'AI engineer',
+    'agentic AI',
+    'MCP servers',
+    'python developer',
+    'fastapi developer',
+    'flask developer',
+    'django developer',
     'react developer',
     'next.js developer',
-    'python developer',
-    'web developer for hire',
-    'remote developer',
-    'US developer',
-    'frontend developer',
-    'backend developer',
+    'vue developer',
     'javascript developer',
     'typescript developer',
-    'django developer',
-    'flask developer',
-    'freelance developer',
-    'software engineer',
-    'computer engineer',
-    'AI enthusiast',
-    'artificial intelligence developer',
-    'multicultural teams',
-    'distributed teams',
-    'remote work expert',
+    'backend developer',
+    'frontend developer',
+    'API development',
+    'AWS',
+    'Docker',
+    'Kubernetes',
+    'remote developer',
+    'US developer',
     'Venezuela developer',
     'Colombia developer',
     'Latin American developer',
-    'web development services',
-    'custom web applications',
-    'responsive web design',
-    'e-commerce development',
-    'API development',
+    'multicultural teams',
+    'distributed teams',
+    'computer engineer',
     'mentor',
     'team leader',
   ],
@@ -65,7 +79,7 @@ export const metadata: Metadata = {
     title,
     description,
     url,
-    siteName: 'David Gómez - Full-Stack Developer',
+    siteName: 'David Gómez - Senior Full-Stack Engineer',
     type: 'website',
     locale: 'en_US',
     images: [
@@ -73,7 +87,7 @@ export const metadata: Metadata = {
         url: '/opengraph-image.png',
         width: 1200,
         height: 630,
-        alt: 'David Gómez - Full-Stack Developer Portfolio',
+        alt: 'David Gómez - Senior Full-Stack Engineer & AI Systems',
       },
     ],
   },
@@ -112,25 +126,31 @@ export default function RootLayout({
         '@type': 'Person',
         '@id': `${url}#person`,
         name: 'David Gómez',
-        jobTitle: 'Full-Stack Developer & AI Enthusiast',
+        jobTitle: 'Senior Full-Stack Engineer / AI Systems',
         description:
-          'Computer Engineer with 15+ years experience, specializing in React, Next.js, and Python development. Expert in multicultural and distributed teams, working remotely with US companies since 2017.',
+          'Computer Engineer with 15+ years of experience building backend services and AI agents for a cloud-native P&C insurance platform. Expert in multicultural and distributed teams, working remotely with US companies since 2017.',
         url: url,
         sameAs: ['https://github.com/davidgomezcol', 'https://www.linkedin.com/in/davidgomezm7/'],
         knowsAbout: [
+          'Python',
+          'FastAPI',
+          'Flask',
+          'Django',
+          'Agentic AI',
+          'MCP Servers',
+          'Vue.js',
           'React.js',
           'Next.js',
-          'Python',
           'JavaScript',
           'TypeScript',
-          'Django',
-          'Flask',
-          'Web Development',
-          'Frontend Development',
+          'AWS',
+          'Docker',
+          'Kubernetes',
+          'CI/CD',
+          'Load Testing',
           'Backend Development',
+          'Frontend Development',
           'API Development',
-          'Responsive Web Design',
-          'Artificial Intelligence',
           'Multicultural Teams',
           'Remote Work',
           'Distributed Teams',
@@ -139,7 +159,7 @@ export default function RootLayout({
         ],
         worksFor: {
           '@type': 'Organization',
-          name: 'Freelance Developer',
+          name: 'TEAM International / BriteCore',
         },
         address: {
           '@type': 'PostalAddress',
@@ -149,9 +169,9 @@ export default function RootLayout({
         availableForHire: true,
         offers: {
           '@type': 'Offer',
-          category: 'Web Development Services',
+          category: 'Software Engineering Services',
           description:
-            'Full-stack web development services including React, Next.js, and Python development',
+            'Backend services, AI agents, and full-stack product work for cloud-native platforms',
           areaServed: 'US',
         },
         alumniOf: {
@@ -169,9 +189,9 @@ export default function RootLayout({
       {
         '@type': 'Service',
         '@id': `${url}#service`,
-        name: 'Full-Stack Web Development Services',
+        name: 'Full-Stack Engineering & AI Systems',
         description:
-          'Professional web development services including React, Next.js, Python, Django, and Flask development',
+          'Backend services with Python, FastAPI, and Flask; AI agents and MCP servers; Vue and React front ends; AWS, Docker, and Kubernetes platform work',
         provider: {
           '@id': `${url}#person`,
         },
@@ -180,11 +200,11 @@ export default function RootLayout({
           name: 'United States',
         },
         serviceType: [
-          'Web Development',
-          'Frontend Development',
           'Backend Development',
+          'AI Agent Development',
+          'Frontend Development',
           'API Development',
-          'E-commerce Development',
+          'Cloud Platform Engineering',
           'Custom Web Applications',
         ],
         offers: {
@@ -200,9 +220,10 @@ export default function RootLayout({
       {
         '@type': 'WebSite',
         '@id': `${url}#website`,
-        name: 'David Gómez - Full-Stack Developer Portfolio',
+        name: 'David Gómez - Senior Full-Stack Engineer',
         url: url,
-        description: 'Professional portfolio showcasing full-stack development services',
+        description:
+          'Portfolio of David Gómez, senior full-stack engineer working on backend services and AI agents',
         author: {
           '@id': `${url}#person`,
         },
@@ -219,7 +240,9 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" data-theme="dark">
+    <html
+      lang="en"
+      className={`${archivo.variable} ${libreFranklin.variable} ${jetBrainsMono.variable}`}>
       <head>
         {/* Google Analytics */}
         <Script
@@ -236,21 +259,10 @@ export default function RootLayout({
               page_location: window.location.href,
               send_page_view: true
             });
-            
-            // Core Web Vitals tracking
-            if ('web-vital' in window) {
-              import('web-vitals').then(({getCLS, getFID, getFCP, getLCP, getTTFB}) => {
-                getCLS(gtag);
-                getFID(gtag);
-                getFCP(gtag);
-                getLCP(gtag);
-                getTTFB(gtag);
-              });
-            }
           `}
         </Script>
 
-        {/* Google Search Console Verification - Replace with your verification code */}
+        {/* Google Search Console Verification */}
         <meta
           name="google-site-verification"
           content="dQxEAKUYOvK27USDE2KA0Soge-eviyq_mUSzTlgCF6U"
@@ -292,8 +304,8 @@ export default function RootLayout({
                 {
                   '@type': 'ListItem',
                   position: 4,
-                  name: 'Services',
-                  item: `${url}#services`,
+                  name: 'Capabilities',
+                  item: `${url}#capabilities`,
                 },
                 {
                   '@type': 'ListItem',
@@ -316,10 +328,10 @@ export default function RootLayout({
               mainEntity: [
                 {
                   '@type': 'Question',
-                  name: 'What services does David Gómez offer?',
+                  name: 'What does David Gómez build?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'David Gómez offers full-stack web development services including React, Next.js, Python, Django, Flask, JavaScript, TypeScript, API development, responsive web design, and custom web applications.',
+                    text: 'David Gómez builds backend services and AI agents for a cloud-native P&C insurance platform — Python, FastAPI, and Flask services, production MCP servers, and Vue.js chat interfaces — along with the frontend and platform work to ship them end to end.',
                   },
                 },
                 {
@@ -327,7 +339,7 @@ export default function RootLayout({
                   name: "What is David Gómez's background and experience?",
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'David Gómez is a Computer Engineer with 15+ years of experience, graduated from Universidad Fermín Toro in Venezuela with honors. He has been working remotely with US companies since 2017, specializing in multicultural and distributed teams.',
+                    text: 'David Gómez is a Computer Engineer with 15+ years of experience, graduated in 2008 from Universidad Fermín Toro in Venezuela with two special distinctions. He has been working remotely with US companies since 2017 and is based in Bogotá, Colombia.',
                   },
                 },
                 {
@@ -335,7 +347,7 @@ export default function RootLayout({
                   name: 'Is David Gómez available for remote work with US companies?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'Yes, David Gómez is available for remote work with US companies. He has extensive experience working with US-based companies since 2017 and specializes in React, Next.js, and Python development across different time zones.',
+                    text: 'Yes. He works from Bogotá on GMT-5, overlapping U.S. business hours, and has worked remotely with US-based companies since 2017.',
                   },
                 },
                 {
@@ -343,23 +355,23 @@ export default function RootLayout({
                   name: 'What technologies does David Gómez specialize in?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'David Gómez specializes in React.js, Next.js, Python, Django, Flask, JavaScript, TypeScript, API development, responsive web design, and full-stack web development. He is also passionate about artificial intelligence and AI development.',
+                    text: 'Python, FastAPI, Flask, and Django on the backend; agentic AI workflows and MCP servers; Vue.js, React.js, Next.js, JavaScript and TypeScript on the frontend; AWS, Docker, Kubernetes, GitHub Actions, and k6 on the platform side.',
                   },
                 },
                 {
                   '@type': 'Question',
-                  name: 'What makes David Gómez unique as a developer?',
+                  name: 'What makes David Gómez unique as an engineer?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'David Gómez brings 15+ years of experience, expertise in multicultural and distributed teams, strong communication skills across cultures, and a passion for AI development. He is organized, approachable, resilient, and enjoys mentoring team members.',
+                    text: 'He pairs 15+ years of engineering with day-to-day agentic AI practice across the whole development workflow — architecture, code, review, testing — and brings strong communication across multicultural, distributed teams plus a track record of mentoring.',
                   },
                 },
                 {
                   '@type': 'Question',
-                  name: 'How can I hire David Gómez for my project?',
+                  name: 'How can I get in touch with David Gómez?',
                   acceptedAnswer: {
                     '@type': 'Answer',
-                    text: 'You can hire David Gómez by contacting him through the contact form on his website, emailing hi@dgomez.dev, or connecting with him on LinkedIn. He offers free consultations for new projects and specializes in complex challenges and team support.',
+                    text: 'Use the contact form on dgomez.dev, email hi@dgomez.dev, or connect on LinkedIn. He is open to conversations about AI-augmented engineering, platform work, and senior full-stack roles.',
                   },
                 },
               ],
@@ -367,11 +379,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${firaCode.className}`}>
+      <body>
         <LanguageProvider>
-          <Navbar />
+          <Header />
           <main>{children}</main>
-          <ThemeMenu />
           <Footer />
         </LanguageProvider>
       </body>

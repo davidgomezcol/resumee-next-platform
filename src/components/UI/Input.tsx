@@ -1,26 +1,22 @@
 import { FC, InputHTMLAttributes } from 'react'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string
-  id?: string
+interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'className'> {
+  label: string
+  id: string
+  /** Applied to the wrapping label, so callers can control grid placement. */
+  className?: string
 }
 
-const Input: FC<InputProps> = ({ type = 'text', id, label, ...props }) => {
-  return (
-    <div className="mb-4 flex w-full flex-col gap-2">
-      {label && (
-        <label htmlFor={id} className="text-neutral text-base">
-          {label}
-        </label>
-      )}
-      <input
-        id={id}
-        type={type}
-        {...props}
-        className="border-border focus:ring-accent text-neutral w-full rounded-lg border p-[10px] placeholder:font-thin focus:ring-2 focus:outline-none"
-      />
-    </div>
-  )
-}
+export const fieldLabel = 'font-mono text-[11px] tracking-[0.16em] uppercase text-bone/72'
+
+export const fieldControl =
+  'border-0 border-b border-bone/28 bg-transparent py-2 text-[15px] text-bone outline-none transition-colors focus:border-coral'
+
+const Input: FC<InputProps> = ({ type = 'text', id, label, className, ...props }) => (
+  <label htmlFor={id} className={`flex flex-col gap-[7px] ${className ?? ''}`}>
+    <span className={fieldLabel}>{label}</span>
+    <input id={id} type={type} {...props} className={fieldControl} />
+  </label>
+)
 
 export default Input

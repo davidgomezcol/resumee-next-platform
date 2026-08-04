@@ -1,9 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-// export const runtime = 'edge'
-
-// Image metadata
-export const alt = 'SOLOPRENEUR'
+export const alt = 'David Gómez — Senior Full-Stack Engineer & AI Systems'
 
 export const size = {
   width: 1200,
@@ -17,24 +14,41 @@ export default async function Image() {
     (
       <div
         style={{
-          background: '#011627',
+          background: '#0E0F0E',
+          color: '#F5F3EE',
           width: '100%',
           height: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '1rem',
+          justifyContent: 'flex-end',
+          padding: '72px',
         }}>
-        <h1 style={{ fontSize: 32, color: '#18f2e5', margin: 0 }}>
-          David Gómez | Full-Stack Web Developer in Bogotá
-        </h1>
-        <h2 style={{ fontSize: 40, color: 'white', marginTop: 30 }}>
-          Crafting innovative solutions to solve real-world problems
-        </h2>
+        <div
+          style={{
+            display: 'flex',
+            fontSize: 24,
+            letterSpacing: '0.16em',
+            textTransform: 'uppercase',
+            color: '#FF7043',
+          }}>
+          Senior Full-Stack Engineer / AI Systems
+        </div>
+        <div style={{ display: 'flex', fontSize: 132, fontWeight: 700, marginTop: 24 }}>
+          David Gómez
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            height: 1,
+            background: 'rgba(245,243,238,0.16)',
+            margin: '36px 0',
+          }}
+        />
+        <div style={{ display: 'flex', fontSize: 32, color: 'rgba(245,243,238,0.82)' }}>
+          Backend services and AI agents for a cloud-native insurance platform
+        </div>
       </div>
     ),
-    // ImageResponse options
     {
       ...size,
     },

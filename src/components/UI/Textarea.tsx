@@ -1,25 +1,18 @@
 import { FC, TextareaHTMLAttributes } from 'react'
+import { fieldControl, fieldLabel } from './Input'
 
-interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  label?: string
-  id?: string
+interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'className'> {
+  label: string
+  id: string
+  /** Applied to the wrapping label, so callers can control grid placement. */
+  className?: string
 }
 
-const Textarea: FC<TextareaProps> = ({ id, label, ...props }) => {
-  return (
-    <div className="mb-4 flex w-full flex-col gap-2">
-      {label && (
-        <label htmlFor={id} className="text-neutral text-base">
-          {label}
-        </label>
-      )}
-      <textarea
-        id={id}
-        {...props}
-        className="border-border focus:ring-accent text-neutral w-full resize-none rounded-lg border p-[10px] placeholder:font-thin focus:ring-2 focus:outline-none"
-      />
-    </div>
-  )
-}
+const Textarea: FC<TextareaProps> = ({ id, label, className, ...props }) => (
+  <label htmlFor={id} className={`flex flex-col gap-[7px] ${className ?? ''}`}>
+    <span className={fieldLabel}>{label}</span>
+    <textarea id={id} {...props} className={`${fieldControl} resize-y leading-[1.55]`} />
+  </label>
+)
 
 export default Textarea

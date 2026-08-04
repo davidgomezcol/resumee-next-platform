@@ -1,47 +1,19 @@
-export interface Project {
+/** The per-language half of a role entry. Both halves live in the same JSON file. */
+export interface RoleContent {
+  period: string
+  place: string
   title: string
-  shortDescription: string
-  priority: number
-  cover: string
-  livePreview?: string
-  githubLink?: string
-  visitors?: string
-  earned?: string
-  githubStars?: string
-  ratings?: string
-  numberOfSales?: string
-  type: string
-  siteAge?: string
+  company: string
+  summary: string
+  tech: string[]
+  achievements: string[]
 }
 
 export interface WorkExperience {
   id: string
-  company: string
-  position: string
-  location: string
-  startDate: string
-  endDate?: string
-  isCurrent: boolean
-  description: string
-  technologies: string[]
-  achievements: string[]
-  companyLogo?: string
+  /** Higher sorts first — see getAllWorkExperiences in @/services. */
   priority: number
-  logoClass?: string
   companyUrl?: string
-}
-
-export interface Heading {
-  id: string
-  title: string
-  items: Heading[]
-}
-
-export interface Testimonial {
-  name: string
-  title?: string
-  feedback: string
-  image: string
-  stars: number
-  createdAt: string
+  en: RoleContent
+  es: RoleContent
 }

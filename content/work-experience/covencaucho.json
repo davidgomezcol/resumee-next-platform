@@ -1,26 +1,45 @@
 {
   "id": "covencaucho",
-  "company": "Covencaucho Industrias S.A.",
-  "position": "System Analyst",
-  "location": "Barquisimeto, Venezuela",
-  "startDate": "2007-04",
-  "endDate": "2007-07",
-  "isCurrent": false,
-  "description": "Designed and developed a Visual Basic-based system for controlling and printing labels for tire storage, integrating both software and hardware components. The system improves inventory management and ensures accurate labeling and tracking of tire storage.",
-  "technologies": [
-    "Visual Basic",
-    "Hardware Integration",
-    "Inventory Management",
-    "Label Printing",
-    "System Design"
-  ],
-  "achievements": [
-    "Designed and developed a Visual Basic-based system for controlling and printing labels for tire storage, integrating both software and hardware components",
-    "The system improves inventory management and ensures accurate labeling and tracking of tire storage",
-    "Managed the project from concept to deployment, including the design and integration of necessary hardware elements to support the labeling system",
-    "Successfully implemented inventory management solution for industrial application"
-  ],
-  "companyLogo": "/images/covencaucho_logo.jpeg",
+  "priority": 1,
   "companyUrl": "https://www.linkedin.com/company/covencaucho-industrias-s.a.",
-  "priority": 1
+  "en": {
+    "period": "Apr 2007 — Jul 2007",
+    "place": "Barquisimeto, Venezuela",
+    "title": "System Analyst",
+    "company": "Covencaucho Industrias S.A.",
+    "summary": "Designed and developed a Visual Basic-based system for controlling and printing labels for tire storage, integrating software and hardware to improve inventory management.",
+    "tech": [
+      "Visual Basic",
+      "Hardware Integration",
+      "Inventory Management",
+      "Label Printing",
+      "System Design"
+    ],
+    "achievements": [
+      "Designed and developed a Visual Basic-based system for controlling and printing labels for tire storage, integrating both software and hardware components",
+      "The system improves inventory management and ensures accurate labeling and tracking of tire storage",
+      "Managed the project from concept to deployment, including the design and integration of necessary hardware elements to support the labeling system",
+      "Successfully implemented inventory management solution for industrial application"
+    ]
+  },
+  "es": {
+    "period": "Abr 2007 — Jul 2007",
+    "place": "Barquisimeto, Venezuela",
+    "title": "Analista de Sistemas",
+    "company": "Covencaucho Industrias S.A.",
+    "summary": "Diseñé y desarrollé un sistema en Visual Basic para controlar e imprimir etiquetas de almacenamiento de neumáticos, integrando software y hardware para mejorar la gestión de inventario.",
+    "tech": [
+      "Visual Basic",
+      "Integración de hardware",
+      "Gestión de inventario",
+      "Impresión de etiquetas",
+      "Diseño de sistemas"
+    ],
+    "achievements": [
+      "Diseñé y desarrollé un sistema en Visual Basic para controlar e imprimir etiquetas de almacenamiento de neumáticos, integrando componentes de software y hardware",
+      "El sistema mejora la gestión de inventario y asegura el etiquetado y seguimiento precisos del almacenamiento de neumáticos",
+      "Gestioné el proyecto desde el concepto hasta el despliegue, incluido el diseño e integración de los elementos de hardware necesarios",
+      "Implementé con éxito una solución de gestión de inventario para uso industrial"
+    ]
+  }
 }

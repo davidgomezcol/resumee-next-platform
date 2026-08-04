@@ -1,66 +1,91 @@
 'use client'
-import useRoleSwitcher from '@/hooks/useRoleSwitcher'
-import useRotatingAnimation from '@/hooks/useRotatingAnimation'
+
+import { container, site } from '@/appData/site'
 import { useLanguage } from '@/contexts/LanguageContext'
 import Image from 'next/image'
-import { HeroImage } from '../../utils/images'
-import Ellipse from './Ellipse'
+import CornerTicks from '../UI/CornerTicks'
+import MetaTable from '../UI/MetaTable'
+
+const ctaBase =
+  'font-mono text-[11px] tracking-[0.14em] uppercase px-[22px] py-[13px] transition-colors'
 
 const Hero = () => {
   const { t } = useLanguage()
-  const ellipseRef = useRotatingAnimation()
-  const role = useRoleSwitcher({
-    roles: [
-      t.hero.roles.fullStackDeveloper,
-      t.hero.roles.entrepreneur,
-      t.hero.roles.pythonDeveloper,
-      t.hero.roles.aiEnthusiast,
-    ],
-  })
 
   return (
-    <section className="bg-primary bg-small-glow bg-small-glow-position md:bg-large-glow-position lg:bg-large-glow min-h-[calc(dvh-4rem)] bg-no-repeat">
-      <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-4 px-4 pt-12 pb-10 md:grid-cols-2 lg:p-4">
-        <div className="flex min-h-48 flex-col justify-between lg:min-h-56 lg:max-w-[33.75rem]">
-          <h1>
-            <span className="text-neutral mb-2 block text-3xl font-bold">{t.hero.greeting}</span>
-            <span className="text-accent block text-[1.75rem] font-bold">{role}</span>
+    <section id="top" className="border-ink/12 bg-void text-bone border-b" aria-label={site.name}>
+      {/* Below lg the two-up split squeezes the specs column to ~150px, so the hero stacks instead. */}
+      <div
+        className={`${container} grid grid-cols-1 items-end gap-[clamp(36px,5vw,72px)] pt-[clamp(52px,7vw,104px)] pb-[clamp(44px,5vw,72px)] lg:grid-cols-[repeat(auto-fit,minmax(320px,1fr))]`}>
+        <div>
+          <p className="text-coral mb-[clamp(20px,3vw,34px)] flex items-center gap-2 font-mono text-[11.5px] tracking-[0.16em] uppercase">
+            <span className="text-bone/70">~</span>
+            <span>{t.hero.eyebrow}</span>
+            <span aria-hidden className="animate-blink bg-coral inline-block h-[14px] w-[7px]" />
+          </p>
+
+          <h1 className="font-display text-[clamp(46px,6.6vw,102px)] leading-[0.9] font-bold tracking-[-0.042em]">
+            {site.name}
           </h1>
 
-          <h2 className="text-neutral mt-3">{t.hero.subtitle}</h2>
+          <div
+            aria-hidden
+            className="bg-bone/16 mt-[clamp(24px,3.4vw,40px)] mb-[clamp(20px,2.6vw,30px)] h-px"
+          />
 
-          <div className="mt-6 flex flex-wrap gap-6">
-            <a
-              href="#contact"
-              aria-label="Connect with me"
-              className="bg-accent min-w-32 cursor-pointer rounded-lg px-[14px] py-[10px] text-center text-sm font-medium text-[#00071E]">
+          <p className="text-bone/82 max-w-[47ch] text-[clamp(17px,1.35vw,20px)] leading-[1.55]">
+            {t.hero.intro}
+          </p>
+          <p className="text-coral mt-5 max-w-[44ch] text-[clamp(16px,1.3vw,19px)] leading-[1.5] font-medium tracking-[-0.005em]">
+            {t.hero.tagline}
+          </p>
+
+          <div className="mt-[clamp(28px,3.6vw,42px)] flex flex-wrap gap-3">
+            <a href="#contact" className={`${ctaBase} bg-bone text-void hover:bg-coral`}>
               {t.hero.cta}
             </a>
             <a
-              href="https://www.linkedin.com/in/davidgomezm7/"
+              href={site.linkedin}
               target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View LinkedIn Profile"
-              className="text-neutral bg-secondary cursor-pointer rounded-lg px-[14px] py-[10px] text-sm">
-              {t.hero.linkedinProfile}
+              rel="noopener"
+              className={`${ctaBase} border-bone/28 text-bone hover:border-coral hover:text-coral border`}>
+              LinkedIn ↗
+            </a>
+            <a
+              href={site.github}
+              target="_blank"
+              rel="noopener"
+              className={`${ctaBase} border-bone/28 text-bone hover:border-coral hover:text-coral border`}>
+              GitHub ↗
             </a>
           </div>
         </div>
 
-        <div className="flex min-h-[18.75rem] items-center justify-center lg:min-h-[35rem]">
-          <div className="text-accent relative size-56 sm:size-60 md:size-[20rem] lg:size-[25.75rem]">
+        <div className="grid grid-cols-1 items-end gap-[clamp(20px,2.6vw,34px)] sm:grid-cols-[minmax(150px,0.9fr)_minmax(180px,1.1fr)]">
+          <div className="flex flex-col font-mono">
+            <p className="border-coral bg-coral/10 mb-4 flex items-baseline gap-[9px] border-l-2 px-3 py-2.5">
+              <span
+                aria-hidden
+                className="animate-pulse-dot bg-coral h-1.5 w-1.5 flex-none -translate-y-0.5 rounded-full"
+              />
+              <span className="text-bone/90 text-[10.5px] leading-[1.5] tracking-[0.02em]">
+                <span className="text-coral tracking-[0.14em] uppercase">{t.hero.statusLabel}</span>{' '}
+                {t.hero.statusText}
+              </span>
+            </p>
+            <MetaTable rows={t.hero.specs} tone="dark" layout="stacked" />
+          </div>
+
+          <div className="relative">
             <Image
-              src={HeroImage}
-              fill={true}
-              priority={true}
-              sizes="(min-width: 1024px) 25.75rem, (min-width: 768px) 20rem, (min-width: 640px) 15rem, 14rem"
-              alt="David Gómez - Full Stack Developer"
-              className="rounded-full object-cover p-4"
+              src={site.photo}
+              alt={site.name}
+              width={640}
+              height={800}
+              priority
+              className="border-bone/16 block aspect-[4/5] w-full border object-cover object-top contrast-[1.04] saturate-[1.04]"
             />
-            <Ellipse
-              ref={ellipseRef}
-              className="absolute top-0 left-0 size-56 transition-transform duration-500 ease-out sm:size-60 md:size-[20rem] lg:size-[25.75rem]"
-            />
+            <CornerTicks />
           </div>
         </div>
       </div>
