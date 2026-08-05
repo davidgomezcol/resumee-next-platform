@@ -100,6 +100,24 @@ export const denyByDefault = () => {
   })
 }
 
+/**
+ * Runs `task` once the page has finished loading and the main thread has a gap.
+ *
+ * `async` only means "don't block parsing" — an async script still competes for bandwidth and for
+ * the main thread while the page is still painting. The timeout is a floor, not a target: a
+ * visitor who never goes idle still gets the tag, just last.
+ */
+const whenIdle = (task: () => void) => {
+  const idle = () => {
+    if (typeof window.requestIdleCallback === 'function')
+      window.requestIdleCallback(task, { timeout: 3000 })
+    else window.setTimeout(task, 1000)
+  }
+
+  if (document.readyState === 'complete') idle()
+  else window.addEventListener('load', idle, { once: true })
+}
+
 export const loadAnalytics = () => {
   gtag('consent', 'update', { analytics_storage: 'granted' })
 
@@ -108,13 +126,26 @@ export const loadAnalytics = () => {
   if (window.__dgGaLoaded) return
   window.__dgGaLoaded = true
 
-  const tag = document.createElement('script')
-  tag.async = true
-  tag.src = `https://www.googletagmanager.com/gtag/js?id=${site.gaMeasurementId}`
-  document.head.appendChild(tag)
-
+  /*
+    Queued now, sent later. dataLayer is an ordinary array until gtag.js arrives and drains it, so
+    the pageview keeps the timestamp from this line rather than the one the script happens to load
+    at — deferring the fetch costs no accuracy, and nothing is lost if the visitor leaves first
+    beyond a session that was already too short to mean anything.
+  */
   gtag('js', new Date())
   gtag('config', site.gaMeasurementId)
+
+  /*
+    160 KB of third-party JavaScript, fetched and parsed while the page is still painting. Since
+    the banner became geo-gated this runs for most visitors instead of almost none, which put it
+    in competition with the content for the first time. It waits its turn now.
+  */
+  whenIdle(() => {
+    const tag = document.createElement('script')
+    tag.async = true
+    tag.src = `https://www.googletagmanager.com/gtag/js?id=${site.gaMeasurementId}`
+    document.head.appendChild(tag)
+  })
 }
 
 /** Deny, then remove anything GA already wrote — across the host and domain variants it uses. */
