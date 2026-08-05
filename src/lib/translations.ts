@@ -77,6 +77,18 @@ export interface Translations {
     rights: string
     cookieSettings: string
   }
+  notFound: {
+    heading: string
+    body: string
+    home: string
+    report: string
+    reportSubject: string
+    index: string
+    statusKey: string
+    statusValue: string
+    requestedKey: string
+    siteKey: string
+  }
   consent: {
     eyebrow: string
     body: string
@@ -237,6 +249,18 @@ export const translations: Record<Language, Translations> = {
     footer: {
       rights: 'David Gómez',
       cookieSettings: 'Cookie settings',
+    },
+    notFound: {
+      heading: 'This page does not exist.',
+      body: 'The address you followed is not part of this site. It may have been renamed, or the link may be broken. Everything here lives in the four sections listed to the right.',
+      home: 'Back to home',
+      report: 'Report a broken link',
+      reportSubject: 'Broken link on dgomez.dev: ',
+      index: 'Where everything is',
+      statusKey: 'Status',
+      statusValue: '404 · Not found',
+      requestedKey: 'Requested',
+      siteKey: 'Site',
     },
     consent: {
       eyebrow: 'Cookie notice',
@@ -402,6 +426,18 @@ export const translations: Record<Language, Translations> = {
     footer: {
       rights: 'David Gómez',
       cookieSettings: 'Cookies',
+    },
+    notFound: {
+      heading: 'Esta página no existe.',
+      body: 'La dirección que seguiste no forma parte de este sitio. Puede haber cambiado de nombre o el enlace puede estar roto. Todo lo que hay aquí está en las cuatro secciones de la derecha.',
+      home: 'Volver al inicio',
+      report: 'Reportar enlace roto',
+      reportSubject: 'Enlace roto en dgomez.dev: ',
+      index: 'Dónde está todo',
+      statusKey: 'Estado',
+      statusValue: '404 · No encontrado',
+      requestedKey: 'Solicitado',
+      siteKey: 'Sitio',
     },
     consent: {
       eyebrow: 'Aviso de cookies',
