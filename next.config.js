@@ -11,6 +11,9 @@ const nextConfig = {
     // Every image is local now, so no remote patterns are needed.
     unoptimized: false,
     formats: ['image/webp', 'image/avif'],
+    // Optimized variants are immutable per (src, width, quality); the default 60s meant
+    // /_next/image responses were revalidated constantly.
+    minimumCacheTTL: 31536000,
   },
 }
 

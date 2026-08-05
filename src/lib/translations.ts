@@ -150,7 +150,7 @@ export const translations: Record<Language, Translations> = {
     },
     experience: {
       label: 'Experience',
-      heading: 'Experience',
+      heading: 'Where I have built things, and what came of it.',
       expandAll: 'Expand all',
       collapseAll: 'Collapse all',
       achievements: 'Key achievements',
@@ -265,7 +265,7 @@ export const translations: Record<Language, Translations> = {
     },
     consent: {
       eyebrow: 'Cookie notice',
-      body: 'No analytics cookies are set until you choose. Google Analytics 4 helps me see which pages get read — it stays off unless you accept. Your language and consent choice are stored locally either way.',
+      body: 'No analytics cookies are set until you choose. Google Analytics 4 helps me see which pages get read — it stays off unless you accept. Your consent choice is stored locally either way.',
       accept: 'Accept analytics',
       reject: 'Reject analytics',
       manage: 'Manage',
@@ -325,7 +325,7 @@ export const translations: Record<Language, Translations> = {
     },
     experience: {
       label: 'Experiencia',
-      heading: 'Experiencia',
+      heading: 'Dónde he construido, y qué salió de ello.',
       expandAll: 'Expandir todo',
       collapseAll: 'Contraer todo',
       achievements: 'Logros principales',
@@ -443,7 +443,7 @@ export const translations: Record<Language, Translations> = {
     },
     consent: {
       eyebrow: 'Aviso de cookies',
-      body: 'No se instala ninguna cookie de analítica hasta que elijas. Google Analytics 4 me permite ver qué páginas se leen; permanece desactivado salvo que aceptes. Tu idioma y tu decisión se guardan localmente en cualquier caso.',
+      body: 'No se instala ninguna cookie de analítica hasta que elijas. Google Analytics 4 me permite ver qué páginas se leen; permanece desactivado salvo que aceptes. Tu decisión se guarda localmente en cualquier caso.',
       accept: 'Aceptar analítica',
       reject: 'Rechazar analítica',
       manage: 'Gestionar',

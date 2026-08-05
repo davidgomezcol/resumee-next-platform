@@ -74,11 +74,11 @@ export const privacyContent: Record<Language, PrivacyContent> = {
       {
         title: 'What is stored in your browser',
         paras: [
-          "Two small values are kept in your browser's local storage. Neither is sent to a server, and neither identifies you.",
-          'Clearing your browser storage removes both, and the consent band will appear again on your next visit.',
+          "One small value is kept in your browser's local storage. It is never sent to a server and does not identify you.",
+          'Your reading language is not stored: it is part of the address, so /es serves the Spanish version.',
+          'Clearing your browser storage removes it, and the consent band will appear again on your next visit.',
         ],
         items: [
-          'Language preference — whether you are reading in English or Spanish.',
           'dg-consent-v1 — your cookie decision, with a version number and the time you made it. The version number exists so that I can ask again if this notice changes materially.',
         ],
       },
@@ -134,9 +134,9 @@ export const privacyContent: Record<Language, PrivacyContent> = {
             ],
           },
           {
-            k: 'Remembering your choices',
+            k: 'Remembering your choice',
             fields: [
-              { k: 'Data', v: 'Language, consent record' },
+              { k: 'Data', v: 'Consent record' },
               { k: 'Basis', v: 'Strictly necessary — ePrivacy Art. 5(3) exemption' },
               { k: 'Retention', v: 'Until you clear your browser storage' },
             ],
@@ -237,11 +237,11 @@ export const privacyContent: Record<Language, PrivacyContent> = {
       {
         title: 'Qué se guarda en tu navegador',
         paras: [
-          'Se guardan dos valores pequeños en el almacenamiento local de tu navegador. Ninguno se envía a un servidor y ninguno te identifica.',
-          'Si borras el almacenamiento de tu navegador se eliminan ambos, y la banda de consentimiento volverá a aparecer en tu próxima visita.',
+          'Se guarda un solo valor pequeño en el almacenamiento local de tu navegador. No se envía a ningún servidor y no te identifica.',
+          'Tu idioma de lectura no se guarda: forma parte de la dirección, y /es sirve la versión en español.',
+          'Si borras el almacenamiento de tu navegador se elimina, y la banda de consentimiento volverá a aparecer en tu próxima visita.',
         ],
         items: [
-          'Preferencia de idioma — si estás leyendo en inglés o en español.',
           'dg-consent-v1 — tu decisión sobre cookies, con un número de versión y la hora en que la tomaste. El número de versión existe para poder volver a preguntar si este aviso cambia de forma sustancial.',
         ],
       },
@@ -297,9 +297,9 @@ export const privacyContent: Record<Language, PrivacyContent> = {
             ],
           },
           {
-            k: 'Recordar tus decisiones',
+            k: 'Recordar tu decisión',
             fields: [
-              { k: 'Datos', v: 'Idioma, registro de consentimiento' },
+              { k: 'Datos', v: 'Registro de consentimiento' },
               { k: 'Base', v: 'Estrictamente necesario — excepción del art. 5(3) ePrivacy' },
               { k: 'Conservación', v: 'Hasta que borres el almacenamiento del navegador' },
             ],

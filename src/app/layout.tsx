@@ -26,49 +26,19 @@ const jetBrainsMono = JetBrains_Mono({
   variable: '--font-jetbrains-mono',
 })
 
-const title = 'David Gómez | Senior Full-Stack Engineer & AI Systems | Python, FastAPI, React'
+// Kept near 60 characters: Google cuts SERP titles around there, and a third segment was
+// reliably the part that vanished.
+const title = 'David Gómez | Senior Full-Stack Engineer & AI Systems'
 
+// ~155 characters, front-loading the differentiator — everything past that is truncated.
 const description =
-  'David Gómez — Senior Full-Stack Engineer with 15+ years of experience building backend services and AI agents for a cloud-native P&C insurance platform. Python, FastAPI, MCP servers, Vue, React, AWS. Remote from Bogotá with U.S. companies since 2017.'
+  'Senior full-stack engineer building backend services and AI agents for a cloud-native P&C insurance platform. Python, FastAPI, MCP servers. Remote from Bogotá.'
 
 const url = process.env.NEXT_PUBLIC_SITE_URL || 'https://dgomez.dev'
 
 export const metadata: Metadata = {
   title,
   description,
-  category: 'technology',
-  keywords: [
-    'full stack developer',
-    'senior software engineer',
-    'AI engineer',
-    'agentic AI',
-    'MCP servers',
-    'python developer',
-    'fastapi developer',
-    'flask developer',
-    'django developer',
-    'react developer',
-    'next.js developer',
-    'vue developer',
-    'javascript developer',
-    'typescript developer',
-    'backend developer',
-    'frontend developer',
-    'API development',
-    'AWS',
-    'Docker',
-    'Kubernetes',
-    'remote developer',
-    'US developer',
-    'Venezuela developer',
-    'Colombia developer',
-    'Latin American developer',
-    'multicultural teams',
-    'distributed teams',
-    'computer engineer',
-    'mentor',
-    'team leader',
-  ],
   authors: [{ name: 'David Gómez' }],
   creator: 'David Gómez',
   publisher: 'David Gómez',
@@ -123,8 +93,9 @@ export default function RootLayout({
         name: 'David Gómez',
         jobTitle: 'Senior Full-Stack Engineer / AI Systems',
         description:
-          'Computer Engineer with 15+ years of experience building backend services and AI agents for a cloud-native P&C insurance platform. Expert in multicultural and distributed teams, working remotely with US companies since 2017.',
+          'Computer Engineer with nineteen years of experience building backend services and AI agents for a cloud-native P&C insurance platform. Expert in multicultural and distributed teams, working remotely with US companies since 2017.',
         url: url,
+        image: `${url}/images/me.webp`,
         sameAs: ['https://github.com/davidgomezcol', 'https://www.linkedin.com/in/davidgomezm7/'],
         knowsAbout: [
           'Python',
@@ -194,15 +165,6 @@ export default function RootLayout({
           'Cloud Platform Engineering',
           'Custom Web Applications',
         ],
-        offers: {
-          '@type': 'Offer',
-          priceCurrency: 'USD',
-          priceSpecification: {
-            '@type': 'PriceSpecification',
-            priceCurrency: 'USD',
-            description: 'Custom pricing based on project requirements',
-          },
-        },
       },
       {
         '@type': 'WebSite',

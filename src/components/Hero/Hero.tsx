@@ -16,20 +16,26 @@ const Hero = () => {
       <div
         className={`${container} wide:grid-cols-[minmax(0,1.12fr)_minmax(290px,0.88fr)] grid grid-cols-1 items-stretch gap-[clamp(36px,5vw,72px)] pt-[clamp(52px,7vw,104px)] pb-[clamp(44px,5vw,72px)]`}>
         <div>
-          <p className="text-coral mb-[clamp(20px,3vw,34px)] flex flex-wrap items-center gap-2 font-mono text-[11.5px] tracking-[0.16em] uppercase">
-            <span className="text-bone/70">~</span>
-            {/* The cursor sits inside the text so it wraps with the last word, never alone. */}
-            <span>
-              {t.hero.eyebrow}
-              <span
-                aria-hidden
-                className="animate-blink bg-coral ml-2 inline-block h-[13px] w-[7px] align-[-2px]"
-              />
+          {/*
+            One heading, two visually distinct lines. Splitting these into a <p> and an <h1> left
+            the page's strongest element carrying a brand term only, with none of the terms the
+            title and description compete on appearing in any heading. Rendering is unchanged.
+          */}
+          <h1>
+            <span className="text-coral mb-[clamp(20px,3vw,34px)] flex flex-wrap items-center gap-2 font-mono text-[11.5px] font-normal tracking-[0.16em] uppercase">
+              <span className="text-bone/70">~</span>
+              {/* The cursor sits inside the text so it wraps with the last word, never alone. */}
+              <span>
+                {t.hero.eyebrow}
+                <span
+                  aria-hidden
+                  className="animate-blink bg-coral ml-2 inline-block h-[13px] w-[7px] align-[-2px]"
+                />
+              </span>
             </span>
-          </p>
-
-          <h1 className="font-display text-[clamp(46px,6.6vw,102px)] leading-[0.9] font-bold tracking-[-0.042em]">
-            {site.name}
+            <span className="font-display block text-[clamp(46px,6.6vw,102px)] leading-[0.9] font-bold tracking-[-0.042em]">
+              {site.name}
+            </span>
           </h1>
 
           <div

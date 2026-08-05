@@ -25,8 +25,7 @@ const Capabilities = () => {
           {t.capabilities.groups.map((group) => (
             <div key={group.n} className="border-ink/85 border-t pt-3.5">
               <h3 className="text-ink flex items-baseline gap-2 font-mono text-[11px] tracking-[0.16em] uppercase">
-                <span className="text-brick">{group.n}</span>
-                <span>{group.label}</span>
+                <span className="text-brick">{group.n}</span> <span>{group.label}</span>
               </h3>
               <ul className="mt-3.5">
                 {group.items.map((item) => (

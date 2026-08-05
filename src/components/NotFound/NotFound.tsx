@@ -5,6 +5,7 @@ import LanguageToggle from '@/components/UI/LanguageToggle'
 import { useConsent } from '@/contexts/ConsentContext'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { privacyContent } from '@/lib/privacyContent'
+import { localisedHref } from '@/lib/siteMetadata'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
@@ -44,7 +45,9 @@ const NotFound = () => {
     <div className="bg-void text-bone min-h-screen">
       <div className={`${container} grid min-h-screen grid-rows-[auto_1fr_auto]`}>
         <header className="border-bone/14 flex h-[58px] items-center gap-5 border-b">
-          <Link href="/" className="text-bone font-mono text-[12px] tracking-[0.06em]">
+          <Link
+            href={localisedHref(language, '/')}
+            className="text-bone inline-flex min-h-[36px] items-center font-mono text-[12px] tracking-[0.06em]">
             dgomez<span className="text-coral">.dev</span>
           </Link>
           <div className="ml-auto">
@@ -83,7 +86,7 @@ const NotFound = () => {
 
             <div className="mt-[clamp(26px,3.4vw,38px)] flex flex-wrap gap-3">
               <Link
-                href="/"
+                href={localisedHref(language, '/')}
                 className="bg-bone text-void hover:bg-coral px-[22px] py-[13px] font-mono text-[11px] tracking-[0.14em] uppercase transition-colors">
                 {t.notFound.home}
               </Link>
@@ -102,7 +105,7 @@ const NotFound = () => {
             {navSections.map((section, index) => (
               <Link
                 key={section.id}
-                href={`/#${section.id}`}
+                href={localisedHref(language, `/#${section.id}`)}
                 className={`border-bone/16 text-bone hover:text-coral flex items-baseline gap-3 border-t py-4 transition-colors ${
                   index === navSections.length - 1 ? 'border-b' : ''
                 }`}>
@@ -133,12 +136,14 @@ const NotFound = () => {
           </dl>
           {/* Otherwise a 404 is the one page with no route to the notice or the cookie control. */}
           <div className="mt-6 flex flex-wrap items-center gap-x-[22px] gap-y-3 font-mono text-[10.5px] tracking-[0.1em]">
-            <Link href="/privacy" className="text-bone/70 hover:text-coral transition-colors">
+            <Link
+              href={localisedHref(language, '/privacy')}
+              className="text-bone/70 hover:text-coral inline-flex min-h-[24px] items-center transition-colors">
               {privacyContent[language].title}
             </Link>
             <a
               href={`mailto:${site.email}`}
-              className="text-bone/70 hover:text-coral transition-colors">
+              className="text-bone/70 hover:text-coral inline-flex min-h-[24px] items-center transition-colors">
               {site.email}
             </a>
             <button

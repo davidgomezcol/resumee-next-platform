@@ -2,18 +2,18 @@ import PrivacyNotice from '@/components/Privacy/PrivacyNotice'
 import { alternatesFor, privacyCopy, siteUrl } from '@/lib/siteMetadata'
 import type { Metadata } from 'next'
 
-const copy = privacyCopy.en
+const copy = privacyCopy.es
 
 export const metadata: Metadata = {
   title: copy.title,
   description: copy.description,
-  alternates: alternatesFor('en', '/privacy'),
+  alternates: alternatesFor('es', '/privacy'),
   openGraph: {
     title: copy.title,
     description: copy.description,
-    url: alternatesFor('en', '/privacy').canonical,
+    url: alternatesFor('es', '/privacy').canonical,
     type: 'article',
-    locale: 'en_US',
+    locale: 'es_ES',
     images: [
       {
         url: `${siteUrl}/opengraph-image`,

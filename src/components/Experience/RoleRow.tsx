@@ -30,19 +30,23 @@ const RoleRow: FC<RoleRowProps> = ({ content, companyUrl, open, onToggle, panelI
         <p className="text-ink/66 wide:hidden mb-2.5 font-mono text-[11px] tracking-[0.04em]">
           {content.period} · {content.place}
         </p>
+        {/*
+          The company is part of the heading so the four "System Analyst" roles are distinguishable
+          in a heading outline; it stays visually separate via the span's own styling.
+        */}
         <h3 className="font-display max-w-[46ch] text-[clamp(19px,1.6vw,24px)] leading-[1.26] font-semibold tracking-[-0.018em]">
           <button
             type="button"
             onClick={onToggle}
             aria-expanded={open}
             aria-controls={panelId}
-            className="focus-visible:outline-brick cursor-pointer text-left after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-offset-4">
+            className="focus-visible:outline-brick block cursor-pointer text-left after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-offset-4">
             {content.title}
+            <span className="text-brick mt-2 block font-mono text-[11px] font-normal tracking-[0.1em] uppercase">
+              {content.company}
+            </span>
           </button>
         </h3>
-        <p className="text-brick mt-2 font-mono text-[11px] tracking-[0.1em] uppercase">
-          {content.company}
-        </p>
         <p className="text-ink/66 mt-3 max-w-[68ch] text-[15px] leading-[1.62]">
           {content.summary}
         </p>
@@ -90,7 +94,7 @@ const RoleRow: FC<RoleRowProps> = ({ content, companyUrl, open, onToggle, panelI
             href={companyUrl}
             target="_blank"
             rel="noopener"
-            className="text-brick hover:text-ink mt-[18px] inline-block font-mono text-[10.5px] tracking-[0.1em] transition-colors">
+            className="text-brick hover:text-ink mt-[18px] inline-flex min-h-[24px] items-center font-mono text-[10.5px] tracking-[0.1em] transition-colors">
             {labels.companySite} ↗
           </a>
         )}

@@ -2,7 +2,7 @@ import HomePage from '@/components/Home/HomePage'
 import { alternatesFor, homeCopy, siteUrl } from '@/lib/siteMetadata'
 import type { Metadata } from 'next'
 
-const copy = homeCopy.en
+const copy = homeCopy.es
 
 export const metadata: Metadata = {
   title: copy.title,
@@ -30,13 +30,13 @@ export const metadata: Metadata = {
     'distributed teams',
     'computer engineer',
   ],
-  alternates: alternatesFor('en', ''),
+  alternates: alternatesFor('es', ''),
   openGraph: {
     title: copy.title,
     description: copy.description,
-    url: alternatesFor('en', '').canonical,
+    url: alternatesFor('es', '').canonical,
     type: 'website',
-    locale: 'en_US',
+    locale: 'es_ES',
     images: [
       {
         url: `${siteUrl}/opengraph-image`,

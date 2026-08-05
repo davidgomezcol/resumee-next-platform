@@ -5,11 +5,13 @@ import { useConsent } from '@/contexts/ConsentContext'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { trackEmailClick, trackSocialClick } from '@/lib/analytics'
 import { privacyContent } from '@/lib/privacyContent'
+import { localisedHref } from '@/lib/siteMetadata'
 import Link from 'next/link'
 import { FC } from 'react'
 import LanguageToggle from '../UI/LanguageToggle'
 
-const link = 'text-bone/70 transition-colors hover:text-coral'
+// min-height clears the 24px tap-target floor; these were 16px tall.
+const link = 'text-bone/70 transition-colors hover:text-coral inline-flex min-h-[24px] items-center'
 
 interface FooterProps {
   /** `document` is the reduced footer used by standalone pages like the privacy notice. */
@@ -33,11 +35,11 @@ const Footer: FC<FooterProps> = ({ variant = 'site' }) => {
         </span>
         <div className="ml-auto flex flex-wrap items-center gap-[22px]">
           {variant === 'document' ? (
-            <Link href="/" className={link}>
+            <Link href={localisedHref(language, '/')} className={link}>
               {privacyContent[language].back}
             </Link>
           ) : (
-            <Link href="/privacy" className={link}>
+            <Link href={localisedHref(language, '/privacy')} className={link}>
               {privacyContent[language].title}
             </Link>
           )}
@@ -71,7 +73,7 @@ const Footer: FC<FooterProps> = ({ variant = 'site' }) => {
           <button
             type="button"
             onClick={reopen}
-            className="text-bone/74 hover:text-coral cursor-pointer font-mono text-[10.5px] tracking-[0.1em] transition-colors">
+            className="text-bone/74 hover:text-coral inline-flex min-h-[24px] cursor-pointer items-center font-mono text-[10.5px] tracking-[0.1em] transition-colors">
             {t.footer.cookieSettings}
           </button>
           <LanguageToggle variant="bare" />

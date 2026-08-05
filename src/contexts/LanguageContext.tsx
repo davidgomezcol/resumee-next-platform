@@ -1,11 +1,11 @@
 'use client'
 
-import React, { createContext, useContext, useState, useEffect } from 'react'
 import { Language, translations } from '@/lib/translations'
+import { usePathname } from 'next/navigation'
+import React, { createContext, useContext, useEffect } from 'react'
 
 interface LanguageContextType {
   language: Language
-  setLanguage: (lang: Language) => void
   t: typeof translations.en
 }
 
@@ -19,38 +19,32 @@ export const useLanguage = () => {
   return context
 }
 
-interface LanguageProviderProps {
-  children: React.ReactNode
-}
+/** `/es`, `/es/privacy`, `/es/anything` are Spanish; everything else is English. */
+export const languageFromPath = (pathname: string): Language =>
+  pathname === '/es' || pathname.startsWith('/es/') ? 'es' : 'en'
 
-export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en')
+/**
+ * The route decides the language, not localStorage.
+ *
+ * Previously both languages lived at one URL behind a client-side toggle, which meant a complete
+ * second site — every section, the whole privacy notice, all eight roles — was written, shipped,
+ * and invisible to every crawler. Deriving from the path makes the Spanish pages real, indexable
+ * URLs. It also means `usePathname` resolves during SSR, so /es is server-rendered in Spanish
+ * rather than swapping after hydration.
+ */
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const pathname = usePathname() ?? '/'
+  const language = languageFromPath(pathname)
 
   useEffect(() => {
-    // Load language from localStorage on mount
-    const savedLanguage = localStorage.getItem('language') as Language
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'es')) {
-      setLanguage(savedLanguage)
-    }
-  }, [])
-
-  useEffect(() => {
-    // The document language lives in the server layout, but the content language is client state.
-    // Without this the page serves Spanish copy while still claiming lang="en", so a screen reader
-    // reads it with an English synthesiser (WCAG 3.1.1).
+    // <html lang> lives in the server layout, which has no access to the route. Correcting it here
+    // keeps a screen reader from reading Spanish with an English synthesiser (WCAG 3.1.1).
     document.documentElement.lang = language
   }, [language])
 
-  const handleSetLanguage = (lang: Language) => {
-    setLanguage(lang)
-    localStorage.setItem('language', lang)
-  }
-
-  const value = {
-    language,
-    setLanguage: handleSetLanguage,
-    t: translations[language],
-  }
-
-  return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>
+  return (
+    <LanguageContext.Provider value={{ language, t: translations[language] }}>
+      {children}
+    </LanguageContext.Provider>
+  )
 }

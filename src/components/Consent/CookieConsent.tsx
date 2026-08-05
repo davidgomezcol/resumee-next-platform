@@ -3,6 +3,7 @@
 import { container } from '@/appData/site'
 import { useConsent } from '@/contexts/ConsentContext'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { localisedHref } from '@/lib/siteMetadata'
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
@@ -10,10 +11,10 @@ const textButton =
   'cursor-pointer border-none bg-transparent px-1.5 py-[13px] font-mono text-[11px] tracking-[0.14em] text-coral uppercase underline underline-offset-4 transition-colors hover:text-bone'
 
 const choiceButton =
-  'border-bone text-bone hover:bg-bone hover:text-void min-w-[186px] cursor-pointer border px-6 py-[13px] font-mono text-[11px] tracking-[0.14em] uppercase transition-colors'
+  'border-bone text-bone hover:bg-bone hover:text-void min-w-[140px] flex-1 cursor-pointer border px-4 py-[13px] font-mono text-[11px] tracking-[0.14em] uppercase transition-colors nav:min-w-[186px] nav:flex-none nav:px-6'
 
 const CookieConsent = () => {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const {
     consent,
     isOpen,
@@ -81,7 +82,7 @@ const CookieConsent = () => {
       tabIndex={-1}
       aria-label={t.consent.eyebrow}
       className="border-coral bg-void fixed right-0 bottom-0 left-0 z-[60] border-t-2 shadow-[0_-18px_44px_rgba(0,0,0,0.5)] outline-none">
-      <div className={`${container} pt-[clamp(18px,2.4vw,26px)] pb-[clamp(20px,2.6vw,28px)]`}>
+      <div className={`${container} pt-[clamp(14px,2.4vw,26px)] pb-[clamp(14px,2.6vw,28px)]`}>
         <div className="flex flex-wrap items-baseline justify-between gap-3 font-mono text-[11px] tracking-[0.16em] uppercase">
           <h2 className="text-bone flex items-baseline gap-[9px] text-[11px] tracking-[0.16em]">
             <span aria-hidden className="text-coral">
@@ -107,10 +108,12 @@ const CookieConsent = () => {
 
         <div className="mt-3.5 grid grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] items-end gap-[clamp(18px,3vw,44px)]">
           <div>
-            <p className="text-bone/84 max-w-[72ch] text-[14px] leading-[1.6]">{t.consent.body}</p>
+            <p className="text-bone/84 nav:text-[14px] nav:leading-[1.6] max-w-[72ch] text-[13px] leading-[1.55]">
+              {t.consent.body}
+            </p>
             {/* next/link so opening the notice doesn't full-reload and drop the open panel. */}
             <Link
-              href="/privacy"
+              href={localisedHref(language, '/privacy')}
               className="text-coral hover:text-bone mt-2.5 inline-block font-mono text-[11px] tracking-[0.1em] transition-colors">
               {t.consent.privacy} ↗
             </Link>
