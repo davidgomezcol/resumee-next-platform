@@ -17,6 +17,7 @@ const CookieConsent = () => {
   const { t, language } = useLanguage()
   const {
     consent,
+    analyticsEnabled,
     isOpen,
     prefsOpen,
     draftAnalytics,
@@ -92,7 +93,7 @@ const CookieConsent = () => {
           </h2>
           <div className="flex items-baseline gap-4">
             <span className="text-bone/72">
-              {consent?.analytics ? t.consent.stateOn : t.consent.stateOff}
+              {analyticsEnabled ? t.consent.stateOn : t.consent.stateOff}
             </span>
             {isDismissable && (
               <button

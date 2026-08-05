@@ -63,10 +63,11 @@ export const privacyContent: Record<Language, PrivacyContent> = {
         ],
       },
       {
-        title: 'Analytics, only if you accept',
+        title: 'Analytics, and where consent is required',
         paras: [
-          'I use Google Analytics 4 to see which pages get read and where visitors arrive from. It is switched off until you accept it.',
-          'Before you choose, Google Consent Mode is set to denied for analytics storage, ad storage, ad user data, and ad personalisation, and the Google tag is not loaded at all. No analytics cookie exists on your first visit.',
+          'I use Google Analytics 4 to see which pages get read and where visitors arrive from. Whether it runs before you say so depends on where you are.',
+          'In the European Economic Area, the United Kingdom and Switzerland, it is switched off until you accept. Google Consent Mode is set to denied for analytics storage, ad storage, ad user data and ad personalisation, the Google tag is not loaded at all, and no analytics cookie exists on your first visit. If your location cannot be determined, you are treated as being in this group.',
+          'Everywhere else, analytics runs unless you turn it off, which you can do at any time using Cookie settings in the footer. Rejecting there has exactly the same effect as never having accepted.',
           'If you accept, GA4 sets the cookies listed in section 06 and receives your IP address, which Google uses to derive an approximate location and then discards rather than storing. It also receives the pages you view, the referring page, and basic device and browser information. Google Signals, advertising features, and data sharing for advertising purposes are switched off.',
           'If you reject later, the consent signal is set back to denied and the analytics cookies on this domain are deleted. You can change your mind at any time using Cookie settings in the site footer.',
         ],
@@ -85,7 +86,7 @@ export const privacyContent: Record<Language, PrivacyContent> = {
       {
         title: 'Cookies',
         paras: [
-          'The site sets no cookies of its own. The only cookies that can appear are Google Analytics cookies, and only after you accept.',
+          'The site sets one cookie of its own, dg-region, which carries no identifier. The only others that can appear are Google Analytics cookies.',
         ],
         rows: [
           {
@@ -104,6 +105,18 @@ export const privacyContent: Record<Language, PrivacyContent> = {
               { k: 'Purpose', v: 'Keeps session state' },
               { k: 'Duration', v: '2 years' },
               { k: 'Condition', v: 'Only after you accept' },
+            ],
+          },
+          {
+            k: 'dg-region',
+            fields: [
+              { k: 'Set by', v: 'This site' },
+              {
+                k: 'Purpose',
+                v: 'Records whether your country requires opt-in consent, so the notice is shown to the right people. Holds "eea" or "row" and nothing else.',
+              },
+              { k: 'Duration', v: '24 hours' },
+              { k: 'Condition', v: 'Always — it is what decides whether to ask you' },
             ],
           },
         ],
@@ -134,11 +147,11 @@ export const privacyContent: Record<Language, PrivacyContent> = {
             ],
           },
           {
-            k: 'Remembering your choice',
+            k: 'Remembering your choice, and knowing whether to ask',
             fields: [
-              { k: 'Data', v: 'Consent record' },
+              { k: 'Data', v: 'Consent record, approximate country' },
               { k: 'Basis', v: 'Strictly necessary — ePrivacy Art. 5(3) exemption' },
-              { k: 'Retention', v: 'Until you clear your browser storage' },
+              { k: 'Retention', v: 'Consent until you clear browser storage; region for 24 hours' },
             ],
           },
           {
@@ -226,10 +239,11 @@ export const privacyContent: Record<Language, PrivacyContent> = {
         ],
       },
       {
-        title: 'Analítica, solo si aceptas',
+        title: 'Analítica, y dónde se requiere consentimiento',
         paras: [
-          'Uso Google Analytics 4 para ver qué páginas se leen y desde dónde llegan las visitas. Está desactivado hasta que lo aceptes.',
-          'Antes de que elijas, el Consent Mode de Google está en denegado para almacenamiento de analítica, de publicidad, de datos de usuario publicitarios y de personalización, y la etiqueta de Google no se carga en absoluto. En tu primera visita no existe ninguna cookie de analítica.',
+          'Uso Google Analytics 4 para ver qué páginas se leen y desde dónde llegan las visitas. Que se ejecute antes de que lo autorices depende de dónde estés.',
+          'En el Espacio Económico Europeo, el Reino Unido y Suiza permanece desactivado hasta que aceptes. El Consent Mode de Google está en denegado para almacenamiento de analítica, de publicidad, de datos de usuario publicitarios y de personalización, la etiqueta de Google no se carga en absoluto y en tu primera visita no existe ninguna cookie de analítica. Si no se puede determinar tu ubicación, se te trata como parte de este grupo.',
+          'En el resto de lugares la analítica se ejecuta salvo que la desactives, algo que puedes hacer en cualquier momento con Cookies en el pie de página. Rechazar allí tiene exactamente el mismo efecto que no haber aceptado nunca.',
           'Si aceptas, GA4 instala las cookies de la sección 06 y recibe tu dirección IP, que Google usa para deducir una ubicación aproximada y luego descarta en lugar de almacenarla. También recibe las páginas que ves, la página de referencia y datos básicos de dispositivo y navegador. Google Signals, las funciones de publicidad y la compartición de datos con fines publicitarios están desactivadas.',
           'Si más adelante rechazas, la señal de consentimiento vuelve a denegado y las cookies de analítica de este dominio se eliminan. Puedes cambiar de opinión en cualquier momento con Cookies en el pie del sitio.',
         ],
@@ -248,7 +262,7 @@ export const privacyContent: Record<Language, PrivacyContent> = {
       {
         title: 'Cookies',
         paras: [
-          'El sitio no instala cookies propias. Las únicas cookies que pueden aparecer son las de Google Analytics, y solo después de que aceptes.',
+          'El sitio instala una cookie propia, dg-region, que no contiene ningún identificador. Las únicas otras que pueden aparecer son las de Google Analytics.',
         ],
         rows: [
           {
@@ -267,6 +281,18 @@ export const privacyContent: Record<Language, PrivacyContent> = {
               { k: 'Finalidad', v: 'Mantiene el estado de la sesión' },
               { k: 'Duración', v: '2 años' },
               { k: 'Condición', v: 'Solo si aceptas' },
+            ],
+          },
+          {
+            k: 'dg-region',
+            fields: [
+              { k: 'Instalada por', v: 'Este sitio' },
+              {
+                k: 'Finalidad',
+                v: 'Registra si tu país exige consentimiento previo, para mostrar el aviso a quien corresponde. Contiene "eea" o "row" y nada más.',
+              },
+              { k: 'Duración', v: '24 horas' },
+              { k: 'Condición', v: 'Siempre — es lo que decide si preguntarte' },
             ],
           },
         ],
@@ -297,11 +323,14 @@ export const privacyContent: Record<Language, PrivacyContent> = {
             ],
           },
           {
-            k: 'Recordar tu decisión',
+            k: 'Recordar tu decisión y saber si preguntarte',
             fields: [
-              { k: 'Datos', v: 'Registro de consentimiento' },
+              { k: 'Datos', v: 'Registro de consentimiento, país aproximado' },
               { k: 'Base', v: 'Estrictamente necesario — excepción del art. 5(3) ePrivacy' },
-              { k: 'Conservación', v: 'Hasta que borres el almacenamiento del navegador' },
+              {
+                k: 'Conservación',
+                v: 'Consentimiento hasta que borres el almacenamiento; región 24 horas',
+              },
             ],
           },
           {

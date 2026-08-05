@@ -4,21 +4,23 @@ import {
   denyByDefault,
   loadAnalytics,
   readConsent,
+  readRegion,
   revokeAnalytics,
   writeConsent,
   type ConsentRecord,
+  type Region,
 } from '@/lib/consent'
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react'
 
 interface ConsentContextType {
-  /** null until a choice has been made. */
+  /** null until the visitor has actively chosen. */
   consent: ConsentRecord | null
-  /** The banner is up: no choice yet, or the visitor reopened it from the footer. */
+  /** Whether analytics is on right now, which outside the EEA/UK is true by default. */
+  analyticsEnabled: boolean
+  /** The banner is up: consent is required and unanswered, or the visitor reopened it. */
   isOpen: boolean
   prefsOpen: boolean
-  /** The pending toggle state inside the preferences panel, not yet saved. */
   draftAnalytics: boolean
-  /** True when a choice already exists, so the banner can simply be dismissed. */
   isDismissable: boolean
   accept: () => void
   reject: () => void
@@ -41,37 +43,47 @@ export const useConsent = () => {
 
 export const ConsentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [consent, setConsent] = useState<ConsentRecord | null>(null)
+  const [region, setRegion] = useState<Region>('eea')
   const [reopened, setReopened] = useState(false)
   const [prefsOpen, setPrefsOpen] = useState(false)
   const [draftAnalytics, setDraftAnalytics] = useState(false)
-  // The stored choice is only readable after mount, so the banner would otherwise flash for
-  // visitors who already answered. Nothing renders until we know.
+  // Both the stored choice and the region cookie are only readable after mount, so the banner
+  // would otherwise flash. Nothing renders until we know.
   const [ready, setReady] = useState(false)
+
+  /**
+   * Outside the EEA/UK, analytics runs unless the visitor turns it off; inside, it stays off until
+   * they turn it on. An explicit stored choice always wins over both.
+   */
+  const resolveEnabled = (stored: ConsentRecord | null, area: Region) =>
+    stored ? stored.analytics : area === 'row'
 
   useEffect(() => {
     denyByDefault()
+    const area = readRegion()
     const stored = readConsent()
+    setRegion(area)
     setConsent(stored)
-    setDraftAnalytics(!!stored?.analytics)
-    if (stored?.analytics) loadAnalytics()
+
+    const enabled = resolveEnabled(stored, area)
+    setDraftAnalytics(enabled)
+    if (enabled) loadAnalytics()
     setReady(true)
   }, [])
 
-  /**
-   * A choice made in one tab has to take effect in the others. Without this, accepting in tab A and
-   * then rejecting in tab B leaves A's tag loaded with consent granted: the stored record says
-   * rejected while collection quietly continues.
-   */
+  /** A choice in one tab has to take effect in the others. */
   useEffect(() => {
     const onStorage = (event: StorageEvent) => {
       if (event.key !== null && event.key !== 'dg-consent-v1') return
 
       const stored = readConsent()
       setConsent(stored)
-      setDraftAnalytics(!!stored?.analytics)
       setPrefsOpen(false)
       setReopened(false)
-      if (stored?.analytics) loadAnalytics()
+
+      const enabled = resolveEnabled(stored, readRegion())
+      setDraftAnalytics(enabled)
+      if (enabled) loadAnalytics()
       else revokeAnalytics()
     }
 
@@ -88,31 +100,34 @@ export const ConsentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     else revokeAnalytics()
   }, [])
 
+  const analyticsEnabled = resolveEnabled(consent, region)
+
   const value: ConsentContextType = {
     consent,
-    isOpen: ready && (reopened || consent === null),
+    analyticsEnabled,
+    // Only asked where opt-in is required. Everywhere else the control lives in the footer.
+    isOpen: ready && (reopened || (consent === null && region === 'eea')),
     prefsOpen,
     draftAnalytics,
-    // Only offer a plain dismiss once a choice exists — otherwise closing it would be a way to
-    // skip the question, which is the thing consent is for.
-    isDismissable: consent !== null,
+    // Dismissing must not become a way to skip the question where it has to be asked.
+    isDismissable: consent !== null || region === 'row',
     accept: () => commit(true),
     reject: () => commit(false),
     openPrefs: () => {
-      setDraftAnalytics(!!consent?.analytics)
+      setDraftAnalytics(analyticsEnabled)
       setPrefsOpen(true)
     },
     savePrefs: () => commit(draftAnalytics),
     toggleDraft: () => setDraftAnalytics((current) => !current),
     reopen: () => {
-      setDraftAnalytics(!!consent?.analytics)
+      setDraftAnalytics(analyticsEnabled)
       setReopened(true)
       setPrefsOpen(true)
     },
     dismiss: () => {
       setReopened(false)
       setPrefsOpen(false)
-      setDraftAnalytics(!!consent?.analytics)
+      setDraftAnalytics(analyticsEnabled)
     },
   }
 

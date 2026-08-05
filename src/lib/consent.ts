@@ -11,6 +11,9 @@ import { site } from '@/appData/site'
 
 const CONSENT_KEY = 'dg-consent-v1'
 
+/** `eea` means opt-in is required before analytics; `row` means it runs unless turned off. */
+export type Region = 'eea' | 'row'
+
 export interface ConsentRecord {
   v: 1
   analytics: boolean
@@ -25,6 +28,15 @@ declare global {
     __dgConsentDefaults?: boolean
     __dgGaLoaded?: boolean
   }
+}
+
+/**
+ * Set by middleware from the request's country. Absent means we could not tell, and the safe
+ * reading of "could not tell" is that consent is required.
+ */
+export const readRegion = (): Region => {
+  const match = document.cookie.match(/(?:^|;\s*)dg-region=(eea|row)/)
+  return match?.[1] === 'row' ? 'row' : 'eea'
 }
 
 export const readConsent = (): ConsentRecord | null => {
