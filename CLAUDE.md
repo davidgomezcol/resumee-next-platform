@@ -21,6 +21,9 @@ Always run `npm run lint` and `npm run build` before committing to catch errors 
 - **Deployment**: Netlify (Node 18, `.next` publish dir)
 - **Email**: Nodemailer with Zoho SMTP
 - **Fonts**: Archivo (display), Libre Franklin (body), JetBrains Mono (labels/meta) — Google Fonts
+- **Browser baseline**: Chrome/Edge 111, Firefox 128, Safari/iOS 16.4 (`browserslist` in
+  `package.json`). This is Tailwind v4's own floor — the stylesheet uses `@property` and
+  `color-mix()`, so older browsers cannot render the site regardless of what the JS targets.
 
 ## Project Structure
 
@@ -81,7 +84,11 @@ Always run `npm run lint` and `npm run build` before committing to catch errors 
   `bone` (page background), `ink` (text on bone), `void` (dark sections), `brick` (accent on light),
   `coral` (accent on dark)
 - Translucency uses Tailwind opacity modifiers (`text-ink/62`, `border-bone/16`) — no rgba literals
-- Fonts map to `font-display`, `font-body`, `font-mono`
+- Fonts map to `font-display`, `font-body`, `font-mono`. The mono face opts out of `next/font`'s
+  automatic fallback: that fallback is Arial with overridden metrics, which is fine for the two
+  proportional families but wrong for a monospace one — it wrapped mono text differently and moved
+  the page on swap. It falls back to a real monospace stack instead. Don't re-enable
+  `adjustFontFallback` there without re-measuring CLS at 412px
 - Two custom breakpoints carry the design's own responsive thresholds: `nav` (620px — below it the
   header shows section numbers without the words) and `wide` (760px — below it the hero side block
   and the experience rows collapse to one column). The source design switches on these in JS because

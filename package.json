@@ -17,6 +17,14 @@
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
+  "//browserslist": "Tailwind v4's own baseline. The stylesheet already relies on @property and color-mix(), so anything older cannot render this site correctly whatever the JS targets — which makes the polyfills Next was shipping for Array.prototype.at, Object.hasOwn and friends dead weight in every bundle.",
+  "browserslist": [
+    "chrome >= 111",
+    "edge >= 111",
+    "firefox >= 128",
+    "safari >= 16.4",
+    "ios_saf >= 16.4"
+  ],
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.6",
     "@types/node": "^22",

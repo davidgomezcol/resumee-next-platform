@@ -20,10 +20,26 @@ const libreFranklin = Libre_Franklin({
   variable: '--font-libre-franklin',
 })
 
+/*
+  The other two families take next/font's automatic fallback, which stands Arial in for the real
+  face and overrides its metrics to match. For a monospace font that substitution does not work:
+  it produced `size-adjust: 134.59%`, a proportional face stretched a third wider, and glyph
+  advances that have nothing to do with the grid the design is set on.
+
+  Measured at 412px, the hero's mono eyebrow wrapped to three lines under that fallback and two
+  under JetBrains Mono. The 17px it gave back on swap moved every element below it, which was the
+  whole of the 0.21 mobile CLS — and the layout-stability audit that CLS feeds.
+
+  A monospace fallback has no such problem, because 0.6em per character is near-universal among
+  them. Document height under SF Mono, Menlo, Courier, Courier New and Andale Mono is identical to
+  JetBrains Mono, to the pixel, so whichever one a platform resolves the swap costs nothing.
+*/
 const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: ['400'],
   variable: '--font-jetbrains-mono',
+  adjustFontFallback: false,
+  fallback: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Roboto Mono', 'monospace'],
 })
 
 // Kept near 60 characters: Google cuts SERP titles around there, and a third segment was
