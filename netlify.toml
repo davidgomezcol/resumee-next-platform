@@ -4,9 +4,11 @@
 
 [build.environment]
   NODE_VERSION = "22"
-  # Scanning stays on; only the values that legitimately appear in the build output
-  # are exempt, rather than disabling detection wholesale.
-  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SITE_URL"
+  # Scanning stays on, but two values legitimately appear in the build output and would
+  # otherwise fail the build: the canonical URL, and the contact address, which is printed in
+  # the footer and contact section. CONTACT_SECRET and EMAIL_PASS are deliberately NOT exempt —
+  # if either ever reaches the client bundle the build should fail.
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SITE_URL,EMAIL_USER"
 
 # Headers for SEO
 [[headers]]
