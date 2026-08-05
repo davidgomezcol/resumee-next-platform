@@ -226,10 +226,10 @@ export default function RootLayout({
       className={`${archivo.variable} ${libreFranklin.variable} ${jetBrainsMono.variable}`}>
       <head>
         {/*
-          Google Analytics is not loaded here. Consent Mode defaults to denied and gtag.js is
-          injected only after the visitor accepts — see @/lib/consent and ConsentProvider.
+          Nothing Google-related is referenced here on purpose — not even a preconnect, which would
+          open a connection (and expose the visitor's IP) before any choice is made, contradicting
+          what the privacy notice states. gtag.js is injected by @/lib/consent on acceptance.
         */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
 
         {/* Structured Data */}
         <script

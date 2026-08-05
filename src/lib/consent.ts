@@ -20,6 +20,8 @@ export interface ConsentRecord {
 declare global {
   interface Window {
     dataLayer?: unknown[]
+    /** Optional: it only exists once ensureGtag has run on the client. */
+    gtag?: (...args: unknown[]) => void
     __dgConsentDefaults?: boolean
     __dgGaLoaded?: boolean
   }
@@ -46,14 +48,35 @@ export const writeConsent = (analytics: boolean): ConsentRecord => {
   return record
 }
 
-// Matches the shape gtag.js expects, so the queue it finds is the queue we built.
-const gtag = (...args: unknown[]) => {
+/**
+ * This MUST push a real `arguments` object, not a rest array.
+ *
+ * gtag.js branches on the container type before it looks at the command: Arrays are treated as
+ * legacy `_gaq`-style pushes and silently discarded, and only `[object Arguments]` reaches the
+ * command handler. Pushing `[...args]` therefore drops `consent`, `js` and `config` alike — GA
+ * never initialises, and, worse, a later `consent update: denied` never lands either, so cookies
+ * deleted on reject would simply be recreated.
+ */
+// The rest parameter exists only to type the call sites; `arguments` is what gets pushed, and it
+// still holds the real arguments in a function that declares rest params.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function gtag(..._args: unknown[]) {
   window.dataLayer = window.dataLayer || []
-  window.dataLayer.push(args)
+  // eslint-disable-next-line prefer-rest-params
+  window.dataLayer.push(arguments)
+}
+
+/**
+ * gtag.js does not define `window.gtag` itself — the standard snippet does. Without this the
+ * helpers in @/lib/analytics are permanently no-ops, since they guard on `window.gtag`.
+ */
+const ensureGtag = () => {
+  if (!window.gtag) window.gtag = gtag as (...args: unknown[]) => void
 }
 
 /** Must run before any tag loads, which is why it is not conditional on a choice being made. */
 export const denyByDefault = () => {
+  ensureGtag()
   if (window.__dgConsentDefaults) return
   window.__dgConsentDefaults = true
   gtag('consent', 'default', {
@@ -79,7 +102,7 @@ export const loadAnalytics = () => {
   document.head.appendChild(tag)
 
   gtag('js', new Date())
-  gtag('config', site.gaMeasurementId, { anonymize_ip: true })
+  gtag('config', site.gaMeasurementId)
 }
 
 /** Deny, then remove anything GA already wrote — across the host and domain variants it uses. */
