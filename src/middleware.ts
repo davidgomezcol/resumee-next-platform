@@ -87,6 +87,6 @@ export function middleware(request: NextRequest) {
 export const config = {
   // Pages only. Assets and metadata routes have nothing to decide.
   matcher: [
-    '/((?!_next/static|_next/image|images|favicon.ico|icon.png|apple-icon.png|robots.txt|sitemap.xml|opengraph-image|twitter-image).*)',
+    '/((?!_next/static|_next/image|images|favicon.ico|icon.png|apple-icon.png|robots.txt|sitemap.xml|llms.txt|opengraph-image|twitter-image).*)',
   ],
 }

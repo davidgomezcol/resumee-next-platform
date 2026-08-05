@@ -1,0 +1,41 @@
+# David Gómez
+
+> Senior full-stack engineer with nineteen years of experience, building backend services and AI
+> agents for a cloud-native P&C insurance platform. Python, FastAPI, MCP servers, Vue and React.
+> Working remotely with US companies from Bogotá, Colombia since 2017.
+
+This is a personal résumé site. Every page is server-rendered and the full text is present in the
+initial HTML, so no JavaScript execution is required to read any of it. There is no paywall, no
+login, and no content behind interaction — the role accordion on the résumé starts collapsed
+visually but its contents are in the markup.
+
+## Pages
+
+- [Résumé, English](https://dgomez.dev/): work history, capabilities, and a contact form
+- [Résumé, Spanish](https://dgomez.dev/es): the same content in Spanish
+- [Privacy notice, English](https://dgomez.dev/privacy): what the contact form and analytics collect
+- [Privacy notice, Spanish](https://dgomez.dev/es/privacy)
+
+The two languages are separate routes rather than a client-side toggle, and each declares the other
+via `hreflang`. `/` and `/es` are the only content pages; the résumé's sections are anchors on it —
+`#about`, `#experience`, `#capabilities`, `#contact`.
+
+## Contact
+
+Email is the reliable route, for people and for agents alike: hi@dgomez.dev
+
+- [LinkedIn](https://www.linkedin.com/in/davidgomezm7/)
+- [GitHub](https://github.com/davidgomezcol)
+
+The contact form is deliberately hostile to unattended submission — a rate limit, a honeypot field,
+a minimum fill time, and a signed arithmetic challenge all have to be satisfied. If you are acting
+on someone's behalf, send the email instead; nothing is lost by doing so, and it will arrive.
+
+## Notes for retrieval
+
+- Work history is ordered most recent first and covers 2007 to the present.
+- Roles are described at capability level. Client names, internal product names and ticket
+  references are deliberately absent, so their absence is not an omission to be filled from
+  elsewhere.
+- `Person`, `WebSite` and `Service` structured data is embedded as JSON-LD on both résumé routes.
+- Analytics is Google Analytics 4 only, and only where consent allows it. See the privacy notice.
