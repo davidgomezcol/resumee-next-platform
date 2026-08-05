@@ -208,6 +208,7 @@ const ContactForm = () => {
           id="mathAnswer"
           name="mathAnswer"
           required
+          defaultValue={status?.answer ?? ''}
           autoComplete="off"
           disabled={!challenge}
           aria-invalid={answerError ? true : undefined}

@@ -18,12 +18,15 @@ interface ConsentContextType {
   prefsOpen: boolean
   /** The pending toggle state inside the preferences panel, not yet saved. */
   draftAnalytics: boolean
+  /** True when a choice already exists, so the banner can simply be dismissed. */
+  isDismissable: boolean
   accept: () => void
   reject: () => void
   openPrefs: () => void
   savePrefs: () => void
   toggleDraft: () => void
   reopen: () => void
+  dismiss: () => void
 }
 
 const ConsentContext = createContext<ConsentContextType | undefined>(undefined)
@@ -54,6 +57,28 @@ export const ConsentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setReady(true)
   }, [])
 
+  /**
+   * A choice made in one tab has to take effect in the others. Without this, accepting in tab A and
+   * then rejecting in tab B leaves A's tag loaded with consent granted: the stored record says
+   * rejected while collection quietly continues.
+   */
+  useEffect(() => {
+    const onStorage = (event: StorageEvent) => {
+      if (event.key !== null && event.key !== 'dg-consent-v1') return
+
+      const stored = readConsent()
+      setConsent(stored)
+      setDraftAnalytics(!!stored?.analytics)
+      setPrefsOpen(false)
+      setReopened(false)
+      if (stored?.analytics) loadAnalytics()
+      else revokeAnalytics()
+    }
+
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
+  }, [])
+
   const commit = useCallback((analytics: boolean) => {
     setConsent(writeConsent(analytics))
     setDraftAnalytics(analytics)
@@ -68,6 +93,9 @@ export const ConsentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     isOpen: ready && (reopened || consent === null),
     prefsOpen,
     draftAnalytics,
+    // Only offer a plain dismiss once a choice exists — otherwise closing it would be a way to
+    // skip the question, which is the thing consent is for.
+    isDismissable: consent !== null,
     accept: () => commit(true),
     reject: () => commit(false),
     openPrefs: () => {
@@ -80,6 +108,11 @@ export const ConsentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       setDraftAnalytics(!!consent?.analytics)
       setReopened(true)
       setPrefsOpen(true)
+    },
+    dismiss: () => {
+      setReopened(false)
+      setPrefsOpen(false)
+      setDraftAnalytics(!!consent?.analytics)
     },
   }
 

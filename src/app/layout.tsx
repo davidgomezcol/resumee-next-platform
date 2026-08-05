@@ -6,21 +6,23 @@ import { ConsentProvider } from '@/contexts/ConsentContext'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import { Archivo, JetBrains_Mono, Libre_Franklin } from 'next/font/google'
 
+// Only the weights actually used are requested: every font-display utility pairs with
+// semibold or bold, font-medium appears once on body text, and font-mono never sets a weight.
 const archivo = Archivo({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: ['600', '700'],
   variable: '--font-archivo',
 })
 
 const libreFranklin = Libre_Franklin({
   subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500'],
   variable: '--font-libre-franklin',
 })
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['400'],
   variable: '--font-jetbrains-mono',
 })
 
@@ -72,7 +74,7 @@ export const metadata: Metadata = {
   publisher: 'David Gómez',
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://dgomez.dev'),
   alternates: {
-    canonical: 'https://dgomez.dev',
+    canonical: url,
   },
   openGraph: {
     title,
@@ -236,110 +238,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData),
-          }}
-        />
-
-        {/* Breadcrumb Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'BreadcrumbList',
-              itemListElement: [
-                {
-                  '@type': 'ListItem',
-                  position: 1,
-                  name: 'Home',
-                  item: url,
-                },
-                {
-                  '@type': 'ListItem',
-                  position: 2,
-                  name: 'About',
-                  item: `${url}#about`,
-                },
-                {
-                  '@type': 'ListItem',
-                  position: 3,
-                  name: 'Experience',
-                  item: `${url}#experience`,
-                },
-                {
-                  '@type': 'ListItem',
-                  position: 4,
-                  name: 'Capabilities',
-                  item: `${url}#capabilities`,
-                },
-                {
-                  '@type': 'ListItem',
-                  position: 5,
-                  name: 'Contact',
-                  item: `${url}#contact`,
-                },
-              ],
-            }),
-          }}
-        />
-
-        {/* FAQ Structured Data */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'FAQPage',
-              mainEntity: [
-                {
-                  '@type': 'Question',
-                  name: 'What does David Gómez build?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'David Gómez builds backend services and AI agents for a cloud-native P&C insurance platform — Python, FastAPI, and Flask services, production MCP servers, and Vue.js chat interfaces — along with the frontend and platform work to ship them end to end.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: "What is David Gómez's background and experience?",
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'David Gómez is a Computer Engineer with 15+ years of experience, graduated in 2008 from Universidad Fermín Toro in Venezuela with two special distinctions. He has been working remotely with US companies since 2017 and is based in Bogotá, Colombia.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'Is David Gómez available for remote work with US companies?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Yes. He works from Bogotá on GMT-5, overlapping U.S. business hours, and has worked remotely with US-based companies since 2017.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'What technologies does David Gómez specialize in?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Python, FastAPI, Flask, and Django on the backend; agentic AI workflows and MCP servers; Vue.js, React.js, Next.js, JavaScript and TypeScript on the frontend; AWS, Docker, Kubernetes, GitHub Actions, and k6 on the platform side.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'What makes David Gómez unique as an engineer?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'He pairs 15+ years of engineering with day-to-day agentic AI practice across the whole development workflow — architecture, code, review, testing — and brings strong communication across multicultural, distributed teams plus a track record of mentoring.',
-                  },
-                },
-                {
-                  '@type': 'Question',
-                  name: 'How can I get in touch with David Gómez?',
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: 'Use the contact form on dgomez.dev, email hi@dgomez.dev, or connect on LinkedIn. He is open to conversations about AI-augmented engineering, platform work, and senior full-stack roles.',
-                  },
-                },
-              ],
-            }),
           }}
         />
       </head>

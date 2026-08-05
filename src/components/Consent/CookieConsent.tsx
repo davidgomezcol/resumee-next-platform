@@ -3,6 +3,7 @@
 import { container } from '@/appData/site'
 import { useConsent } from '@/contexts/ConsentContext'
 import { useLanguage } from '@/contexts/LanguageContext'
+import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
 const textButton =
@@ -18,11 +19,13 @@ const CookieConsent = () => {
     isOpen,
     prefsOpen,
     draftAnalytics,
+    isDismissable,
     accept,
     reject,
     openPrefs,
     savePrefs,
     toggleDraft,
+    dismiss,
   } = useConsent()
   const panelRef = useRef<HTMLElement>(null)
   const wasOpen = useRef(false)
@@ -33,6 +36,42 @@ const CookieConsent = () => {
     if (isOpen && !wasOpen.current && consent !== null) panelRef.current?.focus()
     wasOpen.current = isOpen
   }, [isOpen, consent])
+
+  /**
+   * The band is fixed, so without this it sits on top of the footer — and it is tall enough to
+   * cover the whole thing, putting the privacy link, the email, the socials, the cookie control
+   * and the language toggle out of reach until the visitor answers. Measured rather than guessed,
+   * because the height changes with the preferences panel and with text wrapping.
+   */
+  useEffect(() => {
+    const panel = panelRef.current
+    if (!isOpen || !panel) {
+      document.body.style.paddingBottom = ''
+      return
+    }
+
+    const apply = () => {
+      document.body.style.paddingBottom = `${panel.offsetHeight}px`
+    }
+    apply()
+
+    const observer = new ResizeObserver(apply)
+    observer.observe(panel)
+    return () => {
+      observer.disconnect()
+      document.body.style.paddingBottom = ''
+    }
+  }, [isOpen, prefsOpen])
+
+  // Escape closes it, but only when there is already a stored choice to fall back on.
+  useEffect(() => {
+    if (!isOpen || !isDismissable) return
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') dismiss()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [isOpen, isDismissable, dismiss])
 
   if (!isOpen) return null
 
@@ -50,19 +89,31 @@ const CookieConsent = () => {
             </span>
             {t.consent.eyebrow}
           </h2>
-          <span className="text-bone/72">
-            {consent?.analytics ? t.consent.stateOn : t.consent.stateOff}
-          </span>
+          <div className="flex items-baseline gap-4">
+            <span className="text-bone/72">
+              {consent?.analytics ? t.consent.stateOn : t.consent.stateOff}
+            </span>
+            {isDismissable && (
+              <button
+                type="button"
+                onClick={dismiss}
+                aria-label={t.consent.close}
+                className="text-bone/60 hover:text-coral focus-visible:outline-coral cursor-pointer font-mono text-[13px] leading-none transition-colors focus-visible:outline-2 focus-visible:outline-offset-4">
+                ✕
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="mt-3.5 grid grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] items-end gap-[clamp(18px,3vw,44px)]">
           <div>
             <p className="text-bone/84 max-w-[72ch] text-[14px] leading-[1.6]">{t.consent.body}</p>
-            <a
+            {/* next/link so opening the notice doesn't full-reload and drop the open panel. */}
+            <Link
               href="/privacy"
               className="text-coral hover:text-bone mt-2.5 inline-block font-mono text-[11px] tracking-[0.1em] transition-colors">
               {t.consent.privacy} ↗
-            </a>
+            </Link>
           </div>
 
           <div className="flex flex-wrap justify-end gap-2.5">

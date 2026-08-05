@@ -24,6 +24,12 @@ export interface ContactFormState {
    * client so that its minimum-age exemption cannot be asked for directly.
    */
   challenge?: Challenge
+  /**
+   * Echoed back when the challenge itself was fine, so an unrelated failure doesn't blank the
+   * answer while leaving the same question on screen — which reads as if it had changed.
+   * Deliberately absent alongside `challenge`, where the question really is new.
+   */
+  answer?: string
 }
 
 const LANGUAGES = ['en', 'es'] as const
@@ -50,7 +56,13 @@ const action = async (
     message: read(formData, 'message'),
   }
 
-  const fail = (message: string): ContactFormState => ({ success: false, message, values })
+  const answer = read(formData, 'mathAnswer')
+  const fail = (message: string): ContactFormState => ({
+    success: false,
+    message,
+    values,
+    answer,
+  })
 
   try {
     // Honeypot field check (bots will fill this out, humans won't see it)
@@ -62,10 +74,7 @@ const action = async (
 
     // Signed challenge: covers the answer and the issue time together, so neither can be forged
     // by editing a hidden field. Every rejection asks the client for a fresh question.
-    const challenge = verifyChallenge(
-      read(formData, 'challengeToken'),
-      read(formData, 'mathAnswer'),
-    )
+    const challenge = verifyChallenge(read(formData, 'challengeToken'), answer)
 
     if (!challenge.ok) {
       // The rejected token is spent. Hand back a pre-aged replacement so an honest retry isn't
@@ -108,7 +117,7 @@ const action = async (
     // Same rules the client just ran, because the client can be bypassed
     const fieldErrors = validateContact(values, translations[language].contact)
     if (Object.keys(fieldErrors).length > 0) {
-      return { success: false, message: '', values, fieldErrors }
+      return { success: false, message: '', values, fieldErrors, answer }
     }
 
     // Rate limit guards the send, so a rejected submission above never costs a visitor an attempt.

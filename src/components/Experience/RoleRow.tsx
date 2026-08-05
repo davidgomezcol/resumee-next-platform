@@ -48,7 +48,7 @@ const RoleRow: FC<RoleRowProps> = ({ content, companyUrl, open, onToggle, panelI
         </p>
       </div>
 
-      <div aria-hidden className="text-ink/40 pt-1 text-right font-mono text-base">
+      <div aria-hidden className="text-ink/55 pt-1 text-right font-mono text-base">
         {open ? '−' : '+'}
       </div>
     </div>

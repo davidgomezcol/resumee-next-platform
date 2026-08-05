@@ -105,6 +105,7 @@ export interface Translations {
     anLabel: string
     anNote: string
     anToggle: string
+    close: string
   }
 }
 
@@ -280,6 +281,7 @@ export const translations: Record<Language, Translations> = {
       anNote:
         'Aggregated page views and referrers. The script is loaded only after you accept; Consent Mode defaults to denied.',
       anToggle: 'Toggle analytics consent',
+      close: 'Close cookie notice',
     },
   },
   es: {
@@ -457,6 +459,7 @@ export const translations: Record<Language, Translations> = {
       anNote:
         'Páginas vistas y referentes agregados. El script se carga solo si aceptas; el Consent Mode está denegado por defecto.',
       anToggle: 'Alternar consentimiento de analítica',
+      close: 'Cerrar aviso de cookies',
     },
   },
 }

@@ -41,8 +41,11 @@ const Header: FC<HeaderProps> = ({ variant = 'site' }) => {
                 key={section.id}
                 href={`#${section.id}`}
                 onClick={() => trackNavigation(section.id)}
-                /* Keeps the accessible name intact once the word is visually dropped. */
-                aria-label={t.nav[section.key]}
+                /*
+                  Includes the number so that below `nav`, where only "01" is visible, the visible
+                  text is still contained in the accessible name — WCAG 2.5.3 Label in Name.
+                */
+                aria-label={`${section.n} ${t.nav[section.key]}`}
                 className="text-ink/62 hover:text-brick flex gap-[7px] transition-colors">
                 <span className="text-ink/60">{section.n}</span>
                 {/* Below `nav` the four labels no longer fit, so the numbers carry the nav alone. */}
