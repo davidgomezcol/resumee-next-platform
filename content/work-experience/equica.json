@@ -1,25 +1,44 @@
 {
   "id": "equica",
-  "company": "Equica, C.A.",
-  "position": "System Analyst",
-  "location": "Barquisimeto, Venezuela",
-  "startDate": "2008-01",
-  "endDate": "2008-07",
-  "isCurrent": false,
-  "description": "Designed and developed a Visual Basic-based system to control the weight of chemicals in custom formulas, integrating both software and hardware components. The application, which is currently in use, ensures precise measurements and enhances the efficiency and accuracy of chemical formulations.",
-  "technologies": [
-    "Visual Basic",
-    "Hardware Integration",
-    "Chemical Formulation",
-    "System Design",
-    "Process Control"
-  ],
-  "achievements": [
-    "Designed and developed a Visual Basic-based system to control the weight of chemicals in custom formulas, integrating both software and hardware components",
-    "The application, which is currently in use, ensures precise measurements and enhances the efficiency and accuracy of chemical formulations",
-    "Managed the entire project lifecycle from conception to implementation, including hardware design and system integration",
-    "Successfully integrated software and hardware components for process control"
-  ],
-  "companyLogo": null,
-  "priority": 3
+  "priority": 3,
+  "en": {
+    "period": "Jan 2008 — Jul 2008",
+    "place": "Barquisimeto, Venezuela",
+    "title": "System Analyst",
+    "company": "Equica, C.A.",
+    "summary": "Designed and developed a Visual Basic-based system to control the weight of chemicals in custom formulas, integrating both software and hardware components. The application is still in use.",
+    "tech": [
+      "Visual Basic",
+      "Hardware Integration",
+      "Chemical Formulation",
+      "System Design",
+      "Process Control"
+    ],
+    "achievements": [
+      "Designed and developed a Visual Basic-based system to control the weight of chemicals in custom formulas, integrating both software and hardware components",
+      "The application, which is currently in use, ensures precise measurements and enhances the efficiency and accuracy of chemical formulations",
+      "Managed the entire project lifecycle from conception to implementation, including hardware design and system integration",
+      "Successfully integrated software and hardware components for process control"
+    ]
+  },
+  "es": {
+    "period": "Ene 2008 — Jul 2008",
+    "place": "Barquisimeto, Venezuela",
+    "title": "Analista de Sistemas",
+    "company": "Equica, C.A.",
+    "summary": "Diseñé y desarrollé un sistema en Visual Basic para controlar el peso de químicos en fórmulas personalizadas, integrando software y hardware. La aplicación sigue en uso.",
+    "tech": [
+      "Visual Basic",
+      "Integración de hardware",
+      "Formulación química",
+      "Diseño de sistemas",
+      "Control de procesos"
+    ],
+    "achievements": [
+      "Diseñé y desarrollé un sistema en Visual Basic para controlar el peso de químicos en fórmulas personalizadas, integrando componentes de software y hardware",
+      "La aplicación, actualmente en uso, garantiza mediciones precisas y mejora la eficiencia y exactitud de las formulaciones químicas",
+      "Gestioné todo el ciclo de vida del proyecto, desde la concepción hasta la implementación, incluido el diseño de hardware y la integración del sistema",
+      "Integré con éxito componentes de software y hardware para control de procesos"
+    ]
+  }
 }

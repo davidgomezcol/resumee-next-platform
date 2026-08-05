@@ -1,26 +1,58 @@
-import { skillList } from '@/appData'
-import ContactSection from '@/components/Contact/ContactSection'
-import Hero from '@/components/Hero/Hero'
-import AboutSection from '@/components/About/AboutSection'
-import WorkExperienceSection from '@/components/WorkExperience/WorkExperienceSection'
-import ServiceSection from '@/components/Services/ServiceSection'
-import Skills from '@/components/Skills/Skills'
-import { getAllWorkExperiences } from '@/services'
+import HomePage from '@/components/Home/HomePage'
+import { alternatesFor, homeCopy, siteUrl } from '@/lib/siteMetadata'
+import type { Metadata } from 'next'
 
-export default async function Home() {
-  const workExperiences = await getAllWorkExperiences()
+const copy = homeCopy.en
 
-  return (
-    <main>
-      <Hero />
-      <Skills skills={skillList} />
-      <div className="mx-auto my-8 max-w-[1200px] px-4 md:my-[3.75rem]">
-        <AboutSection />
-        <WorkExperienceSection workExperiences={workExperiences} />
-        <ServiceSection />
-        {/* <TestimonialSection testimonials={testimonials} /> */}
-        <ContactSection />
-      </div>
-    </main>
-  )
+export const metadata: Metadata = {
+  title: copy.title,
+  description: copy.description,
+  category: 'technology',
+  keywords: [
+    'full stack developer',
+    'senior software engineer',
+    'AI engineer',
+    'agentic AI',
+    'MCP servers',
+    'python developer',
+    'fastapi developer',
+    'react developer',
+    'next.js developer',
+    'vue developer',
+    'typescript developer',
+    'backend developer',
+    'API development',
+    'AWS',
+    'Kubernetes',
+    'remote developer',
+    'Colombia developer',
+    'Latin American developer',
+    'distributed teams',
+    'computer engineer',
+  ],
+  alternates: alternatesFor('en', ''),
+  openGraph: {
+    title: copy.title,
+    description: copy.description,
+    url: alternatesFor('en', '').canonical,
+    type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: `${siteUrl}/opengraph-image`,
+        width: 1200,
+        height: 630,
+        alt: 'David Gómez — Senior Full-Stack Engineer & AI Systems',
+      },
+    ],
+  },
+  twitter: {
+    title: copy.title,
+    description: copy.description,
+    card: 'summary_large_image',
+    creator: '@davidgomezdev',
+    images: [`${siteUrl}/opengraph-image`],
+  },
 }
+
+export default HomePage

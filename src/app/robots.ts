@@ -1,21 +1,20 @@
 import type { MetadataRoute } from 'next'
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dgomez.dev'
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/private/', '/admin/', '/api/', '/_next/', '/static/', '/*.json$', '/netlify/'],
-      },
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
-        disallow: ['/private/', '/admin/', '/_next/', '/static/', '/*.json$', '/netlify/'],
-        crawlDelay: 1,
+        // `/_next/` is deliberately NOT disallowed. Every stylesheet and script lives under
+        // `/_next/static/`, and the hero photo is only ever served from `/_next/image?url=…`.
+        // Blocking it stops Google rendering the page at all and keeps the photo out of image
+        // search. Crawl-delay and host: are omitted — Google ignores both.
+        disallow: ['/private/', '/admin/', '/api/', '/netlify/'],
       },
     ],
-    host: 'https://dgomez.dev',
-    sitemap: 'https://dgomez.dev/sitemap.xml',
+    sitemap: `${baseUrl}/sitemap.xml`,
   }
 }

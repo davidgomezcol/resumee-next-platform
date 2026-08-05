@@ -1,10 +1,6 @@
 // Google Analytics event tracking utility
 
-declare global {
-  interface Window {
-    gtag: (...args: (string | Record<string, unknown>)[]) => void
-  }
-}
+// `window.gtag` is declared in @/lib/consent, where it is actually assigned.
 
 export const trackEvent = (action: string, category: string, label?: string, value?: number) => {
   if (typeof window !== 'undefined' && window.gtag) {

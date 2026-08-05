@@ -1,91 +1,78 @@
-import { Project, Testimonial, WorkExperience } from '@/lib/types'
+import { RoleContent, WorkExperience } from '@/lib/types'
 import { promises as fs } from 'fs'
 import path from 'path'
 
-// Function to read project file
-const readProjectFile = async (filePath: string): Promise<Project> => {
-  const projectData = await fs.readFile(filePath, 'utf8')
-  return JSON.parse(projectData)
-}
+const REQUIRED_TEXT: (keyof RoleContent)[] = ['period', 'place', 'title', 'company', 'summary']
 
-// Function to read work experience file
-const readWorkExperienceFile = async (filePath: string): Promise<WorkExperience> => {
-  const workExperienceData = await fs.readFile(filePath, 'utf8')
-  return JSON.parse(workExperienceData)
-}
-
-// Function to get all projects
-const getAllProjects = async (): Promise<Project[]> => {
-  try {
-    const projectsPath = path.join(process.cwd(), '/content/projects')
-    const projectsName = await fs.readdir(projectsPath)
-
-    const projects = await Promise.all(
-      projectsName.map(async (projectName) => {
-        const filePath = path.join(projectsPath, projectName)
-        const projectDetails = await readProjectFile(filePath)
-        return projectDetails
-      }),
-    )
-
-    // Sort projects by priority
-    projects.sort((a, b) => a.priority - b.priority)
-
-    return projects
-  } catch (error) {
-    // Handle errors
-    console.error('Error:', error)
-    return []
+/**
+ * `JSON.parse(...) as WorkExperience` asserts a shape nothing checks. Because the prerender only
+ * ever renders English, a role whose `es` block is missing or misspelled builds green and then
+ * throws for the first visitor who switches language. Checking here — where there is already a
+ * try/catch — turns that into a skipped entry and a build log line.
+ */
+const isValidRole = (value: unknown, fileName: string): value is WorkExperience => {
+  const role = value as Partial<WorkExperience> | null
+  const complain = (reason: string) => {
+    console.error(`Skipping ${fileName}: ${reason}`)
+    return false
   }
+
+  if (!role || typeof role !== 'object') return complain('not an object')
+  if (typeof role.id !== 'string' || !role.id) return complain('missing "id"')
+  if (typeof role.priority !== 'number' || !Number.isFinite(role.priority)) {
+    return complain('"priority" must be a number — sorting yields NaN otherwise')
+  }
+
+  for (const language of ['en', 'es'] as const) {
+    const content = role[language]
+    if (!content || typeof content !== 'object') return complain(`missing "${language}" block`)
+    for (const key of REQUIRED_TEXT) {
+      if (typeof content[key] !== 'string' || !content[key]) {
+        return complain(`"${language}.${key}" is missing or empty`)
+      }
+    }
+    for (const key of ['tech', 'achievements'] as const) {
+      if (!Array.isArray(content[key])) return complain(`"${language}.${key}" must be an array`)
+    }
+  }
+
+  return true
 }
 
-// Function to get all work experiences
+/**
+ * Reads every role in /content/work-experience, most recent first.
+ * Each file carries both languages, so no separate translation table is needed.
+ */
 const getAllWorkExperiences = async (): Promise<WorkExperience[]> => {
   try {
     const workExperiencesPath = path.join(process.cwd(), '/content/work-experience')
-    const workExperiencesName = await fs.readdir(workExperiencesPath)
+    const fileNames = await fs.readdir(workExperiencesPath)
 
-    const workExperiences = await Promise.all(
-      workExperiencesName.map(async (workExperienceName) => {
-        const filePath = path.join(workExperiencesPath, workExperienceName)
-        const workExperienceDetails = await readWorkExperienceFile(filePath)
-        return workExperienceDetails
-      }),
+    const parsed = await Promise.all(
+      fileNames
+        .filter((fileName) => fileName.endsWith('.json'))
+        .map(async (fileName) => {
+          const contents = await fs.readFile(path.join(workExperiencesPath, fileName), 'utf8')
+          try {
+            const role: unknown = JSON.parse(contents)
+            return isValidRole(role, fileName) ? role : null
+          } catch (error) {
+            console.error(`Skipping ${fileName}: invalid JSON — ${error}`)
+            return null
+          }
+        }),
     )
 
-    // Sort work experiences by priority (most recent first)
+    const workExperiences = parsed.filter((role): role is WorkExperience => role !== null)
+
+    // Higher priority first — BriteCore (8) down to Covencaucho (1).
     workExperiences.sort((a, b) => b.priority - a.priority)
 
     return workExperiences
   } catch (error) {
-    // Handle errors
     console.error('Error:', error)
     return []
   }
 }
 
-const getAllTestimonials = async (): Promise<Testimonial[]> => {
-  try {
-    const testimonialsPath = path.join(process.cwd(), '/content/testimonials')
-    const testimonialsName = await fs.readdir(testimonialsPath)
-
-    const testimonials = await Promise.all(
-      testimonialsName.map(async (projectName) => {
-        const filePath = path.join(testimonialsPath, projectName)
-        const projectDetails = await fs.readFile(filePath, 'utf8')
-        return JSON.parse(projectDetails)
-      }),
-    )
-
-    // Sort testimonials by date
-    testimonials.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-
-    return testimonials
-  } catch (error) {
-    // Handle errors
-    console.error('Error:', error)
-    return []
-  }
-}
-
-export { getAllProjects, getAllTestimonials, getAllWorkExperiences }
+export { getAllWorkExperiences }

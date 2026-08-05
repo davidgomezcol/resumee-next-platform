@@ -1,5 +1,5 @@
-import { ButtonHTMLAttributes, FC } from 'react'
 import { trackButtonClick } from '@/lib/analytics'
+import { ButtonHTMLAttributes, FC } from 'react'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string
@@ -8,23 +8,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: FC<ButtonProps> = ({ text, trackingName, trackingLocation, onClick, ...props }) => {
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    // Track button click if tracking name is provided
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (trackingName) {
       trackButtonClick(trackingName, trackingLocation)
     }
 
-    // Call original onClick if provided
-    if (onClick) {
-      onClick(e)
-    }
+    onClick?.(event)
   }
 
   return (
     <button
       {...props}
       onClick={handleClick}
-      className="bg-accent hover:bg-accent/60 disabled:bg-accent/40 text-secondary w-full cursor-pointer rounded-lg px-[10px] py-2 transition-colors duration-300">
+      className="bg-bone text-void hover:bg-coral disabled:bg-bone/60 w-full cursor-pointer border-0 px-[18px] py-[13px] font-mono text-[11px] tracking-[0.14em] uppercase transition-colors disabled:cursor-not-allowed">
       {text}
     </button>
   )

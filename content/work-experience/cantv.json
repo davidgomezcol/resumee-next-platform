@@ -1,28 +1,45 @@
 {
   "id": "cantv",
-  "company": "CANTV",
-  "position": "Internship",
-  "location": "Barquisimeto, Venezuela",
-  "startDate": "2007-10",
-  "endDate": "2007-12",
-  "isCurrent": false,
-  "logoClass": "bg-white",
-  "imageClass": "bg-white",
-  "description": "During my Computer Engineering degree, I completed internships at CANTV in the Lara Transmissions department. Gained extensive knowledge of telecommunications and data transmission systems.",
-  "technologies": [
-    "Telecommunications",
-    "Data Transmission",
-    "Logic Gates",
-    "Hardware Design",
-    "System Troubleshooting"
-  ],
-  "achievements": [
-    "Gained extensive knowledge of telecommunications and data transmission systems",
-    "Designed a device to detect communication failures between transmission radios, utilizing logic gates and multiple connectors",
-    "Developed practical skills in diagnosing and troubleshooting transmission issues, contributing to improved communication reliability",
-    "Completed Computer Engineering internship requirements successfully"
-  ],
-  "companyLogo": "/images/cantv_logo.png",
+  "priority": 2,
   "companyUrl": "https://www.cantv.com.ve/",
-  "priority": 2
+  "en": {
+    "period": "Oct 2007 — Dec 2007",
+    "place": "Barquisimeto, Venezuela",
+    "title": "Internship — Lara Transmissions",
+    "company": "CANTV",
+    "summary": "Completed Computer Engineering internships in the Lara Transmissions department, gaining extensive knowledge of telecommunications and data transmission systems.",
+    "tech": [
+      "Telecommunications",
+      "Data Transmission",
+      "Logic Gates",
+      "Hardware Design",
+      "System Troubleshooting"
+    ],
+    "achievements": [
+      "Gained extensive knowledge of telecommunications and data transmission systems",
+      "Designed a device to detect communication failures between transmission radios, utilizing logic gates and multiple connectors",
+      "Developed practical skills in diagnosing and troubleshooting transmission issues, contributing to improved communication reliability",
+      "Completed Computer Engineering internship requirements successfully"
+    ]
+  },
+  "es": {
+    "period": "Oct 2007 — Dic 2007",
+    "place": "Barquisimeto, Venezuela",
+    "title": "Pasantía — Transmisiones Lara",
+    "company": "CANTV",
+    "summary": "Realicé pasantías de Ingeniería en Informática en el departamento de Transmisiones Lara, adquiriendo amplio conocimiento de telecomunicaciones y sistemas de transmisión de datos.",
+    "tech": [
+      "Telecomunicaciones",
+      "Transmisión de datos",
+      "Puertas lógicas",
+      "Diseño de hardware",
+      "Diagnóstico de sistemas"
+    ],
+    "achievements": [
+      "Adquirí amplio conocimiento de telecomunicaciones y sistemas de transmisión de datos",
+      "Diseñé un dispositivo para detectar fallas de comunicación entre radios de transmisión, usando puertas lógicas y múltiples conectores",
+      "Desarrollé habilidades prácticas de diagnóstico y resolución de fallas de transmisión, mejorando la confiabilidad de la comunicación",
+      "Cumplí satisfactoriamente los requisitos de pasantía de Ingeniería en Informática"
+    ]
+  }
 }
