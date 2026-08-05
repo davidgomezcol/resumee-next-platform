@@ -265,7 +265,7 @@ export const translations: Record<Language, Translations> = {
     },
     consent: {
       eyebrow: 'Cookie notice',
-      body: 'No analytics cookies are set until you choose. Google Analytics 4 helps me see which pages get read — it stays off unless you accept. Your consent choice is stored locally either way.',
+      body: 'Google Analytics 4 helps me see which pages get read. Where the law requires opt-in — the EEA, the UK and Switzerland — it stays off until you accept. Elsewhere it runs unless you turn it off, here or from Cookie settings in the footer at any time.',
       accept: 'Accept analytics',
       reject: 'Reject analytics',
       manage: 'Manage',
@@ -443,7 +443,7 @@ export const translations: Record<Language, Translations> = {
     },
     consent: {
       eyebrow: 'Aviso de cookies',
-      body: 'No se instala ninguna cookie de analítica hasta que elijas. Google Analytics 4 me permite ver qué páginas se leen; permanece desactivado salvo que aceptes. Tu decisión se guarda localmente en cualquier caso.',
+      body: 'Google Analytics 4 me permite ver qué páginas se leen. Donde la ley exige consentimiento previo —el EEE, el Reino Unido y Suiza— permanece desactivado hasta que aceptes. En el resto se ejecuta salvo que lo desactives, aquí o en Cookies al pie del sitio cuando quieras.',
       accept: 'Aceptar analítica',
       reject: 'Rechazar analítica',
       manage: 'Gestionar',
