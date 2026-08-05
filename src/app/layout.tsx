@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
 
-import Footer from '@/components/Footer/Footer'
-import Header from '@/components/Header/Header'
 import CookieConsent from '@/components/Consent/CookieConsent'
 import { ConsentProvider } from '@/contexts/ConsentContext'
 import { LanguageProvider } from '@/contexts/LanguageContext'
@@ -347,10 +345,9 @@ export default function RootLayout({
       </head>
       <body>
         <LanguageProvider>
+          {/* Header and footer live in the pages: the privacy notice uses reduced variants. */}
           <ConsentProvider>
-            <Header />
-            <main>{children}</main>
-            <Footer />
+            {children}
             <CookieConsent />
           </ConsentProvider>
         </LanguageProvider>

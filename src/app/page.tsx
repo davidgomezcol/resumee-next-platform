@@ -1,4 +1,6 @@
 import About from '@/components/About/About'
+import Footer from '@/components/Footer/Footer'
+import Header from '@/components/Header/Header'
 import Capabilities from '@/components/Capabilities/Capabilities'
 import Contact from '@/components/Contact/Contact'
 import Experience from '@/components/Experience/Experience'
@@ -10,11 +12,15 @@ export default async function Home() {
 
   return (
     <>
-      <Hero />
-      <About />
-      <Experience roles={roles} />
-      <Capabilities />
-      <Contact />
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Experience roles={roles} />
+        <Capabilities />
+        <Contact />
+      </main>
+      <Footer />
     </>
   )
 }

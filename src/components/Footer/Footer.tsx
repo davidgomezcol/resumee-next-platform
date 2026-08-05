@@ -4,12 +4,20 @@ import { container, site } from '@/appData/site'
 import { useConsent } from '@/contexts/ConsentContext'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { trackEmailClick, trackSocialClick } from '@/lib/analytics'
+import { privacyContent } from '@/lib/privacyContent'
+import Link from 'next/link'
+import { FC } from 'react'
 import LanguageToggle from '../UI/LanguageToggle'
 
 const link = 'text-bone/70 transition-colors hover:text-coral'
 
-const Footer = () => {
-  const { t } = useLanguage()
+interface FooterProps {
+  /** `document` is the reduced footer used by standalone pages like the privacy notice. */
+  variant?: 'site' | 'document'
+}
+
+const Footer: FC<FooterProps> = ({ variant = 'site' }) => {
+  const { t, language } = useLanguage()
   const { reopen } = useConsent()
 
   return (
@@ -24,28 +32,42 @@ const Footer = () => {
           © {new Date().getFullYear()} {t.footer.rights}
         </span>
         <div className="ml-auto flex flex-wrap items-center gap-[22px]">
+          {variant === 'document' ? (
+            <Link href="/" className={link}>
+              {privacyContent[language].back}
+            </Link>
+          ) : (
+            <Link href="/privacy" className={link}>
+              {privacyContent[language].title}
+            </Link>
+          )}
           <a
             href={`mailto:${site.email}`}
             onClick={() => trackEmailClick(site.email, 'footer')}
             className={link}>
             {site.email}
           </a>
-          <a
-            href={site.linkedin}
-            target="_blank"
-            rel="noopener"
-            onClick={() => trackSocialClick('linkedin')}
-            className={link}>
-            LinkedIn
-          </a>
-          <a
-            href={site.github}
-            target="_blank"
-            rel="noopener"
-            onClick={() => trackSocialClick('github')}
-            className={link}>
-            GitHub
-          </a>
+          {variant === 'site' && (
+            <>
+              <a
+                href={site.linkedin}
+                target="_blank"
+                rel="noopener"
+                onClick={() => trackSocialClick('linkedin')}
+                className={link}>
+                LinkedIn
+              </a>
+              <a
+                href={site.github}
+                target="_blank"
+                rel="noopener"
+                onClick={() => trackSocialClick('github')}
+                className={link}>
+                GitHub
+              </a>
+            </>
+          )}
+          {/* Kept on both: the notice itself tells readers to use this control. */}
           <button
             type="button"
             onClick={reopen}
