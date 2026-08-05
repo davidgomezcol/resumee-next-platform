@@ -6,6 +6,8 @@ export const site = {
   linkedin: 'https://www.linkedin.com/in/davidgomezm7/',
   github: 'https://github.com/davidgomezcol',
   photo: '/images/me.webp',
+  /** Loaded only after the visitor accepts analytics — see @/lib/consent. */
+  gaMeasurementId: 'G-BKB0F9Y6WC',
 } as const
 
 /** Section anchors, in page order. `key` indexes translations.nav. */

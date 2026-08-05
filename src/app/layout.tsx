@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import Script from 'next/script'
 import './globals.css'
 
 import Footer from '@/components/Footer/Footer'
 import Header from '@/components/Header/Header'
+import CookieConsent from '@/components/Consent/CookieConsent'
+import { ConsentProvider } from '@/contexts/ConsentContext'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import { Archivo, JetBrains_Mono, Libre_Franklin } from 'next/font/google'
 
@@ -226,28 +227,11 @@ export default function RootLayout({
       lang="en"
       className={`${archivo.variable} ${libreFranklin.variable} ${jetBrainsMono.variable}`}>
       <head>
-        {/* Google Analytics — production only, so local development doesn't pollute the property */}
-        {process.env.NODE_ENV === 'production' && (
-          <>
-            <link rel="preconnect" href="https://www.googletagmanager.com" />
-            <Script
-              src="https://www.googletagmanager.com/gtag/js?id=G-BKB0F9Y6WC"
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', 'G-BKB0F9Y6WC', {
-                  page_title: document.title,
-                  page_location: window.location.href,
-                  send_page_view: true
-                });
-              `}
-            </Script>
-          </>
-        )}
+        {/*
+          Google Analytics is not loaded here. Consent Mode defaults to denied and gtag.js is
+          injected only after the visitor accepts — see @/lib/consent and ConsentProvider.
+        */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
 
         {/* Structured Data */}
         <script
@@ -363,9 +347,12 @@ export default function RootLayout({
       </head>
       <body>
         <LanguageProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <ConsentProvider>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+            <CookieConsent />
+          </ConsentProvider>
         </LanguageProvider>
       </body>
     </html>

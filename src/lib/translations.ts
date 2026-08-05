@@ -75,6 +75,24 @@ export interface Translations {
   }
   footer: {
     rights: string
+    cookieSettings: string
+  }
+  consent: {
+    eyebrow: string
+    body: string
+    accept: string
+    reject: string
+    manage: string
+    save: string
+    stateOn: string
+    stateOff: string
+    privacy: string
+    necLabel: string
+    necNote: string
+    necReq: string
+    anLabel: string
+    anNote: string
+    anToggle: string
   }
 }
 
@@ -218,6 +236,26 @@ export const translations: Record<Language, Translations> = {
     },
     footer: {
       rights: 'David Gómez',
+      cookieSettings: 'Cookie settings',
+    },
+    consent: {
+      eyebrow: 'Cookie notice',
+      body: 'No analytics cookies are set until you choose. Google Analytics 4 helps me see which pages get read — it stays off unless you accept. Your language and consent choice are stored locally either way.',
+      accept: 'Accept analytics',
+      reject: 'Reject analytics',
+      manage: 'Manage',
+      save: 'Save choices',
+      stateOn: 'Analytics · on',
+      stateOff: 'Analytics · off',
+      privacy: 'Privacy notice',
+      necLabel: 'Strictly necessary',
+      necNote:
+        'Language preference and this consent choice. Stored locally on your device, never sent anywhere.',
+      necReq: 'Required',
+      anLabel: 'Analytics — Google Analytics 4',
+      anNote:
+        'Aggregated page views and referrers. The script is loaded only after you accept; Consent Mode defaults to denied.',
+      anToggle: 'Toggle analytics consent',
     },
   },
   es: {
@@ -363,6 +401,26 @@ export const translations: Record<Language, Translations> = {
     },
     footer: {
       rights: 'David Gómez',
+      cookieSettings: 'Cookies',
+    },
+    consent: {
+      eyebrow: 'Aviso de cookies',
+      body: 'No se instala ninguna cookie de analítica hasta que elijas. Google Analytics 4 me permite ver qué páginas se leen; permanece desactivado salvo que aceptes. Tu idioma y tu decisión se guardan localmente en cualquier caso.',
+      accept: 'Aceptar analítica',
+      reject: 'Rechazar analítica',
+      manage: 'Gestionar',
+      save: 'Guardar',
+      stateOn: 'Analítica · activa',
+      stateOff: 'Analítica · inactiva',
+      privacy: 'Aviso de privacidad',
+      necLabel: 'Estrictamente necesario',
+      necNote:
+        'Preferencia de idioma y esta decisión de consentimiento. Se guardan en tu dispositivo, no se envían a ningún sitio.',
+      necReq: 'Obligatorio',
+      anLabel: 'Analítica — Google Analytics 4',
+      anNote:
+        'Páginas vistas y referentes agregados. El script se carga solo si aceptas; el Consent Mode está denegado por defecto.',
+      anToggle: 'Alternar consentimiento de analítica',
     },
   },
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import { container, site } from '@/appData/site'
+import { useConsent } from '@/contexts/ConsentContext'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { trackEmailClick, trackSocialClick } from '@/lib/analytics'
 import LanguageToggle from '../UI/LanguageToggle'
@@ -9,6 +10,7 @@ const link = 'text-bone/70 transition-colors hover:text-coral'
 
 const Footer = () => {
   const { t } = useLanguage()
+  const { reopen } = useConsent()
 
   return (
     <footer className="border-bone/14 bg-void text-bone/74 border-t">
@@ -44,6 +46,12 @@ const Footer = () => {
             className={link}>
             GitHub
           </a>
+          <button
+            type="button"
+            onClick={reopen}
+            className="text-bone/74 hover:text-coral cursor-pointer font-mono text-[10.5px] tracking-[0.1em] transition-colors">
+            {t.footer.cookieSettings}
+          </button>
           <LanguageToggle variant="bare" />
         </div>
       </div>

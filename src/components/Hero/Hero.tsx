@@ -4,7 +4,6 @@ import { container, site } from '@/appData/site'
 import { useLanguage } from '@/contexts/LanguageContext'
 import Image from 'next/image'
 import CornerTicks from '../UI/CornerTicks'
-import MetaTable from '../UI/MetaTable'
 
 const ctaBase =
   'font-mono text-[11px] tracking-[0.14em] uppercase px-[22px] py-[13px] transition-colors'
@@ -15,7 +14,7 @@ const Hero = () => {
   return (
     <section id="top" className="border-ink/12 bg-void text-bone border-b" aria-label={site.name}>
       <div
-        className={`${container} grid grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] items-end gap-[clamp(36px,5vw,72px)] pt-[clamp(52px,7vw,104px)] pb-[clamp(44px,5vw,72px)]`}>
+        className={`${container} wide:grid-cols-[minmax(0,1.12fr)_minmax(290px,0.88fr)] grid grid-cols-1 items-stretch gap-[clamp(36px,5vw,72px)] pt-[clamp(52px,7vw,104px)] pb-[clamp(44px,5vw,72px)]`}>
         <div>
           <p className="text-coral mb-[clamp(20px,3vw,34px)] flex flex-wrap items-center gap-2 font-mono text-[11.5px] tracking-[0.16em] uppercase">
             <span className="text-bone/70">~</span>
@@ -64,29 +63,39 @@ const Hero = () => {
               GitHub ↗
             </a>
           </div>
+
+          {/* Specs sit under the copy now, laid out as columns rather than a stacked list. */}
+          <dl className="mt-[clamp(32px,4vw,48px)] grid grid-cols-[repeat(auto-fit,minmax(min(146px,100%),1fr))] gap-x-[clamp(18px,2.4vw,32px)] font-mono">
+            {t.hero.specs.map((spec) => (
+              <div key={spec.k} className="border-bone/22 border-t pt-[13px]">
+                <dt className="text-bone/72 mb-1.5 text-[11px] tracking-[0.16em] uppercase">
+                  {spec.k}
+                </dt>
+                <dd className="text-bone/90 text-[12.5px] leading-[1.45]">{spec.v}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        <div className="wide:grid-cols-[minmax(150px,0.9fr)_minmax(180px,1.1fr)] grid grid-cols-1 items-end gap-[clamp(20px,2.6vw,34px)]">
-          <MetaTable rows={t.hero.specs} tone="dark" layout="stacked" />
-
-          {/* Capped below `wide` so the stacked photo doesn't dominate a phone screen. */}
-          <div className="wide:max-w-full relative max-w-[270px]">
-            {/*
-              width/height are the file's true intrinsic size so the generated srcset never asks
-              for more pixels than exist; `sizes` tells Next the rendered width so it stops
-              requesting a 1920px variant for a ~400px slot. The 4/5 box is a CSS crop.
-            */}
+        {/*
+          A full-height column rather than a boxed 4:5 crop. The image fills an absolutely
+          positioned frame, scaled and offset so the face stays put as the column changes height.
+          width/height are the file's true intrinsic size so the srcset never asks for more pixels
+          than exist.
+        */}
+        <div className="border-bone/16 relative min-h-[clamp(400px,46vw,660px)] self-stretch border">
+          <div className="absolute inset-0 overflow-hidden">
             <Image
               src={site.photo}
               alt={site.name}
               width={1023}
               height={1537}
-              sizes="(min-width: 760px) 400px, 270px"
+              sizes="(min-width: 760px) 45vw, 100vw"
               priority
-              className="border-bone/16 block aspect-[4/5] w-full border object-cover object-top contrast-[1.04] saturate-[1.04]"
+              className="absolute inset-0 block h-full w-full origin-[50%_26%] scale-120 object-cover object-[50%_20%] brightness-[0.93] contrast-[1.07] saturate-[1.02]"
             />
-            <CornerTicks />
           </div>
+          <CornerTicks />
         </div>
 
         {/* Full-width rather than inside the specs column, which keeps that column readable. */}
