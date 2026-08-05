@@ -69,6 +69,7 @@ export interface Translations {
       emailRequired: string
       emailInvalid: string
       messageRequired: string
+      answerRequired: string
       tooLong: string
     }
   }
@@ -103,7 +104,7 @@ export const translations: Record<Language, Translations> = {
     },
     about: {
       label: 'About',
-      heading: 'Fifteen years of building, seven of them remote.',
+      heading: 'Nineteen years of building, nine of them remote.',
       paragraphs: [
         "I'm a Computer Engineer, originally from Venezuela and currently based in Colombia since 2019. I graduated in 2008 from Fermin Toro University in Barquisimeto, Venezuela, where my thesis earned two special distinctions—Mention for Publication and Honorific Mention—and was even featured in a local newspaper.",
         "Since 2017, I've been working remotely with U.S.-based companies, gaining extensive experience in multicultural and distributed teams. This has shaped my ability to communicate effectively across cultures, collaborate seamlessly in remote environments, and thrive in diverse professional settings.",
@@ -211,6 +212,7 @@ export const translations: Record<Language, Translations> = {
         emailRequired: 'Please provide your email address.',
         emailInvalid: 'Enter a valid email address.',
         messageRequired: 'Please provide a message.',
+        answerRequired: 'Please answer the security question.',
         tooLong: 'Too long — maximum {max} characters.',
       },
     },
@@ -244,7 +246,7 @@ export const translations: Record<Language, Translations> = {
     },
     about: {
       label: 'Perfil',
-      heading: 'Quince años construyendo, siete de ellos en remoto.',
+      heading: 'Diecinueve años construyendo, nueve de ellos en remoto.',
       paragraphs: [
         'Soy Ingeniero en Informática, originario de Venezuela y radicado en Colombia desde 2019. Me gradué en 2008 en la Universidad Fermín Toro de Barquisimeto, Venezuela, donde mi tesis obtuvo dos distinciones especiales—Mención Publicación y Mención Honorífica—y fue reseñada en un diario local.',
         'Desde 2017 trabajo de forma remota con empresas de Estados Unidos, acumulando amplia experiencia en equipos multiculturales y distribuidos. Esto ha moldeado mi capacidad de comunicarme entre culturas, colaborar con fluidez en entornos remotos y desempeñarme bien en contextos profesionales diversos.',
@@ -355,6 +357,7 @@ export const translations: Record<Language, Translations> = {
         emailRequired: 'Por favor proporciona tu correo electrónico.',
         emailInvalid: 'Introduce una dirección de correo válida.',
         messageRequired: 'Por favor proporciona un mensaje.',
+        answerRequired: 'Por favor responde la pregunta de seguridad.',
         tooLong: 'Demasiado largo — máximo {max} caracteres.',
       },
     },

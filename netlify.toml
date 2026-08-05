@@ -3,17 +3,23 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "18"
-  SECRETS_SCAN_ENABLED = "false"
+  NODE_VERSION = "22"
+  # Scanning stays on; only the values that legitimately appear in the build output
+  # are exempt, rather than disabling detection wholesale.
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_SITE_URL"
 
 # Headers for SEO
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
+    # 0 is current guidance — the legacy auditor caused vulnerabilities of its own.
+    X-XSS-Protection = "0"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    # Without HSTS the first visit is still downgradeable despite the 301s below.
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
 
 # Cache control for static assets
 [[headers]]
@@ -23,12 +29,6 @@
 
 [[headers]]
   for = "/images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Ensure proper handling of Next.js image optimization
-[[headers]]
-  for = "/_next/image/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 

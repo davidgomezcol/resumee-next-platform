@@ -17,7 +17,8 @@ const Footer = () => {
         <span className="text-bone/85">
           dgomez<span className="text-coral">.dev</span>
         </span>
-        <span>
+        {/* Baked in at build time, recomputed at hydration — they differ across a New Year. */}
+        <span suppressHydrationWarning>
           © {new Date().getFullYear()} {t.footer.rights}
         </span>
         <div className="ml-auto flex flex-wrap items-center gap-[22px]">

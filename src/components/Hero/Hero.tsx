@@ -15,7 +15,7 @@ const Hero = () => {
   return (
     <section id="top" className="border-ink/12 bg-void text-bone border-b" aria-label={site.name}>
       <div
-        className={`${container} grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] items-end gap-[clamp(36px,5vw,72px)] pt-[clamp(52px,7vw,104px)] pb-[clamp(44px,5vw,72px)]`}>
+        className={`${container} grid grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] items-end gap-[clamp(36px,5vw,72px)] pt-[clamp(52px,7vw,104px)] pb-[clamp(44px,5vw,72px)]`}>
         <div>
           <p className="text-coral mb-[clamp(20px,3vw,34px)] flex flex-wrap items-center gap-2 font-mono text-[11.5px] tracking-[0.16em] uppercase">
             <span className="text-bone/70">~</span>
@@ -71,11 +71,17 @@ const Hero = () => {
 
           {/* Capped below `wide` so the stacked photo doesn't dominate a phone screen. */}
           <div className="wide:max-w-full relative max-w-[270px]">
+            {/*
+              width/height are the file's true intrinsic size so the generated srcset never asks
+              for more pixels than exist; `sizes` tells Next the rendered width so it stops
+              requesting a 1920px variant for a ~400px slot. The 4/5 box is a CSS crop.
+            */}
             <Image
               src={site.photo}
               alt={site.name}
-              width={640}
-              height={800}
+              width={1023}
+              height={1537}
+              sizes="(min-width: 760px) 400px, 270px"
               priority
               className="border-bone/16 block aspect-[4/5] w-full border object-cover object-top contrast-[1.04] saturate-[1.04]"
             />

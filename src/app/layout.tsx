@@ -82,21 +82,15 @@ export const metadata: Metadata = {
     siteName: 'David Gómez - Senior Full-Stack Engineer',
     type: 'website',
     locale: 'en_US',
-    images: [
-      {
-        url: '/opengraph-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'David Gómez - Senior Full-Stack Engineer & AI Systems',
-      },
-    ],
+    // No `images` here on purpose: opengraph-image.tsx supplies the tags via the file convention,
+    // and a hand-written array is silently overridden by it.
   },
   twitter: {
     title,
     description,
     card: 'summary_large_image',
     creator: '@davidgomezdev',
-    images: ['/twitter-image.png'],
+    // twitter-image.tsx supplies the tags, same as above.
   },
   robots: {
     index: true,
@@ -166,14 +160,6 @@ export default function RootLayout({
           addressLocality: 'Bogotá',
           addressCountry: 'CO',
         },
-        availableForHire: true,
-        offers: {
-          '@type': 'Offer',
-          category: 'Software Engineering Services',
-          description:
-            'Backend services, AI agents, and full-stack product work for cloud-native platforms',
-          areaServed: 'US',
-        },
         alumniOf: {
           '@type': 'Organization',
           name: 'Universidad Fermín Toro',
@@ -231,10 +217,6 @@ export default function RootLayout({
           '@id': `${url}#person`,
         },
         inLanguage: 'en-US',
-        potentialAction: {
-          '@type': 'ContactPage',
-          target: `${url}#contact`,
-        },
       },
     ],
   }
@@ -244,29 +226,29 @@ export default function RootLayout({
       lang="en"
       className={`${archivo.variable} ${libreFranklin.variable} ${jetBrainsMono.variable}`}>
       <head>
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-BKB0F9Y6WC"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-BKB0F9Y6WC', {
-              page_title: document.title,
-              page_location: window.location.href,
-              send_page_view: true
-            });
-          `}
-        </Script>
+        {/* Google Analytics — production only, so local development doesn't pollute the property */}
+        {process.env.NODE_ENV === 'production' && (
+          <>
+            <link rel="preconnect" href="https://www.googletagmanager.com" />
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-BKB0F9Y6WC"
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-BKB0F9Y6WC', {
+                  page_title: document.title,
+                  page_location: window.location.href,
+                  send_page_view: true
+                });
+              `}
+            </Script>
+          </>
+        )}
 
-        {/* Google Search Console Verification */}
-        <meta
-          name="google-site-verification"
-          content="dQxEAKUYOvK27USDE2KA0Soge-eviyq_mUSzTlgCF6U"
-        />
         {/* Structured Data */}
         <script
           type="application/ld+json"

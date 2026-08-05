@@ -16,7 +16,5 @@ export const navSections = [
   { n: '04', id: 'contact', key: 'contact' },
 ] as const
 
-export type NavSection = (typeof navSections)[number]
-
 /** Shared page gutter — matches the design's 1240px column. */
 export const container = 'mx-auto w-full max-w-[1240px] px-[clamp(20px,4vw,56px)]'

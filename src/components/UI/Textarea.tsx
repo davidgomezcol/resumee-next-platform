@@ -1,5 +1,5 @@
 import { FC, TextareaHTMLAttributes } from 'react'
-import { FieldError, fieldControl, fieldLabel, fieldRule } from './Input'
+import { FieldError, RequiredMark, fieldControl, fieldLabel, fieldRule } from './Input'
 
 interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'className'> {
   label: string
@@ -12,7 +12,10 @@ interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>
 
 const Textarea: FC<TextareaProps> = ({ id, label, error, className, ...props }) => (
   <label htmlFor={id} className={`flex flex-col gap-[7px] ${className ?? ''}`}>
-    <span className={fieldLabel}>{label}</span>
+    <span className={fieldLabel}>
+      {label}
+      {props.required && <RequiredMark />}
+    </span>
     <textarea
       id={id}
       aria-invalid={error ? true : undefined}

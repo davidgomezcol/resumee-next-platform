@@ -72,7 +72,7 @@ const RoleRow: FC<RoleRowProps> = ({ content, companyUrl, open, onToggle, panelI
         <p className="border-ink/12 text-ink/64 border-b pb-3 font-mono text-[11px] tracking-[0.16em] uppercase">
           {labels.achievements}
         </p>
-        <ul className="mt-1 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-x-[clamp(24px,3vw,44px)]">
+        <ul className="mt-1 grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-x-[clamp(24px,3vw,44px)]">
           {content.achievements.map((achievement, index) => (
             <li
               key={achievement.slice(0, 40)}

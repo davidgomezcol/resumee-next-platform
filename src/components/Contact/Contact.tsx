@@ -13,7 +13,7 @@ const Contact = () => {
   return (
     <section id="contact" className="bg-void text-bone">
       <div
-        className={`${container} grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[clamp(36px,5vw,72px)] py-[clamp(58px,7vw,104px)]`}>
+        className={`${container} grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-[clamp(36px,5vw,72px)] py-[clamp(58px,7vw,104px)]`}>
         <div>
           <SectionLabel n="04" label={t.contact.label} tone="dark" />
           <h2 className="font-display mt-[clamp(18px,2.4vw,28px)] max-w-[14ch] text-[clamp(33px,3.9vw,56px)] leading-[1.02] font-semibold tracking-[-0.038em]">

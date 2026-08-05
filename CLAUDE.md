@@ -130,11 +130,10 @@ Required for contact form functionality:
 - `EMAIL_PASS` - Zoho SMTP password
 - `NEXT_PUBLIC_SITE_URL` - Canonical site URL (defaults to `https://dgomez.dev`)
 
-Optional but recommended:
-
-- `CONTACT_SECRET` - HMAC key for signing contact-form challenge tokens. Falls back to a value
-  derived from `EMAIL_PASS` (always present wherever the form can send at all), then to a
-  per-process random key that will not verify across serverless instances.
+- `CONTACT_SECRET` - HMAC key for signing contact-form challenge tokens. Required in any
+  multi-instance deployment: without it each instance signs with its own random key, so a token
+  issued by one will not verify on another. It must NOT be derived from `EMAIL_PASS` — both halves
+  of the signed message are public, so that would expose the mail credential to offline cracking.
 
 ## Deployment
 

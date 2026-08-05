@@ -7,6 +7,7 @@ import { trackFormSubmission } from '@/lib/analytics'
 import type { Challenge } from '@/lib/challenge'
 import {
   CONTACT_FIELDS,
+  FIELD_LIMITS,
   validateContact,
   type ContactField,
   type ContactValues,
@@ -14,7 +15,7 @@ import {
 } from '@/lib/contactValidation'
 import { useActionState, useCallback, useEffect, useRef, useState } from 'react'
 import Button from '../UI/Button'
-import Input, { fieldControl, fieldLabel, fieldRule } from '../UI/Input'
+import Input, { FieldError, RequiredMark, fieldControl, fieldLabel, fieldRule } from '../UI/Input'
 import Textarea from '../UI/Textarea'
 
 const readValues = (form: HTMLFormElement): ContactValues => {
@@ -33,19 +34,19 @@ const ContactForm = () => {
   const [status, formAction, isPending] = useActionState(action, null)
   const [challenge, setChallenge] = useState<Challenge | null>(null)
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
+  const [answerError, setAnswerError] = useState<string>()
   const requesting = useRef(false)
+  const successRef = useRef<HTMLDivElement>(null)
 
   /**
    * Asked for on first interaction rather than on mount, so visitors who never touch the form
    * never pay for it. The token is signed server-side; the page itself is static.
    */
-  const requestChallenge = useCallback(async (force = false) => {
+  const requestChallenge = useCallback(async () => {
     if (requesting.current) return
     requesting.current = true
     try {
-      setChallenge((current) => (force ? null : current))
-      const next = await getChallenge()
-      setChallenge(next)
+      setChallenge(await getChallenge())
     } catch (error) {
       console.error('Could not load the security question: ' + error)
     } finally {
@@ -66,12 +67,18 @@ const ContactForm = () => {
   // The server runs the same rules; adopt whatever it reports, and clear on any other outcome.
   useEffect(() => {
     setFieldErrors(status?.fieldErrors ?? {})
+    setAnswerError(undefined)
   }, [status])
 
-  // A rejected challenge is spent — issue a new question rather than let the old one be retried.
+  // A rejected challenge comes back replaced, already exempt from the minimum-age gate.
   useEffect(() => {
-    if (status?.refreshChallenge) void requestChallenge(true)
-  }, [status, requestChallenge])
+    if (status?.challenge) setChallenge(status.challenge)
+  }, [status])
+
+  // The form is gone once this renders, so focus would otherwise fall to <body>.
+  useEffect(() => {
+    if (status?.success) successRef.current?.focus()
+  }, [status?.success])
 
   /**
    * The form carries `noValidate`, so the browser's own validation bubbles never appear and the
@@ -83,6 +90,12 @@ const ContactForm = () => {
     const errors = validateContact(readValues(form), t.contact)
     setFieldErrors(errors)
 
+    const answer = form.querySelector<HTMLInputElement>('#mathAnswer')
+    // The security answer is the one control validateContact does not cover. Without this it
+    // failed silently: submission blocked, no message, just a focus jump.
+    const missingAnswer = !challenge || !answer?.value.trim()
+    setAnswerError(missingAnswer ? t.contact.errors.answerRequired : undefined)
+
     const firstInvalid = CONTACT_FIELDS.find((field) => errors[field])
     if (firstInvalid) {
       event.preventDefault()
@@ -90,12 +103,11 @@ const ContactForm = () => {
       return
     }
 
-    // Nothing to verify against yet, or nothing answered — don't spend a round trip on it.
-    const answer = form.querySelector<HTMLInputElement>('#mathAnswer')
-    if (!challenge || !answer?.value.trim()) {
+    if (missingAnswer) {
       event.preventDefault()
       ensureChallenge()
-      answer?.focus()
+      // Focus would be dropped on <body> if the control is still disabled awaiting a challenge.
+      if (answer && !answer.disabled) answer.focus()
     }
   }
 
@@ -110,7 +122,11 @@ const ContactForm = () => {
 
   if (status?.success) {
     return (
-      <div className="flex min-h-[300px] flex-col justify-center gap-3">
+      <div
+        ref={successRef}
+        role="status"
+        tabIndex={-1}
+        className="flex min-h-[300px] flex-col justify-center gap-3 outline-none">
         <p className="text-coral font-mono text-[11px] tracking-[0.16em] uppercase">
           {t.contact.successLabel}
         </p>
@@ -127,11 +143,14 @@ const ContactForm = () => {
       onSubmit={handleSubmit}
       onFocus={ensureChallenge}
       noValidate
-      className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-[clamp(16px,2vw,22px)]">
+      className="grid grid-cols-[repeat(auto-fit,minmax(min(160px,100%),1fr))] gap-[clamp(16px,2vw,22px)]">
       <Input
         label={t.contact.name}
         id="name"
         name="name"
+        required
+        autoComplete="name"
+        maxLength={FIELD_LIMITS.name}
         defaultValue={status?.values?.name ?? ''}
         error={fieldErrors.name}
         onInput={() => clearError('name')}
@@ -141,6 +160,9 @@ const ContactForm = () => {
         id="email"
         type="email"
         name="email"
+        required
+        autoComplete="email"
+        maxLength={FIELD_LIMITS.email}
         defaultValue={status?.values?.email ?? ''}
         error={fieldErrors.email}
         onInput={() => clearError('email')}
@@ -149,6 +171,7 @@ const ContactForm = () => {
         label={t.contact.subject}
         id="subject"
         name="subject"
+        maxLength={FIELD_LIMITS.subject}
         className="col-span-full"
         defaultValue={status?.values?.subject ?? ''}
         error={fieldErrors.subject}
@@ -159,6 +182,8 @@ const ContactForm = () => {
         id="message"
         name="message"
         rows={4}
+        required
+        maxLength={FIELD_LIMITS.message}
         className="col-span-full"
         defaultValue={status?.values?.message ?? ''}
         error={fieldErrors.message}
@@ -176,14 +201,21 @@ const ContactForm = () => {
       <label htmlFor="mathAnswer" className="flex flex-col gap-[7px]">
         <span className={fieldLabel}>
           {t.contact.securityQuestion} {challenge ? `${challenge.num1} + ${challenge.num2}?` : '…'}
+          <RequiredMark />
         </span>
         <input
           type="number"
           id="mathAnswer"
           name="mathAnswer"
+          required
+          autoComplete="off"
           disabled={!challenge}
-          className={`${fieldControl} ${fieldRule()} disabled:opacity-50`}
+          aria-invalid={answerError ? true : undefined}
+          aria-describedby={answerError ? 'mathAnswer-error' : undefined}
+          className={`${fieldControl} ${fieldRule(answerError)} disabled:opacity-50`}
+          onInput={() => setAnswerError(undefined)}
         />
+        {answerError && <FieldError id="mathAnswer-error">{answerError}</FieldError>}
       </label>
 
       <div className="flex items-end">

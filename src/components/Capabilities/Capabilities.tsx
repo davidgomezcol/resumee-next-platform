@@ -12,7 +12,7 @@ const Capabilities = () => {
       <div className={`${container} py-[clamp(58px,7vw,104px)]`}>
         <SectionLabel n="03" label={t.capabilities.label} />
 
-        <div className="mt-[clamp(16px,2.2vw,26px)] grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] items-end gap-[clamp(24px,4vw,64px)]">
+        <div className="mt-[clamp(16px,2.2vw,26px)] grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] items-end gap-[clamp(24px,4vw,64px)]">
           <h2 className="font-display max-w-[18ch] text-[clamp(29px,3vw,43px)] leading-[1.06] font-semibold tracking-[-0.032em]">
             {t.capabilities.heading}
           </h2>
@@ -21,7 +21,7 @@ const Capabilities = () => {
           </p>
         </div>
 
-        <div className="mt-[clamp(34px,4vw,56px)] grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-[clamp(20px,2.6vw,36px)]">
+        <div className="mt-[clamp(34px,4vw,56px)] grid grid-cols-[repeat(auto-fit,minmax(min(240px,100%),1fr))] gap-[clamp(20px,2.6vw,36px)]">
           {t.capabilities.groups.map((group) => (
             <div key={group.n} className="border-ink/85 border-t pt-3.5">
               <h3 className="text-ink flex items-baseline gap-2 font-mono text-[11px] tracking-[0.16em] uppercase">

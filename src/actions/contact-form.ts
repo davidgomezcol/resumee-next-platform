@@ -1,14 +1,12 @@
 'use server'
 
-import { verifyChallenge } from '@/lib/challenge'
+import { createChallenge, verifyChallenge, type Challenge } from '@/lib/challenge'
 import { validateContact, type ContactValues, type FieldErrors } from '@/lib/contactValidation'
 import { sendEmail } from '@/lib/email'
 import { translations } from '@/lib/translations'
 import type { Language } from '@/lib/translations'
 import { checkRateLimit } from '@/utils/rateLimit'
 import { headers } from 'next/headers'
-
-export type ContactFormValues = ContactValues
 
 export interface ContactFormState {
   success: boolean
@@ -18,11 +16,14 @@ export interface ContactFormState {
    * Echoed back on every failure: React resets the form once the action settles, so these become
    * the fields' `defaultValue` and survive a rejected submission.
    */
-  values?: ContactFormValues
+  values?: ContactValues
   /** Rendered under the offending input rather than at the foot of the form. */
   fieldErrors?: FieldErrors
-  /** The challenge is spent or was rejected; the client should fetch a fresh one. */
-  refreshChallenge?: boolean
+  /**
+   * A replacement for a challenge that was just rejected. Minted here rather than requested by the
+   * client so that its minimum-age exemption cannot be asked for directly.
+   */
+  challenge?: Challenge
 }
 
 const LANGUAGES = ['en', 'es'] as const
@@ -42,7 +43,7 @@ const action = async (
   const language: Language = isLanguage(rawLanguage) ? rawLanguage : 'en'
   const isEs = language === 'es'
 
-  const values: ContactFormValues = {
+  const values: ContactValues = {
     name: read(formData, 'name'),
     email: read(formData, 'email'),
     subject: read(formData, 'subject'),
@@ -67,11 +68,13 @@ const action = async (
     )
 
     if (!challenge.ok) {
+      // The rejected token is spent. Hand back a pre-aged replacement so an honest retry isn't
+      // met with another "you answered too fast".
       const spent = (message: string): ContactFormState => ({
         success: false,
         message,
         values,
-        refreshChallenge: true,
+        challenge: createChallenge({ preAged: true }),
       })
 
       if (challenge.reason === 'tooFast') {
@@ -112,10 +115,16 @@ const action = async (
     // Client-supplied `x-forwarded-for` entries come first in the chain, so prefer the headers a
     // proxy sets itself; fall back to the near end of the chain rather than the far one.
     const headersList = await headers()
+    // Anything that doesn't parse as a bare address is discarded rather than used as a bucket key,
+    // so a client sending junk can't mint itself a fresh quota on every request.
+    const asAddress = (value: string | null | undefined) => {
+      const candidate = value?.trim()
+      return candidate && /^[0-9a-fA-F.:]+$/.test(candidate) ? candidate : undefined
+    }
     const clientIp =
-      headersList.get('x-nf-client-connection-ip') ||
-      headersList.get('x-real-ip') ||
-      headersList.get('x-forwarded-for')?.split(',').pop()?.trim() ||
+      asAddress(headersList.get('x-nf-client-connection-ip')) ||
+      asAddress(headersList.get('x-real-ip')) ||
+      asAddress(headersList.get('x-forwarded-for')?.split(',').pop()) ||
       'unknown'
 
     if (!checkRateLimit(clientIp, 3, 300000)) {

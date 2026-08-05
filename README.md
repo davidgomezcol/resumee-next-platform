@@ -1,141 +1,83 @@
-# David Gómez - Personal Portfolio
+# dgomez.dev
 
-A modern, responsive personal portfolio website built with Next.js 15, TypeScript, and Tailwind CSS. This portfolio showcases David Gómez's work experience, skills, and services as a Full-Stack Developer and AI Enthusiast.
+Personal site for David Gómez — senior full-stack engineer working on backend services and AI
+agents. Single page, bilingual (EN/ES), deployed on Netlify.
 
-## 🚀 Features
-
-- **Modern Tech Stack**: Built with Next.js 15, React 18, TypeScript, and Tailwind CSS
-- **Responsive Design**: Fully responsive layout that works on all devices
-- **Multi-language Support**: English and Spanish language support
-- **Dynamic Content**: Work experience, skills, and services sections
-- **Contact Form**: Functional contact form with Netlify integration
-- **Theme Support**: Multiple color themes (Light, Dark, Aqua, Retro)
-- **Performance Optimized**: Fast loading with Next.js optimizations
-- **SEO Ready**: Built-in SEO features with Next.js
-
-## 🛠️ Technologies Used
-
-- **Frontend**: Next.js 15, React 18, TypeScript
-- **Styling**: Tailwind CSS 4.0
-- **Deployment**: Netlify with Edge Functions
-- **Content Management**: JSON-based content structure
-- **Icons**: Custom SVG icons and icon system
-- **Animations**: CSS animations and React hooks for smooth interactions
-
-## 📁 Project Structure
-
-```
-src/
-├── app/                 # Next.js App Router pages
-├── components/          # Reusable React components
-│   ├── Contact/        # Contact form components
-│   ├── Hero/           # Hero section components
-│   ├── Navbar/         # Navigation components
-│   ├── Services/       # Services section components
-│   ├── Skills/         # Skills display components
-│   ├── WorkExperience/ # Work experience components
-│   └── UI/             # Basic UI components
-├── contexts/           # React contexts (Language)
-├── hooks/              # Custom React hooks
-├── lib/                # Utilities and translations
-├── services/           # Data fetching services
-└── utils/              # Helper utilities
-
-content/                # JSON content files
-├── work-experience/    # Work experience data
-├── projects/           # Project showcase data
-└── testimonials/       # Testimonial data
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
-
-```bash
-git clone <repository-url>
-cd resumee-next-platform
-```
-
-2. Install dependencies:
+## Development
 
 ```bash
 npm install
+npm run dev          # dev server with Turbopack
+npm run build        # production build
+npm run start        # serve the production build
+npm run lint         # ESLint
+npm run format       # Prettier (write)
+npm run format:check # Prettier (check)
 ```
 
-3. Run the development server:
+Run `npm run lint` and `npm run build` before committing.
 
-```bash
-npm run dev
+## Stack
+
+- **Next.js 15** (App Router). Note that `package.json` pins React 18 while the App Router runs
+  Next's vendored React 19 — that is why `useActionState` is available.
+- **TypeScript**, strict
+- **Tailwind CSS 4** via PostCSS, design tokens in `src/app/globals.css`
+- **Nodemailer** over Zoho SMTP for the contact form
+- Archivo / Libre Franklin / JetBrains Mono via `next/font`
+
+## Layout
+
+```
+content/work-experience/   8 bilingual role files (en + es blocks, priority-sorted)
+src/
+  actions/                 server actions: contact form, challenge issuance
+  app/                     layout, page, error boundary, globals.css, robots, sitemap, icons
+  appData/site.ts          language-neutral constants (email, socials, nav anchors)
+  components/              Header, Hero, About, Experience, Capabilities, Contact, Footer, UI
+  contexts/                LanguageContext (EN/ES, persisted to localStorage)
+  lib/                     translations, challenge, contactValidation, email, analytics, types
+  services/                content loading (fs, server-only, validated at read)
+  utils/rateLimit.ts       in-memory rate limiting
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+`CLAUDE.md` carries the fuller architectural notes, conventions and known limitations.
 
-### Available Scripts
+## Content
 
-- `npm run dev` - Start development server with Turbopack
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
+Work experience lives in `content/work-experience/*.json`. Each file is self-contained and
+bilingual — shared keys plus an `en` and an `es` block with `period`, `place`, `title`, `company`,
+`summary`, `tech[]` and `achievements[]`. `priority` sorts descending, so higher appears first.
 
-## 🌐 Deployment
+Files are validated when read; a malformed entry is skipped with a console error rather than
+breaking the page. All other copy lives in `src/lib/translations.ts`.
 
-This project is optimized for deployment on Netlify with the following features:
+## Environment
 
-- **Netlify Edge Functions**: For server-side functionality
-- **Image Optimization**: Using Next.js Image component
-- **Static Generation**: Optimized for performance
-- **Form Handling**: Netlify Forms integration
+```
+EMAIL_USER            Zoho SMTP address              (required to send)
+EMAIL_PASS            Zoho SMTP password             (required to send)
+CONTACT_SECRET        HMAC key for challenge tokens  (required in multi-instance deploys)
+NEXT_PUBLIC_SITE_URL  canonical URL, defaults to https://dgomez.dev
+```
 
-### Deploy to Netlify
+`CONTACT_SECRET` must be independent of `EMAIL_PASS` — see the note in `CLAUDE.md`.
 
-1. Connect your repository to Netlify
-2. Set build command: `npm run build`
-3. Set publish directory: `.next`
-4. Deploy!
+## Contact form
 
-## 📝 Content Management
+Submissions pass a honeypot, an HMAC-signed arithmetic challenge (which also carries a tamper-proof
+minimum fill time), shared client/server field validation, and an in-memory per-IP rate limit before
+any mail is sent. Message bodies are HTML-escaped.
 
-The portfolio content is managed through JSON files in the `content/` directory:
+## Deployment
 
-- **Work Experience**: Edit `content/work-experience/` files
-- **Projects**: Edit `content/projects/` files
-- **Testimonials**: Edit `content/testimonials/` files
+Netlify, configured in `netlify.toml`: build `npm run build`, publish `.next`, security headers
+including HSTS, 1-year immutable caching for static assets, and 301s from HTTP and `www` to the
+canonical `https://dgomez.dev`.
 
-## 🎨 Customization
+## Contact
 
-### Themes
+- [LinkedIn](https://www.linkedin.com/in/davidgomezm7/)
+- [GitHub](https://github.com/davidgomezcol)
 
-The site supports multiple themes defined in `src/appData/index.ts`:
-
-- Light
-- Dark
-- Aqua
-- Retro
-
-### Languages
-
-Currently supports English and Spanish. Add new languages in `src/lib/translations.ts`.
-
-### Skills & Services
-
-Update skills and services in `src/appData/index.ts`.
-
-## 📧 Contact
-
-- **LinkedIn**: [David Gómez](https://www.linkedin.com/in/davidgomezm7/)
-- **GitHub**: [davidgomezcol](https://github.com/davidgomezcol)
-
-## 📄 License
-
-This project is private and proprietary. All rights reserved.
-
----
-
-Built with ❤️ using Next.js and Tailwind CSS
+Private and proprietary. All rights reserved.

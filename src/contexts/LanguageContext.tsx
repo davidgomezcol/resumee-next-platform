@@ -34,6 +34,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
     }
   }, [])
 
+  useEffect(() => {
+    // The document language lives in the server layout, but the content language is client state.
+    // Without this the page serves Spanish copy while still claiming lang="en", so a screen reader
+    // reads it with an English synthesiser (WCAG 3.1.1).
+    document.documentElement.lang = language
+  }, [language])
+
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang)
     localStorage.setItem('language', lang)
