@@ -17,16 +17,14 @@ export interface PrivacyContent {
   eyebrow: string
   title: string
   standfirst: string
-  flagLabel: string
-  flagText: string
   meta: MetaRow[]
   sections: PrivacySection[]
 }
 
 /**
- * The notice describes the site as it is actually built. Two values are still bracketed because
- * they live in accounts rather than in this repo — the GA4 data-retention setting and the host's
- * log retention. The banner at the top of the page stays until those are filled in.
+ * The notice describes the site as it is actually built. Retention periods that live in provider
+ * accounts rather than in this repo are stated as the criterion that determines them, which is
+ * what GDPR Art. 13(2)(a) allows where a fixed period cannot be given.
  */
 export const privacyContent: Record<Language, PrivacyContent> = {
   en: {
@@ -35,9 +33,6 @@ export const privacyContent: Record<Language, PrivacyContent> = {
     title: 'Privacy notice',
     standfirst:
       'How dgomez.dev handles personal data. Plain language, no boilerplate, and nothing that runs before you allow it.',
-    flagLabel: 'Before publishing —',
-    flagText:
-      'Two values in square brackets still need your real settings: the GA4 data-retention period and your host’s log retention. This notice describes the site as built; it is not legal advice.',
     meta: [
       { k: 'Last updated', v: '4 August 2026' },
       { k: 'Controller', v: 'David Gómez' },
@@ -103,7 +98,7 @@ export const privacyContent: Record<Language, PrivacyContent> = {
             ],
           },
           {
-            k: '_ga_<container id>',
+            k: '_ga_BKB0F9Y6WC',
             fields: [
               { k: 'Set by', v: 'Google Analytics 4' },
               { k: 'Purpose', v: 'Keeps session state' },
@@ -132,7 +127,10 @@ export const privacyContent: Record<Language, PrivacyContent> = {
             fields: [
               { k: 'Data', v: 'Pages viewed, referrer, device, approximate location' },
               { k: 'Basis', v: 'Your consent — Art. 6(1)(a) and ePrivacy Art. 5(3)' },
-              { k: 'Retention', v: '[GA4 retention setting, up to 14 months]' },
+              {
+                k: 'Retention',
+                v: 'The data-retention period set in Google Analytics — 14 months maximum for event data',
+              },
             ],
           },
           {
@@ -148,7 +146,7 @@ export const privacyContent: Record<Language, PrivacyContent> = {
             fields: [
               { k: 'Data', v: 'IP address and request metadata in server logs' },
               { k: 'Basis', v: 'Legitimate interest — Art. 6(1)(f)' },
-              { k: 'Retention', v: "[Netlify's log retention]" },
+              { k: 'Retention', v: 'As long as Netlify keeps request logs under its own policy' },
             ],
           },
         ],
@@ -198,9 +196,6 @@ export const privacyContent: Record<Language, PrivacyContent> = {
     title: 'Aviso de privacidad',
     standfirst:
       'Cómo dgomez.dev trata los datos personales. Lenguaje claro, sin plantillas, y nada que se ejecute antes de que lo permitas.',
-    flagLabel: 'Antes de publicar —',
-    flagText:
-      'Dos valores entre corchetes aún necesitan tus ajustes reales: el periodo de retención de datos de GA4 y la retención de logs de tu proveedor de hosting. Este aviso describe el sitio tal como está construido; no es asesoría legal.',
     meta: [
       { k: 'Actualizado', v: '4 de agosto de 2026' },
       { k: 'Responsable', v: 'David Gómez' },
@@ -266,7 +261,7 @@ export const privacyContent: Record<Language, PrivacyContent> = {
             ],
           },
           {
-            k: '_ga_<id de contenedor>',
+            k: '_ga_BKB0F9Y6WC',
             fields: [
               { k: 'Instalada por', v: 'Google Analytics 4' },
               { k: 'Finalidad', v: 'Mantiene el estado de la sesión' },
@@ -295,7 +290,10 @@ export const privacyContent: Record<Language, PrivacyContent> = {
             fields: [
               { k: 'Datos', v: 'Páginas vistas, referencia, dispositivo, ubicación aproximada' },
               { k: 'Base', v: 'Tu consentimiento — art. 6(1)(a) y ePrivacy art. 5(3)' },
-              { k: 'Conservación', v: '[ajuste de retención de GA4, hasta 14 meses]' },
+              {
+                k: 'Conservación',
+                v: 'El periodo de retención configurado en Google Analytics — máximo 14 meses para datos de eventos',
+              },
             ],
           },
           {
@@ -311,7 +309,10 @@ export const privacyContent: Record<Language, PrivacyContent> = {
             fields: [
               { k: 'Datos', v: 'Dirección IP y metadatos de solicitud en los logs' },
               { k: 'Base', v: 'Interés legítimo — art. 6(1)(f)' },
-              { k: 'Conservación', v: '[retención de logs de Netlify]' },
+              {
+                k: 'Conservación',
+                v: 'Mientras Netlify conserve los logs de solicitud según su propia política',
+              },
             ],
           },
         ],

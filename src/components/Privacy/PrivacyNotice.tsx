@@ -39,18 +39,7 @@ const PrivacyNotice = () => {
           </div>
         </section>
 
-        <div className={`${container} pb-[clamp(56px,7vw,100px)]`}>
-          {/*
-            The design ships this flag deliberately: the notice is not publishable until the
-            bracketed values below are replaced with the real account settings.
-          */}
-          <p className="border-brick bg-brick/7 my-[clamp(30px,3.6vw,44px)] mb-[clamp(8px,1vw,14px)] flex max-w-[78ch] items-baseline gap-2.5 border-l-2 px-4 py-[13px] font-mono">
-            <span className="text-ink/80 text-[11px] leading-[1.6] tracking-[0.02em]">
-              <span className="text-brick tracking-[0.14em] uppercase">{t.flagLabel}</span>{' '}
-              {t.flagText}
-            </span>
-          </p>
-
+        <div className={`${container} pt-[clamp(30px,3.6vw,44px)] pb-[clamp(56px,7vw,100px)]`}>
           {t.sections.map((section, index) => (
             <section
               key={section.title}
