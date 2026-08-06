@@ -1,9 +1,13 @@
+import { site } from '@/appData/site'
+
 export type Language = 'en' | 'es'
 
 /** A mono key/value row — used by the hero specs, about facts, and contact details tables. */
 export interface MetaRow {
   k: string
   v: string
+  /** Renders the value as a link. Most rows are facts, not destinations, so this stays unset. */
+  href?: string
 }
 
 export interface CapabilityGroup {
@@ -225,7 +229,7 @@ export const translations: Record<Language, Translations> = {
       intro:
         'Open to conversations about AI-augmented engineering, platform work, and senior full-stack roles.',
       rows: [
-        { k: 'Email', v: 'hi@dgomez.dev' },
+        { k: 'Email', v: site.email, href: `mailto:${site.email}` },
         { k: 'Location', v: 'Bogotá, Colombia' },
         { k: 'Time zone', v: 'GMT-5 · U.S. hours' },
       ],
@@ -403,7 +407,7 @@ export const translations: Record<Language, Translations> = {
       intro:
         'Abierto a conversaciones sobre ingeniería aumentada con IA, trabajo de plataforma y roles senior full-stack.',
       rows: [
-        { k: 'Correo', v: 'hi@dgomez.dev' },
+        { k: 'Correo', v: site.email, href: `mailto:${site.email}` },
         { k: 'Ubicación', v: 'Bogotá, Colombia' },
         { k: 'Zona horaria', v: 'GMT-5 · horario EE. UU.' },
       ],
