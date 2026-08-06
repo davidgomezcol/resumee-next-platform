@@ -1,7 +1,8 @@
 'use client'
 
-import { container } from '@/appData/site'
+import { container, site } from '@/appData/site'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { trackEmailClick } from '@/lib/analytics'
 import CornerTicks from '../UI/CornerTicks'
 import MetaTable from '../UI/MetaTable'
 import SectionLabel from '../UI/SectionLabel'
@@ -26,6 +27,8 @@ const Contact = () => {
             rows={t.contact.rows}
             tone="dark"
             className="mt-[clamp(28px,3.4vw,42px)] max-w-[380px]"
+            // Distinguished from the footer link so the two aren't pooled in one number.
+            onLinkClick={() => trackEmailClick(site.email, 'contact')}
           />
         </div>
 
